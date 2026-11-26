@@ -26,5 +26,6 @@
 | 020 | `extend_ttl` en cada escritura (≥30 días) y renovación el 4 dic | TTL por defecto | evitar archivado durante la evaluación del 5–7 dic |
 | 021 | LLM vía OpenRouter con API Responses y `json_schema` (26 nov) | OpenAI directo, un solo proveedor | cambiar de modelo sin reescribir código; mismo SDK `openai` |
 | 022 | Nombre `praev` y definición "Anticipa lo que importa" (26 nov) | "Proof of Foresight" como tagline | la tesis pasó de reputación a decisión; Proof of Foresight queda solo como nombre técnico de la prueba on-chain |
+| 023 | Fuente LIVE: GO para SENAMHI Chulucanas; política de faltantes `partial_yes_else_invalidate` (26 nov) | `invalidate` ante cualquier hora faltante | el spike mostró ≈2 % de horas faltantes sin backfill, que invalidaría ~73 % de ventanas de 72 h; como la lluvia no es negativa, una suma parcial que ya supera el umbral prueba SÍ, mientras que NO exige cobertura completa |
 
 ADRs son decisiones de diseño del presente blueprint, no aprobación formal del equipo ni pruebas ejecutadas. Para cambiar: nuevo ADR con fecha, contexto, alternativas, consecuencias y actualización de docs dependientes. No reescribir informe original para ocultar contradicción.

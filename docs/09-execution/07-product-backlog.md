@@ -97,7 +97,7 @@ El **Decision Register** vive solo en el navegador (localStorage + export JSON) 
 - **HU-09:** n = 0 → `null` (nunca 50 %). n par → promedio redondeado a bps con .5 hacia arriba. Usa solo la última versión confirmada por address; excluye resolver y baseline. Fixture: 7000/6000 → 6500; con A = 8000 → 7000.
 - **HU-10:** `lossUnits = (bps − 10000·y)²`. Fixture YES: 9 000 000 y 16 000 000. INVALID/CANCELLED/pendientes no puntúan; n cuenta preguntas, no revisiones; n < 20 → provisional.
 - **HU-11:** BigInt; L = 0 → N/D; C > L → umbral > 100 %; igualdad → indiferencia. Ejemplo C = 11 000, L = 20 000 → 55 %.
-- **HU-12:** fixtures de [04-fixtures](../08-quality/04-fixtures.md): 12+16 → YES; 10+15 = 25 → NO; faltante → invalidar; solape → invalidar.
+- **HU-12:** fixtures de [04-fixtures](../08-quality/04-fixtures.md): 12+16 → YES; 10+15 = 25 → NO; faltante con suma parcial ≤ umbral → invalidar; faltante con suma parcial > umbral → YES (ADR-023); solape → invalidar; normaliza el ruido de coma flotante a 0,1 mm. Se prueba también con la muestra real de `fixtures/sources/senamhi/`.
 
 ### EP2 · Contrato `PraevRegistry`
 
