@@ -225,11 +225,31 @@ La investigación de base está en [research/](research/README.md). Las versione
 
 ## Uso de IA
 
-La investigación (informes Deep Research) y la documentación se elaboraron y organizaron con asistencia de herramientas de IA, entre ellas Claude Code. El equipo revisa y es responsable del contenido. Cuando se use IA para generar código, se indicará aquí qué partes y con qué herramienta. Dentro del producto, el agente de forecasting usa modelos a través de OpenRouter.
+La investigación (informes Deep Research) y la documentación se elaboraron y organizaron con asistencia de herramientas de IA, entre ellas Claude Code. El equipo revisa y es responsable del contenido. El código se escribe en pair programming con Claude Code y lo revisa y commitea el equipo. Dentro del producto, el agente de forecasting usa modelos a través de OpenRouter.
+
+## Ejecutar en local
+
+Requisitos: Node ≥ 22.12, Rust ≥ 1.91 con el target `wasm32v1-none` y stellar-cli 30.0.1.
+
+```bash
+npm ci
+cp .env.example .env.local      # completar DATABASE_URL (Neon o Docker con compose.yaml)
+npm run db:migrate
+npm run dev                     # http://localhost:3000 · health en /api/v1/health
+npm run lint && npm run typecheck && npm test
+npm run contract:test && npm run contract:build
+```
+
+App desplegada: https://praev.vercel.app
 
 ## Código previo y de terceros
 
-Ninguno. Este repositorio se creó durante el periodo oficial de la buildathon (14 nov – 4 dic 2026) y por ahora contiene solo documentación. Cualquier código reutilizado o dependencia relevante se declarará aquí con su origen, su licencia y los cambios hechos durante el periodo.
+No hay código previo: todo se escribe durante el periodo oficial de la buildathon (14 nov – 4 dic 2026). Código de terceros:
+
+| Origen | Uso | Licencia |
+|---|---|---|
+| `create-next-app` 16.4.6 | Scaffold inicial de la app (configuración de Next.js, TypeScript, ESLint y Tailwind), adaptado después | MIT |
+| Dependencias npm y crates | Listadas con versión exacta en `package.json` y `contracts/Cargo.toml` | Las de cada paquete |
 
 ## Licencia
 

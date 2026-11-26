@@ -30,3 +30,22 @@ No ORM, Redis, colas, Kubernetes, LangChain, Supabase Auth, Graph DB o vector st
 | OpenZeppelin Stellar | No se usa | 0.8.0 exige `soroban-sdk ^28`; un rol `curator` no lo justifica |
 
 Fuentes: [Next.js instalación](https://nextjs.org/docs/app/getting-started/installation), [Stellar setup](https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup), [Wallet Kit v2](https://github.com/stellar/ecosystem-resources/blob/main/wallet-integration/stellar-wallets-kit.md), [Varial](https://stellar.org/blog/foundation-news/freighter-is-now-varial), [OpenRouter Structured Outputs](https://openrouter.ai/docs/features/structured-outputs).
+
+## Versiones instaladas en el Sprint 0 (26 nov 2026)
+
+Comprobadas con `npm ci`, `cargo test` y `stellar contract build`. Fijadas sin `^` en `package.json` y en `contracts/Cargo.toml`.
+
+| Pieza | Versión |
+|---|---|
+| Node / npm | 24.20.0 / 11.19.0 (`engines` ≥ 22.12, `.nvmrc` 24) |
+| Rust / cargo | 1.98.0 |
+| stellar-cli | 30.0.1 (binario oficial, SHA-256 verificado) |
+| soroban-sdk | 30.0.0, confirmado: compila, pasa tests y despliega en testnet con CLI 30.0.1 |
+| next / react / react-dom | 16.4.6 / 19.3.0 / 19.3.0 (Cache Components activado) |
+| typescript / eslint | 5.9.3 / 9.39.5 |
+| tailwindcss / @tailwindcss/turbopack | 4.3.3 / 4.3.3 |
+| zod / postgres / server-only | 4.6.7 / 4.1.1 / 0.0.1 |
+| vitest / tsx | 5.1.0 / 4.23.15 |
+| Base de datos | Neon Postgres (plan free) vía Vercel Marketplace; `compose.yaml` queda como alternativa local con Docker |
+
+Los paquetes de Stellar en JS, Wallets Kit y el SDK `openai` se instalan en el sprint que los usa, con la misma regla: versión exacta publicada hace al menos dos semanas.

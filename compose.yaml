@@ -1,0 +1,12 @@
+# Local Postgres for development (optional: Neon dev branch works too).
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: praev
+      POSTGRES_USER: praev
+      POSTGRES_PASSWORD: local_only_change_me
+    ports: ["127.0.0.1:5432:5432"]
+    volumes: ["praev_pg:/var/lib/postgresql/data"]
+volumes:
+  praev_pg:

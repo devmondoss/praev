@@ -1,0 +1,6 @@
+contracts/target
+archive
+research
+*.pdf
+.env*
+!.env.example
