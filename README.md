@@ -28,6 +28,8 @@ La incertidumbre tiene costos reales: una empresa debe comprar inventario antes 
 
 ## Documentación
 
+El [índice de docs](docs/README.md) agrupa los documentos por área y sugiere un orden de lectura para cada rol.
+
 | Documento | Contenido |
 |---|---|
 | [01 — Visión y tesis](docs/01-vision.md) | Problema, principios, diferenciación, propuesta de valor. |
@@ -52,12 +54,39 @@ La incertidumbre tiene costos reales: una empresa debe comprar inventario antes 
 
 **Especificación inicial — 25 de noviembre de 2026.** Este repositorio documental no contiene aún una aplicación, contratos desplegados, credenciales emitidas ni transacciones reales. Los ejemplos y cifras de demostración son sintéticos, salvo los pesos y fechas de la convocatoria. La implementación y las verificaciones técnicas deben producirse durante la buildathon. No se declara ninguna integración ni resultado como conseguido.
 
-## Quick start (documentación)
+## Stellar Codember Perú 2026
 
-1. Leer visión, producto MVP y arquitectura.
-2. Registrar el repositorio público en el Hub dentro del checkpoint obligatorio.
-3. Crear los paquetes de aplicación, contratos y SDK descritos en la guía de repositorio.
+| | |
+|---|---|
+| Repositorio | https://github.com/devmondoss/praev (público, rama `main`) |
+| Checkpoint en el Hub | Pendiente de envío. Cierra el 25 nov 2026 a las 23:59 (Lima) |
+| Entrega final (APEX) | 4 dic 2026, 23:59 (Lima) |
+| Red | Stellar Testnet únicamente |
+
+Las reglas, la rúbrica y lo que cuenta como actividad en el Hub están resumidas en [15 · Codember y evaluación](docs/15-codember.md).
+
+## Próximos pasos
+
+1. Enviar el checkpoint del repositorio desde el Hub.
+2. Congelar la especificación del MVP (M1 en el [roadmap](docs/14-roadmap.md)).
+3. Crear los paquetes de aplicación, contratos y SDK según la [guía de repositorio](docs/17-repositorio.md).
 4. Implementar y validar el flujo vertical en Stellar Testnet.
 5. Añadir aquí instrucciones reproducibles, IDs de contratos, direcciones de activos de prueba, transacciones y enlace a la aplicación cuando existan.
 
-**Nota:** las reglas permiten código previo si se declara en el README; no presentar código reutilizado como trabajo nuevo. Esta especificación no presupone reutilización. La licencia de software se elegirá antes de publicar código; MIT es una opción recomendada por las bases, no una licencia ya concedida.
+## Equipo
+
+| Integrante | GitHub | Rol |
+|---|---|---|
+| Por completar | [@devmondoss](https://github.com/devmondoss) | Por completar |
+
+## Uso de IA
+
+La documentación inicial se redactó y organizó con asistencia de herramientas de IA (entre ellas Claude Code). El equipo revisa y es responsable del contenido. Cuando se use IA para generar código, se indicará aquí qué partes y con qué herramienta.
+
+## Código previo y de terceros
+
+Ninguno. Este repositorio se creó durante el periodo oficial de la buildathon (14 nov – 4 dic 2026) y por ahora contiene solo documentación. Cualquier código reutilizado o dependencia relevante se declarará aquí con su origen, su licencia y los cambios hechos durante el periodo.
+
+## Licencia
+
+Por definir antes de publicar código. Las bases recomiendan MIT, pero todavía no se ha concedido ninguna licencia.

@@ -21,6 +21,33 @@ Fuente: bases de la buildathon proporcionadas, secciones 2, 5–8, 9 y 12. Las f
 - [ ] Innovación: explicar las tres métricas distintas; muestra y comparación Brier; verificador reproducible; limitaciones de oráculo e identidad; diferenciación validada cuando sea posible.
 - [ ] UX: lectura pública, flujo mobile, teclado, estados y confirmación de firma; 3 min máximo; audio/subtítulos y enlaces accesibles.
 
+## Reglas del Stellar Build Hub (consultado el 25 nov 2026)
+
+Fuente: textos publicados en el Hub ([stellar.mintedinpe.com/codember](https://stellar.mintedinpe.com/codember)). Las bases completas están en [/codember/bases](https://stellar.mintedinpe.com/codember/bases) y prevalecen sobre este resumen.
+
+### Checkpoint del repositorio
+
+- Obligatorio para poder hacer la entrega final. Crear el repo **no** equivale a registrarlo: hay que enviarlo desde el Hub.
+- Formulario: URL del repo con el formato `https://github.com/equipo/proyecto` (sin rutas ni parámetros) y una descripción de 20 a 3000 caracteres.
+- Si se usa código previo, se declara el hash del commit base (7–40 caracteres hex), y ese commit debe estar en el historial de la rama principal. Pravef no parte de código previo, así que este campo va vacío.
+- Completar el checkpoint emite un certificado, aunque luego no se haga la entrega en APEX.
+
+### Puntuación de progreso en el Hub
+
+Es independiente de la nota del jurado en APEX.
+
+- **Constancia:** 1 punto por día con actividad del equipo, máximo 5 por semana (lunes a domingo, hora de Lima).
+- Solo se cuenta la **rama principal** (`main`).
+- Solo suman los commits de integrantes aprobados cuyo autor coincida con el GitHub de su inscripción. No suman los bots, los merges, los autores externos ni los commits cuyo correo no esté asociado a una cuenta de GitHub.
+- **Hitos** revisados por la organización (cada uno suma una sola vez): funcionalidad (5), integración de Stellar en testnet (10), pruebas, documentación o demo (5).
+
+### Qué significa para el equipo
+
+- Cada integrante configura en git (`git config user.email`) un correo verificado en la misma cuenta de GitHub con la que se inscribió.
+- Commitear en días distintos, no todo el último día. Lo ideal es hacer commits pequeños y con mensajes descriptivos al cerrar cada módulo.
+- Integrar en `main` con rebase o squash: los commits de merge no cuentan.
+- No commitear desde cuentas compartidas ni desde bots de CI.
+
 ## Compatibilidad temática y elegibilidad
 
 Temática libre, una sola categoría. Las bases contemplan identidad, credenciales y reputación, así como stablecoins. Excluyen proyectos centrados en especulación, apuestas, rendimientos prometidos o tokens especulativos. Pravef se presenta como inteligencia verificable y pago fijo por contenido, sin apostar sobre resultados. Esto favorece el encaje, pero la decisión de elegibilidad corresponde a organización.

@@ -2,7 +2,7 @@
 
 ## Identidad
 
-- Nombre oficial: **Pravef** (repositorio: `pravef`).
+- Nombre oficial: **Pravef** (repositorio: [`devmondoss/praev`](https://github.com/devmondoss/praev)).
 - Tagline: **Proof of Foresight.**
 - Descriptor: **Verifiable Intelligence for Real-World Decisions.**
 - Principio editorial: **We don't predict everything. We predict what matters.**

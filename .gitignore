@@ -1,0 +1,21 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.stellar/
+identity/
+
+# Dependencies and builds
+node_modules/
+target/
+dist/
+build/
+.next/
+*.wasm
+
+# OS and editor files
+.DS_Store
+.vscode/
+.idea/
