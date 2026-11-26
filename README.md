@@ -49,10 +49,11 @@ El [índice de docs](docs/README.md) agrupa los documentos por área y sugiere u
 | [15 — Codember y evaluación](docs/15-codember.md) | Rúbrica, entregables, pitch y checklist. |
 | [16 — Pruebas y demo](docs/16-pruebas-demo.md) | Fixtures, casos de aceptación y guion de demo. |
 | [17 — Arranque de repositorio](docs/17-repositorio.md) | Estructura, comandos previstos y decisiones pendientes. |
+| [18 — MVP y backlog](docs/18-mvp-backlog.md) | Alcance real del MVP, contratos Soroban, stack y plan diario. |
 
 ## Próximos pasos
 
-1. Congelar la especificación del MVP (M1 en el [roadmap](docs/14-roadmap.md)).
+1. Ejecutar el backlog de [18 — MVP y backlog](docs/18-mvp-backlog.md).
 2. Crear los paquetes de aplicación, contratos y SDK según la [guía de repositorio](docs/17-repositorio.md).
 3. Implementar y validar el flujo vertical en Stellar Testnet.
 4. Añadir aquí instrucciones reproducibles, IDs de contratos, direcciones de activos de prueba, transacciones y enlace a la aplicación cuando existan.

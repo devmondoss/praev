@@ -32,9 +32,11 @@
 | [15 · Codember y evaluación](15-codember.md) | Bases, rúbrica, reglas del Hub, entregables, pitch |
 | [16 · Pruebas y demo](16-pruebas-demo.md) | Fixtures sintéticos, casos de aceptación, guion de demo |
 | [17 · Repositorio](17-repositorio.md) | Estructura de carpetas, toolchain, ADRs, convenciones |
+| [18 · MVP y backlog](18-mvp-backlog.md) | Qué se construye, contratos Soroban, stack fijado, backlog y plan diario |
 
 ## Por dónde empezar
 
+- **Para programar el MVP:** 18 primero; luego 07 y 09 como referencia.
 - **Todo el equipo:** 01 → 04 → 14 → 15.
 - **Stellar/Soroban:** 06 → 07 → 09 → 10.
 - **Backend, datos e IA:** 08 → 11 → 12 → 16.
