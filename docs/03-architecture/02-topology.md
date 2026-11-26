@@ -13,7 +13,7 @@ flowchart LR
   O --> L[LLM provider]
   O --> S[Official data or demo fixture]
   O --> R
-  R --> C[Praev Registry contract]
+  R --> C[praev Registry contract]
   R --> I[Reconcile and index script]
   I --> P
 ```

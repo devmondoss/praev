@@ -31,8 +31,8 @@ Vienen de informes generados con IA y **no se han verificado**. Hay que comproba
   - Del informe 01: Mantic (superó a 676 humanos; unos US$29M levantados), Sooth Labs, Cultivate Labs, Preseen y The Forecasting Company.
   - Del informe 02: Dataminr, Interos y Seerist.
   - Del informe 03: ClimateAi, y el caso Blue Yonder con Supermercados Peruanos.
-- **Posicionamiento:** "Prewave sabe qué proveedor está expuesto; Praev te dice qué probabilidad hay y qué decisión tomar" (informe 02).
+- **Posicionamiento:** "Prewave sabe qué proveedor está expuesto; praev te dice qué probabilidad hay y qué decisión tomar" (informe 02).
 - **Precio piloto hipotético:** US$500–2.000 al mes. Como referencia, NERAI publica una licencia de €4.900 al año (informe 02).
 - **Preguntas de expansión:** suspensión de la pesca de anchoveta (PRODUCE), cierre del puerto del Callao (DICAPI/APN) y normas SBS/BCRP (informe 02).
 - **Riesgos para Q&A:** Goodhart, sesgo de selección, información privilegiada, captura de la resolución y agentes correlacionados (informe 01).
-- **Para el jurado:** la prueba "¿seguiría existiendo Praev sin Stellar?" y la lección de Augur (informe 01). Por qué no usar Reflector (SEP-40) como oráculo (informe 03).
+- **Para el jurado:** la prueba "¿seguiría existiendo praev sin Stellar?" y la lección de Augur (informe 01). Por qué no usar Reflector (SEP-40) como oráculo (informe 03).

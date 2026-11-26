@@ -1,6 +1,6 @@
-# Proof of Foresight: garantías y límites
+# Prueba on-chain: garantías y límites
 
-**Estado:** P0 · **Versión:** 1.0 · **Fecha:** 2026-11-26
+**Estado:** P0 · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
 La prueba vincula pregunta congelada, pronóstico público autenticado antes de cutoff, outcome autorizado y evidencia. Brier puede recalcularse desde esos datos. Un tercero puede cotejar tx/ledger y bytes. La identidad es técnica, no certificación de humanidad; la evidencia puede ser falsa si resolver miente; el testnet no es garantía de permanencia. No afirmar que blockchain conoce clima.
 

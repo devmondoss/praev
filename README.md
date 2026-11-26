@@ -1,132 +1,76 @@
-# Praev — MVP Blueprint
+# praev
 
-**Proof of Foresight · Verifiable Intelligence for Real-World Decisions**
+**Anticipa lo que importa.**
+Inteligencia anticipatoria verificable para decisiones reales, construida sobre Stellar.
 
-Versión 1.0 · 26 noviembre 2026 · Documentación de implementación, no aplicación construida.
+praev convierte eventos externos con consecuencias humanas o económicas en preguntas de probabilidad. Registra en Stellar quién los anticipó y con qué probabilidad, y conecta cada pronóstico con una decisión concreta y con su resultado verificado.
 
-## Objetivo
-Demostrar el ciclo de inteligencia anticipatoria verificable: pregunta relevante propia → probabilidades firmadas en Stellar → consenso → decisión simulada → resultado con evidencia → Brier y verificación. La misión social y la utilidad comercial coexisten, pero no se construye un negocio completo.
+> La anticipación no debería ser un privilegio. No pronosticamos todo: pronosticamos lo que importa.
 
-**Stack elegido:** Next.js App Router, TypeScript, Tailwind, PostgreSQL, Stellar SDK/Rust/Soroban, Stellar Wallets Kit v2, OpenAI Responses, Zod, Vitest/Playwright. Un monolito y un contrato. Stellar testnet exclusivamente.
+## El problema
 
-## Empezar aquí
-1. [AGENTS.md](AGENTS.md): reglas de implementación.
-2. [Scope](docs/02-mvp/01-scope.md): P0 vs P1, exclusiones.
-3. [Stack](docs/03-architecture/01-stack.md) y [topología](docs/03-architecture/02-topology.md).
-4. [Contrato](docs/06-stellar/02-contract-interface.md), [SQL](docs/07-engineering/01-database.md), [API](docs/07-engineering/02-api.md).
-5. [Backlog](docs/09-execution/01-backlog.md), [criterios](docs/02-mvp/04-acceptance.md), [pruebas](docs/08-quality/03-tests.md).
-6. [ADRs](docs/10-decisions/01-adrs.md) y [bloqueadores](docs/10-decisions/02-open-questions.md).
+Muchas decisiones dependen de algo que todavía no ha ocurrido: una lluvia intensa, una cosecha perdida, una ruta de abastecimiento cortada. Hay que decidir antes de saber qué pasará. Las alertas avisan de que algo *puede* ocurrir, pero no dicen con qué probabilidad, quién la estimó, qué tan bien ha acertado antes ni qué conviene hacer con ese dato. Sin un historial verificable no hay forma de saber en qué pronóstico confiar.
 
-## Estado y límites
-No hay código ejecutable, DB creada, contrato desplegado, integración de datos probada, lockfiles generados ni tests de software ejecutados. Las interfaces y SQL son especificaciones. La pregunta LIVE depende de validar estación/serie y la fuente de resolución; fixture DEMO siempre etiquetado. No Solidity: el contrato nativo de Stellar se diseña en Rust/Soroban. La decisión demo vive en navegador; no enterprise SaaS. Pagos fuera de P0. No claims de PMF, precisión superior ni impacto medido.
+## Cómo funciona
 
-## Inventario navegable
+1. **Pregunta.** Se formula con una regla objetiva, una fuente oficial y una fecha. Ejemplo candidato: *¿la precipitación acumulada en la estación Chulucanas (Piura) superará 25 mm entre el 1 y el 4 de diciembre?*
+2. **Pronóstico.** Personas con su wallet y un agente de IA registran su probabilidad en Stellar antes del cierre.
+3. **Consenso.** Se muestra la mediana de los pronósticos junto a un baseline de referencia.
+4. **Decisión.** El Decision Register compara la probabilidad con el umbral de acción (coste de actuar frente a pérdida evitable) y guarda qué se decidió en ese momento.
+5. **Resolución.** Un resolvedor autorizado publica el resultado con el hash de su evidencia.
+6. **Score y verificación.** Cada participante recibe su Brier score, y cualquiera puede contrastar la pregunta, los pronósticos y el resultado con la cadena.
 
-### Fundamentos y visión
+## Por qué Stellar
 
-- [Visión y posicionamiento](docs/00-foundation/01-vision.md)
-- [Principios de producto](docs/00-foundation/02-principles.md)
-- [Impacto humano y económico](docs/00-foundation/03-impact.md)
-- [Mercados regionales y motores productivos](docs/00-foundation/04-region.md)
-- [Coexistencia pública y comercial](docs/00-foundation/05-business.md)
-- [Síntesis de las tres investigaciones](docs/00-foundation/06-research-synthesis.md)
-- [Visión de largo plazo y productos](docs/00-foundation/07-future.md)
+El contrato Soroban `PraevRegistry` guarda la especificación de cada pregunta (su hash), los pronósticos firmados y versionados, y la resolución. La firma identifica a cada participante, y el ledger prueba que un pronóstico existía antes del cierre y que nadie lo cambió después. La cadena demuestra integridad y orden, no la verdad del clima: la resolución declara su fuente y su autoridad. No hay custodia de fondos, tokens ni apuestas.
 
-### Producto y UX
+## Primer caso: clima y abastecimiento en Perú
 
-- [Usuarios, permisos y beneficiarios](docs/01-product/01-users.md)
-- [Recorridos del producto](docs/01-product/02-journeys.md)
-- [Mapa de navegación y rutas](docs/01-product/03-navigation.md)
-- [Sistema visual y responsive](docs/01-product/04-visual-system.md)
-- [Pantalla Radar](docs/01-product/05-radar.md)
-- [Pantalla Decision Forecast](docs/01-product/06-question-screen.md)
-- [Pantalla Forecasters y verificador](docs/01-product/07-reputation-screen.md)
-- [Microcopy y accesibilidad](docs/01-product/08-copy-accessibility.md)
+El MVP se centra en lluvias en Piura y en su efecto sobre cosechas, transporte y acceso a alimentos. Tiene impacto **humano** (agua, alimentación, movilidad) y **económico** (producción, logística, abastecimiento). Chile, Colombia y Bolivia son mercados candidatos, no cobertura actual.
 
-### Alcance y prueba funcional
+## Qué no es
 
-- [Scope P0, P1 y exclusiones](docs/02-mvp/01-scope.md)
-- [Caso vertical: clima y abastecimiento](docs/02-mvp/02-vertical.md)
-- [Fixture y demostración end-to-end](docs/02-mvp/03-demo-fixture.md)
-- [Criterios de aceptación funcional](docs/02-mvp/04-acceptance.md)
+- No es un mercado de predicción ni de apuestas: ningún dinero depende del resultado.
+- No sustituye las alertas oficiales ni recomienda evacuar, cosechar o invertir.
+- No afirma precisión superior ni ahorros medidos. El MVP demuestra que el ciclo es íntegro y verificable.
 
-### Stack y arquitectura
+## Alcance del MVP
 
-- [Stack técnico seleccionado](docs/03-architecture/01-stack.md)
-- [Arquitectura monolito modular](docs/03-architecture/02-topology.md)
-- [Fronteras y fuentes de verdad](docs/03-architecture/03-boundaries.md)
-- [Árbol objetivo de repositorio](docs/03-architecture/04-repo.md)
-- [Manifest y scripts npm propuestos](docs/03-architecture/05-package.md)
+praev se construye para Stellar Codember Perú 2026, en Stellar Testnet.
 
-### Motores y dominio
+| Incluido (P0) | Más adelante (P1) |
+|---|---|
+| Un contrato Soroban en testnet | Pago fijo en USDC por informes |
+| Una pregunta LIVE con fuente validada y un escenario DEMO etiquetado | Segunda fuente de datos |
+| Pronóstico humano (wallet) y de un agente de IA | Ponderación por reputación |
+| Mediana, baseline, Brier y verificador público | Credencial portable |
+| Decision Register local con umbral de acción | Decisiones en servidor con autenticación |
 
-- [Entidad Question y especificación canónica](docs/04-domain/01-question.md)
-- [Estados y transiciones](docs/04-domain/02-lifecycle.md)
-- [Relevance Engine mínimo](docs/04-domain/03-relevance.md)
-- [Forecast y versiones](docs/04-domain/04-forecast.md)
-- [Evidence Engine y procedencia](docs/04-domain/05-evidence.md)
-- [Consensus Engine y baseline](docs/04-domain/06-consensus.md)
-- [Exposición y contexto comercial](docs/04-domain/07-exposure.md)
-- [Decision Register](docs/04-domain/08-decision-register.md)
-- [Oracle Engine: resolución auditable](docs/04-domain/09-oracle.md)
-- [Brier, calibración y reputación](docs/04-domain/10-reputation.md)
-- [Praev ID y tipos de predictor](docs/04-domain/11-identity.md)
+## Stack
 
-### IA y evaluación
+Next.js (App Router) + TypeScript + Tailwind · PostgreSQL (Neon) · Rust/Soroban en Stellar Testnet · `@stellar/stellar-sdk` y Stellar Wallets Kit · OpenRouter para el agente de IA, con salida estructurada validada con Zod · Vitest, Playwright y `cargo test` · despliegue en Vercel.
 
-- [Agente de forecasting único](docs/05-ai/01-agent.md)
-- [Contrato de salida estructurada IA](docs/05-ai/02-output-schema.md)
-- [Evaluación de forecasting y leakage](docs/05-ai/03-evaluation.md)
+Las versiones fijadas están en [docs/03-architecture/01-stack.md](docs/03-architecture/01-stack.md).
 
-### Protocolo Stellar
+## Documentación
 
-- [Stellar, Soroban y red](docs/06-stellar/01-network.md)
-- [Interfaz contractual PraevRegistry](docs/06-stellar/02-contract-interface.md)
-- [Storage, eventos e indexación](docs/06-stellar/03-storage-events.md)
-- [Canonicalización, hashes y verificador](docs/06-stellar/04-hashes.md)
-- [Wallet, firma y confirmación](docs/06-stellar/05-wallet-transactions.md)
-- [Proof of Foresight: garantías y límites](docs/06-stellar/06-proof-of-foresight.md)
-- [Praev Pay, pagos no custodiales](docs/06-stellar/07-payments.md)
+Empieza por [AGENTS.md](AGENTS.md), el [scope](docs/02-mvp/01-scope.md), el [backlog](docs/09-execution/01-backlog.md) y las [decisiones (ADRs)](docs/10-decisions/01-adrs.md).
 
-### Ingeniería
+| Carpeta | Contenido |
+|---|---|
+| [00-foundation](docs/00-foundation) | Visión, principios, impacto, región, negocio, síntesis de la investigación |
+| [01-product](docs/01-product) | Usuarios, recorridos, navegación, sistema visual, pantallas, copy y accesibilidad |
+| [02-mvp](docs/02-mvp) | Scope, caso vertical, fixture de demo, criterios de aceptación |
+| [03-architecture](docs/03-architecture) | Stack, topología, fronteras de confianza, árbol del repo |
+| [04-domain](docs/04-domain) | Pregunta, ciclo de vida, relevancia, pronóstico, evidencia, consenso, exposición, decisión, oráculo, reputación, identidad |
+| [05-ai](docs/05-ai) | Agente de forecasting, esquema de salida, evaluación y leakage |
+| [06-stellar](docs/06-stellar) | Red, interfaz del contrato, storage y eventos, hashes, wallet, prueba on-chain, pagos |
+| [07-engineering](docs/07-engineering) | SQL, API, errores, reconciliación, fuentes de datos, entorno, setup, despliegue |
+| [08-quality](docs/08-quality) | Seguridad, privacidad, pruebas, fixtures, CI |
+| [09-execution](docs/09-execution) | Backlog, calendario, guion de demo, checklist Codember, definition of done |
+| [10-decisions](docs/10-decisions) | ADRs, preguntas abiertas, fuentes |
 
-- [Esquema SQL inicial](docs/07-engineering/01-database.md)
-- [API REST y contratos de transporte](docs/07-engineering/02-api.md)
-- [Errores, reintentos e idempotencia](docs/07-engineering/03-errors.md)
-- [Indexer y reconciliación](docs/07-engineering/04-reconcile.md)
-- [Inventario de fuentes y prueba de viabilidad](docs/07-engineering/05-data-sources.md)
-- [Variables de entorno y configuración](docs/07-engineering/06-env.md)
-- [Arranque local y dependencias](docs/07-engineering/07-setup.md)
-- [Despliegue testnet y aplicación](docs/07-engineering/08-deployment.md)
-
-### Calidad y seguridad
-
-- [Threat model y controles](docs/08-quality/01-security.md)
-- [Privacidad, gobernanza y ética](docs/08-quality/02-privacy.md)
-- [Matriz de pruebas reproducibles](docs/08-quality/03-tests.md)
-- [Vectores de prueba y datasets demo](docs/08-quality/04-fixtures.md)
-- [CI y observabilidad](docs/08-quality/05-ci-observability.md)
-
-### Ejecución y demo
-
-- [Backlog ejecutable y ruta crítica](docs/09-execution/01-backlog.md)
-- [Plan de construcción 26 nov–4 dic](docs/09-execution/02-calendar.md)
-- [Guion de demo ≤3 minutos](docs/09-execution/03-demo.md)
-- [Checklist Codember y rúbrica](docs/09-execution/04-codember.md)
-- [Definition of Done y entrega](docs/09-execution/05-release.md)
-
-### Decisiones y fuentes
-
-- [Decision log y reconciliación de hipótesis](docs/10-decisions/01-adrs.md)
-- [Bloqueadores, preguntas abiertas y experimentos](docs/10-decisions/02-open-questions.md)
-- [Fuentes, trazabilidad y límites de verificación](docs/10-decisions/03-sources.md)
-
-### Investigación
-
-- [Investigación vigente](research/README.md)
-- [Archivo de versiones obsoletas](archive/README.md): docs v0, informes previos y PDFs. Se eliminará cuando empiece la implementación.
-
-Prioridad: ADR vigente > P0 > visión > informes históricos. Consultar fuentes técnicas enlazadas; fijar versiones con pruebas reales. No ejecutar scripts propuestos hasta que existan.
+La investigación de base está en [research/](research/README.md). Las versiones anteriores de la documentación están en [archive/](archive/README.md) y se eliminarán cuando empiece el desarrollo.
 
 ## Equipo
 
@@ -136,7 +80,7 @@ Prioridad: ADR vigente > P0 > visión > informes históricos. Consultar fuentes 
 
 ## Uso de IA
 
-La investigación (informes Deep Research) y la documentación se elaboraron y organizaron con asistencia de herramientas de IA, entre ellas Claude Code. El equipo revisa y es responsable del contenido. Cuando se use IA para generar código, se indicará aquí qué partes y con qué herramienta.
+La investigación (informes Deep Research) y la documentación se elaboraron y organizaron con asistencia de herramientas de IA, entre ellas Claude Code. El equipo revisa y es responsable del contenido. Cuando se use IA para generar código, se indicará aquí qué partes y con qué herramienta. Dentro del producto, el agente de forecasting usa modelos a través de OpenRouter.
 
 ## Código previo y de terceros
 
