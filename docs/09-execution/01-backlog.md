@@ -2,6 +2,8 @@
 
 **Estado:** P0, orden obligatorio sugerido · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
+El desglose en épicas e historias de usuario está en [07-product-backlog.md](07-product-backlog.md) y el plan por sprints en [06-scrum.md](06-scrum.md).
+
 | ID | Tarea | Dependencia | Resultado observable |
 |---|---|---|---|
 | B01 | Bootstrap Next, DB, repo, env, CI básico | ninguna | build + health |

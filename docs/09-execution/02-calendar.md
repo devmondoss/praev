@@ -2,6 +2,8 @@
 
 **Estado:** Propuesta; fechas de bases aportadas · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
+El plan operativo por sprints, con backend y frontend en paralelo, está en [06-scrum.md](06-scrum.md). Esta tabla queda como referencia del orden original.
+
 | Fecha (Lima) | Entregable |
 |---|---|
 | 26 nov | Scope, B01, B02 spike, ADR y schemas |

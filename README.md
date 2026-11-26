@@ -199,7 +199,7 @@ Las versiones fijadas están en [docs/03-architecture/01-stack.md](docs/03-archi
 
 ## Documentación
 
-Empieza por [AGENTS.md](AGENTS.md), el [scope](docs/02-mvp/01-scope.md), el [backlog](docs/09-execution/01-backlog.md) y las [decisiones (ADRs)](docs/10-decisions/01-adrs.md).
+Empieza por [AGENTS.md](AGENTS.md), el [scope](docs/02-mvp/01-scope.md), el [plan Scrum](docs/09-execution/06-scrum.md), el [product backlog](docs/09-execution/07-product-backlog.md) y las [decisiones (ADRs)](docs/10-decisions/01-adrs.md).
 
 | Carpeta | Contenido |
 |---|---|
@@ -212,7 +212,7 @@ Empieza por [AGENTS.md](AGENTS.md), el [scope](docs/02-mvp/01-scope.md), el [bac
 | [06-stellar](docs/06-stellar) | Red, interfaz del contrato, storage y eventos, hashes, wallet, prueba on-chain, pagos |
 | [07-engineering](docs/07-engineering) | SQL, API, errores, reconciliación, fuentes de datos, entorno, setup, despliegue |
 | [08-quality](docs/08-quality) | Seguridad, privacidad, pruebas, fixtures, CI |
-| [09-execution](docs/09-execution) | Backlog, calendario, guion de demo, checklist Codember, definition of done |
+| [09-execution](docs/09-execution) | Plan Scrum, product backlog (épicas e historias), sprints, calendario, guion de demo, checklist Codember, definition of done |
 | [10-decisions](docs/10-decisions) | ADRs, preguntas abiertas, fuentes |
 
 La investigación de base está en [research/](research/README.md). Las versiones anteriores de la documentación están en [archive/](archive/README.md) y se eliminarán cuando empiece el desarrollo.
