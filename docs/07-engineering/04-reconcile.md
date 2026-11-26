@@ -1,8 +1,8 @@
 # Indexer y reconciliación
 
-**Estado:** P0 · **Versión:** 1.0 · **Fecha:** 2026-11-26
+**Estado:** P0 · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
-Dos mecanismos: (1) consulta de receipt individual después de cada envío, (2) script `chain:reconcile` que lee eventos del contrato desde deployment ledger y avanza cursor. Cada evento trae event_id, txHash, ledger y payload. Validar red/contract/schema, decode XDR, guardar raw y proyección en una transacción. Si falta spec/payload, guardar raw y marca huérfano; esperar llegada de contenido y reprocesar. Los `get_question/get_forecast/get_resolution` sirven para verificar estado y reparar. Un receipt SUCCESS no basta si no corresponde al intent.
+Dos mecanismos: (1) consulta de receipt individual después de cada envío, (2) script `chain:reconcile` que lee eventos del contrato desde deployment ledger y avanza cursor. `getEvents` solo retiene ≈7 días (120.960 ledgers): ejecutar el reconcile al menos una vez al día desde el deploy. Cada evento trae event_id, txHash, ledger y payload. Validar red/contract/schema, decode XDR, guardar raw y proyección en una transacción. Si falta spec/payload, guardar raw y marca huérfano; esperar llegada de contenido y reprocesar. Los `get_question/get_forecast/get_resolution` sirven para verificar estado y reparar. Un receipt SUCCESS no basta si no corresponde al intent.
 
 Pseudocódigo:
 ```text

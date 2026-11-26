@@ -1,8 +1,8 @@
 # Arranque local y dependencias
 
-**Estado:** Runbook propuesto, no ejecutado · **Versión:** 1.0 · **Fecha:** 2026-11-26
+**Estado:** Runbook propuesto, no ejecutado · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
-Requisitos: Git, Node 24 LTS objetivo, npm, Docker, Rust stable ≥1.84, Stellar CLI, wallet testnet. [Guía oficial Next](https://nextjs.org/docs/app/getting-started/installation), [Setup Stellar](https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup). Desde repo vacío, conservar docs y generar scaffold en directorio temporal si CLI no acepta carpeta no vacía; mover código sin sobrescribir README/AGENTS. No ejecutar init destructivo.
+Requisitos: Git, Node 24 LTS objetivo, npm, Docker, Rust stable ≥1.91, Stellar CLI, wallet testnet. [Guía oficial Next](https://nextjs.org/docs/app/getting-started/installation), [Setup Stellar](https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup). Desde repo vacío, conservar docs y generar scaffold en directorio temporal si CLI no acepta carpeta no vacía; mover código sin sobrescribir README/AGENTS. No ejecutar init destructivo.
 
 ```bash
 node -v && npm -v

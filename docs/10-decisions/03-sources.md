@@ -1,12 +1,12 @@
 # Fuentes, trazabilidad y límites de verificación
 
-**Estado:** Referencias consultadas y entregadas · **Versión:** 1.0 · **Fecha:** 2026-11-26
+**Estado:** Referencias consultadas y entregadas · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
 ## Material del usuario
 Los originales se preservan byte a byte en `../../research/01-strategic-research.md`, `02-market-whitespace.md`, `03-mvp-research.md`. Fecha de corte declarada 26 nov 2026. Las citas internas `turn...` son referencias de una sesión ChatGPT, no enlaces públicos portables; se conservan sin inventar bibliografía. La síntesis incorpora conversaciones previas: misión, relevancia, región, no custodia, arquitectura conceptual y Decision Register. Las bases Codember aportadas se usan para checklist; no se incluye documento privado de aplicación ni datos personales. No se revalidaron todos los claims de mercado, fuentes de estaciones o casos comerciales.
 
 ## Verificación web técnica de esta consolidación (26 nov 2026)
-- [Stellar: setup](https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup): Rust ≥1.84 y target wasm32v1-none.
+- [Stellar: setup](https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup): target wasm32v1-none. Rust ≥1.91 según `rust_version` de soroban-sdk 30 en crates.io.
 - [Stellar: deploy testnet](https://developers.stellar.org/docs/build/smart-contracts/getting-started/deploy-to-testnet): cuentas, CLI, despliegue e invocación.
 - [Stellar: authorization](https://developers.stellar.org/docs/learn/fundamentals/contract-development/authorization): framework auth y replay.
 - [Stellar: persistent storage](https://developers.stellar.org/docs/build/guides/storage/use-persistent), [conventions](https://developers.stellar.org/docs/build/guides/conventions): storage y TTL.
