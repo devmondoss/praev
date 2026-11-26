@@ -37,7 +37,7 @@ Usar transferencias atómicas de activo Stellar compatible con Soroban desde com
 2. Ningún reveal válido antes de cerrar commits ni después de su plazo; ventana de observación posterior al reveal para el piloto.
 3. Una resolución final no se sobrescribe; correcciones deben crear registro explícito y nueva versión de métricas.
 4. No score sin resolución final, ni entradas no abiertas, ni preguntas canceladas.
-5. No mover dinero sin autorización verificable del titular; ni función de retiro de fondos de usuarios, ni delegación general a Pravef.
+5. No mover dinero sin autorización verificable del titular; ni función de retiro de fondos de usuarios, ni delegación general a PRAEV.
 6. La suma de vendedor y fee iguala monto total; usar enteros, overflow checks y política de redondeo.
 7. No emitir dos recibos válidos por el mismo purchase ID.
 

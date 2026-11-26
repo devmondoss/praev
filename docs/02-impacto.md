@@ -23,7 +23,7 @@ Todos son ejemplos, no pronósticos reales ni evidencia de impacto conseguido. U
 
 Ejemplo de pregunta (plantilla, no pronóstico actual): «¿El indicador [variable oficial] de [zona] superará [umbral y unidad] durante [inicio–fin UTC] según [serie y versión de la fuente] publicada antes de [fecha]?». Definir valor faltante, cambios de metodología, correcciones y criterio de empate antes de abrirla. Evitar “¿se intensificará El Niño?” sin definir intensidad, fuente y ventana.
 
-Para la demo, usar una pregunta sintética de rápida resolución con una fuente simulada identificada como tal. En paralelo documentar una pregunta real de largo horizonte sin fingir que ya se resolvió. Un pronóstico de Pravef no sustituye alertas oficiales ni recomendaciones de autoridades.
+Para la demo, usar una pregunta sintética de rápida resolución con una fuente simulada identificada como tal. En paralelo documentar una pregunta real de largo horizonte sin fingir que ya se resolvió. Un pronóstico de PRAEV no sustituye alertas oficiales ni recomendaciones de autoridades.
 
 ## Teoría de cambio
 
@@ -39,4 +39,4 @@ Para la demo, usar una pregunta sintética de rápida resolución con una fuente
 
 Entrevistar de 3 a 5 decisores como objetivo de descubrimiento; no declarar entrevistas hasta realizarlas. Preguntar por la última decisión real: costo de equivocarse, momento límite, datos usados, alternativas, presupuesto y cómo se mediría una mejora. Registrar consentimiento y notas anonimizadas. Mostrar un prototipo y medir comprensión sin explicar previamente la cadena de bloques.
 
-Métricas propuestas: preguntas con decisión identificada / admitidas; tiempo de anticipación; tasa de comprensión; decisiones que el usuario declara haber reconsiderado; disposición a pagar observada; Brier frente a un benchmark. Los ahorros deben estimarse con método y supuestos explícitos o medirse; no atribuir causalidad a Pravef sin evidencia.
+Métricas propuestas: preguntas con decisión identificada / admitidas; tiempo de anticipación; tasa de comprensión; decisiones que el usuario declara haber reconsiderado; disposición a pagar observada; Brier frente a un benchmark. Los ahorros deben estimarse con método y supuestos explícitos o medirse; no atribuir causalidad a PRAEV sin evidencia.

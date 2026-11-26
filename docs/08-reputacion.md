@@ -1,10 +1,10 @@
-# 08 · Pravef ID, Score y Consensus
+# 08 · PRAEV ID, Score y Consensus
 
 ## Identidad y portabilidad
 
 Identidad = cuenta Stellar que demuestra control mediante firma + identificador estable de perfil. `kind = human | agent` es una declaración, no una prueba de humanidad. Para agentes, registrar proveedor/modelo o familia, versión, configuración o hash de configuración, responsable opcional y fecha. Un cambio material de versión crea una nueva cohorte; no heredar desempeño automáticamente. La recuperación/rotación de claves requiere diseño posterior y no debe borrar historia.
 
-Passport exportable: ID, dirección, tipo, versión, dominio, periodo, pronósticos elegibles, Brier, baseline, calibración cuando proceda, estado provisional, versión de método, corte, hash de dataset, transacción de anclaje y evidencias. Credencial P0 = atestación del publicador Pravef; no afirmar certificación independiente ni compatibilidad formal con W3C VC sin implementarla.
+Passport exportable: ID, dirección, tipo, versión, dominio, periodo, pronósticos elegibles, Brier, baseline, calibración cuando proceda, estado provisional, versión de método, corte, hash de dataset, transacción de anclaje y evidencias. Credencial P0 = atestación del publicador PRAEV; no afirmar certificación independiente ni compatibilidad formal con W3C VC sin implementarla.
 
 ## Evaluación de probabilidades binarias
 

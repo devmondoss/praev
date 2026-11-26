@@ -5,7 +5,7 @@
 El ZIP contiene documentación, no los directorios de código siguientes. Crearlos conforme se implemente, sin archivos vacíos que aparenten funcionalidad.
 
 ```text
-pravef/
+praev/
 ├── README.md
 ├── docs/
 │   └── 01-vision.md ... 17-repositorio.md
@@ -33,7 +33,7 @@ Extraer ZIP. Desde la carpeta raíz que contiene README:
 ```bash
 git init
 git add README.md docs/
-git commit -m "docs: define Pravef product and Stellar buildathon specification"
+git commit -m "docs: define PRAEV product and Stellar buildathon specification"
 git branch -M main
 git remote add origin <URL_REAL_DE_TU_REPO>
 git push -u origin main

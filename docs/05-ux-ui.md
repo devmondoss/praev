@@ -2,7 +2,7 @@
 
 ## Dirección visual propuesta
 
-Marca textual `pravef.`; tagline Proof of Foresight. Interfaz editorial, sobria, de inteligencia de riesgo, no de trading. Fondo claro, contraste alto, gris neutro, acento verde petróleo para acciones primarias y azul para enlaces verificables. Rojo/ámbar solo para error o riesgo, no para convertir probabilidad en señal de compra. Los colores son decisiones iniciales revisables.
+Marca textual `praev.`; tagline Proof of Foresight. Interfaz editorial, sobria, de inteligencia de riesgo, no de trading. Fondo claro, contraste alto, gris neutro, acento verde petróleo para acciones primarias y azul para enlaces verificables. Rojo/ámbar solo para error o riesgo, no para convertir probabilidad en señal de compra. Los colores son decisiones iniciales revisables.
 
 | Token | Valor propuesto |
 |---|---|
@@ -40,7 +40,7 @@ Layout desktop: max 1280 px, padding 32 px, grid 12 columnas, gap 24 px; navegac
 ## Wireframe de pregunta (datos ficticios)
 
 ```text
-pravef.                              Explore   Passport   Connect
+praev.                              Explore   Passport   Connect
 DECISION INTELLIGENCE / CLIMATE RISK                         Testnet
 ¿Se superará el umbral de precipitación definido en la zona X?
 Decision: adjust planting schedule before [date]

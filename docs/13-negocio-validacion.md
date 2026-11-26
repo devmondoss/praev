@@ -18,7 +18,7 @@ Empezar por responsables de operaciones expuestos a riesgos climáticos/económi
 | API/SDK comercial | Consultas, verificación o integración | Tras estabilidad y uso externo |
 | Credenciales | Emisión o verificación según servicio | Tras aceptación por terceros |
 
-Una comisión por transacción es posible, pero no está fijada. No vender datos personales, garantizar ganancias o cobrar por una posición de mercado. Medir costos de red, almacenamiento, inferencia, soporte y resolución. Diferenciar volumen procesado de ingresos propios. No incluir cifras de mercado o tracción sin evidencia específica de Pravef.
+Una comisión por transacción es posible, pero no está fijada. No vender datos personales, garantizar ganancias o cobrar por una posición de mercado. Medir costos de red, almacenamiento, inferencia, soporte y resolución. Diferenciar volumen procesado de ingresos propios. No incluir cifras de mercado o tracción sin evidencia específica de PRAEV.
 
 ## Experimentos
 

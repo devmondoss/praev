@@ -29,7 +29,7 @@ Fuente: textos publicados en el Hub ([stellar.mintedinpe.com/codember](https://s
 
 - Obligatorio para poder hacer la entrega final. Crear el repo **no** equivale a registrarlo: hay que enviarlo desde el Hub.
 - Formulario: URL del repo con el formato `https://github.com/equipo/proyecto` (sin rutas ni parámetros) y una descripción de 20 a 3000 caracteres.
-- Si se usa código previo, se declara el hash del commit base (7–40 caracteres hex), y ese commit debe estar en el historial de la rama principal. Pravef no parte de código previo, así que este campo va vacío.
+- Si se usa código previo, se declara el hash del commit base (7–40 caracteres hex), y ese commit debe estar en el historial de la rama principal. PRAEV no parte de código previo, así que este campo va vacío.
 - Completar el checkpoint emite un certificado, aunque luego no se haga la entrega en APEX.
 
 ### Puntuación de progreso en el Hub
@@ -50,9 +50,9 @@ Es independiente de la nota del jurado en APEX.
 
 ## Compatibilidad temática y elegibilidad
 
-Temática libre, una sola categoría. Las bases contemplan identidad, credenciales y reputación, así como stablecoins. Excluyen proyectos centrados en especulación, apuestas, rendimientos prometidos o tokens especulativos. Pravef se presenta como inteligencia verificable y pago fijo por contenido, sin apostar sobre resultados. Esto favorece el encaje, pero la decisión de elegibilidad corresponde a organización.
+Temática libre, una sola categoría. Las bases contemplan identidad, credenciales y reputación, así como stablecoins. Excluyen proyectos centrados en especulación, apuestas, rendimientos prometidos o tokens especulativos. PRAEV se presenta como inteligencia verificable y pago fijo por contenido, sin apostar sobre resultados. Esto favorece el encaje, pero la decisión de elegibilidad corresponde a organización.
 
-Requisitos: Stellar testnet, repo GitHub público con historial durante periodo, declarar código previo/terceros/uso de IA, solo se evalúa trabajo del periodo. Proyectos premiados en hackatones previas o financiados por Instaward/SCF no son elegibles según bases; verificar que Pravef cumple. No ocultar procedencia de código ni presentar trabajo anterior como nuevo. Cada miembro registro individual, 1–4 miembros, al menos un peruano/residente en Perú y demás condiciones de la sección 3.
+Requisitos: Stellar testnet, repo GitHub público con historial durante periodo, declarar código previo/terceros/uso de IA, solo se evalúa trabajo del periodo. Proyectos premiados en hackatones previas o financiados por Instaward/SCF no son elegibles según bases; verificar que PRAEV cumple. No ocultar procedencia de código ni presentar trabajo anterior como nuevo. Cada miembro registro individual, 1–4 miembros, al menos un peruano/residente en Perú y demás condiciones de la sección 3.
 
 ## Calendario oficial (Lima)
 
@@ -81,17 +81,17 @@ El checkpoint es obligatorio para entrega final; Demo Day no determina la clasif
 
 ## Descripción para registro (ES)
 
-Pravef es una infraestructura de inteligencia predictiva verificable que ayuda a personas y organizaciones a tomar decisiones bajo incertidumbre. Personas y agentes de IA registran pronósticos sobre acontecimientos con consecuencias reales; Stellar permite sellarlos antes del resultado, verificar su historial y liquidar pagos no custodiales por análisis. Pravef selecciona preguntas por utilidad, mide desempeño por dominio y combina pronósticos con pesos históricos, sin apuestas.
+PRAEV es una infraestructura de inteligencia predictiva verificable que ayuda a personas y organizaciones a tomar decisiones bajo incertidumbre. Personas y agentes de IA registran pronósticos sobre acontecimientos con consecuencias reales; Stellar permite sellarlos antes del resultado, verificar su historial y liquidar pagos no custodiales por análisis. PRAEV selecciona preguntas por utilidad, mide desempeño por dominio y combina pronósticos con pesos históricos, sin apuestas.
 
 ## Short description (EN)
 
-Pravef is verifiable predictive intelligence for real-world decisions. Humans and AI agents commit forecasts on Stellar before outcomes are known, build portable track records and produce reputation-weighted insights. Users can pay for intelligence through authorized non-custodial stablecoin transfers, without betting on outcomes.
+PRAEV is verifiable predictive intelligence for real-world decisions. Humans and AI agents commit forecasts on Stellar before outcomes are known, build portable track records and produce reputation-weighted insights. Users can pay for intelligence through authorized non-custodial stablecoin transfers, without betting on outcomes.
 
 ## Pitch 3 minutos (guion base)
 
 0:00–0:30: «Una empresa debe decidir antes de saber qué ocurrirá. El problema no es falta de opiniones, sino no saber qué preguntas importan ni qué fuentes predicen bien».
 
-0:30–1:00: presentar Pravef, caso climático/operativo y pregunta con fecha/fuente. Mostrar decisión y relevancia.
+0:30–1:00: presentar PRAEV, caso climático/operativo y pregunta con fecha/fuente. Mostrar decisión y relevancia.
 
 1:00–1:45: mostrar dos perfiles, commit y reveal confirmados de testnet, verificación, resolución y score. Usar fixtures y decirlo si son sintéticos.
 

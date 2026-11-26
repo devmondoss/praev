@@ -1,4 +1,4 @@
-# 09 · Pravef Verify — integridad y resolución
+# 09 · PRAEV Verify — integridad y resolución
 
 ## Ciclo de evidencia
 
@@ -8,7 +8,7 @@ El compromiso demuestra que el autor registró un valor antes de un plazo, no qu
 
 ## Commit / reveal P0
 
-- Fijar `network_id`, `contract_id`, `question_id`, `rules_hash`, `forecaster_address`, `p_bps` entero, `reasoning_hash` y `salt` aleatorio criptográficamente (32 bytes). Usar separador de dominio `pravef.forecast.v1`.
+- Fijar `network_id`, `contract_id`, `question_id`, `rules_hash`, `forecaster_address`, `p_bps` entero, `reasoning_hash` y `salt` aleatorio criptográficamente (32 bytes). Usar separador de dominio `praev.forecast.v1`.
 - Serializar todos los campos en un formato canónico inequívoco, compartido entre cliente y contrato; propuesta: estructura tipada con serialización XDR verificada en ambos lados. No concatenar strings sin longitudes ni depender de orden JSON arbitrario. Fijar test vectors antes de implementar.
 - `commitment = SHA256(canonical_payload)`; enviar solo commitment y referencias en fase commit. El usuario firma y conserva salt + payload localmente con export seguro; no enviarlo a logs ni publicar antes del reveal.
 - Después de `commit_deadline` y antes de `reveal_deadline`, enviar p_bps, reasoning_hash y salt; el contrato reconstruye y compara hash. Verificar autorización y tiempo de ledger. El evento se considera válido solo tras confirmación.

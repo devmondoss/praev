@@ -1,13 +1,13 @@
-# Pravef
+# PRAEV
 
 **Proof of Foresight.**  
 Verifiable Intelligence for Real-World Decisions.
 
 > We don't predict everything. We predict what matters.
 
-Pravef es una infraestructura de inteligencia predictiva verificable para personas, organizaciones y agentes de IA. Permite formular preguntas relevantes para decisiones reales, registrar pronósticos antes de conocer su resultado, medir el desempeño de sus autores y agregar probabilidades en función de su historial. Los análisis pueden monetizarse mediante pagos autorizados por los usuarios en stablecoins, sin apostar sobre el resultado.
+PRAEV es una infraestructura de inteligencia predictiva verificable para personas, organizaciones y agentes de IA. Permite formular preguntas relevantes para decisiones reales, registrar pronósticos antes de conocer su resultado, medir el desempeño de sus autores y agregar probabilidades en función de su historial. Los análisis pueden monetizarse mediante pagos autorizados por los usuarios en stablecoins, sin apostar sobre el resultado.
 
-**Built on Stellar.** El MVP utiliza Stellar Testnet y Soroban para registrar compromisos criptográficos, resoluciones y credenciales, y para liquidar pagos de información sin custodia directa de fondos por Pravef.
+**Built on Stellar.** El MVP utiliza Stellar Testnet y Soroban para registrar compromisos criptográficos, resoluciones y credenciales, y para liquidar pagos de información sin custodia directa de fondos por PRAEV.
 
 ## El problema
 
@@ -17,14 +17,14 @@ La incertidumbre tiene costos reales: una empresa debe comprar inventario antes 
 
 | Módulo | Función |
 |---|---|
-| Pravef Relevance | Selección de preguntas por utilidad para decisiones. |
-| Pravef ID | Identidad predictiva portable para humanos y agentes. |
-| Pravef Verify | Sellado, apertura, resolución y auditoría de pronósticos. |
-| Pravef Score | Reputación por dominio, calibración y evidencia histórica. |
-| Pravef Consensus | Agregación de probabilidades con pesos históricos. |
-| Pravef Pay | Pagos por información y financiación de wallets controladas por sus titulares. |
-| Pravef Protocol | Contratos, esquemas y reglas de interoperabilidad. |
-| Pravef SDK | Integración programática con aplicaciones y agentes. |
+| PRAEV Relevance | Selección de preguntas por utilidad para decisiones. |
+| PRAEV ID | Identidad predictiva portable para humanos y agentes. |
+| PRAEV Verify | Sellado, apertura, resolución y auditoría de pronósticos. |
+| PRAEV Score | Reputación por dominio, calibración y evidencia histórica. |
+| PRAEV Consensus | Agregación de probabilidades con pesos históricos. |
+| PRAEV Pay | Pagos por información y financiación de wallets controladas por sus titulares. |
+| PRAEV Protocol | Contratos, esquemas y reglas de interoperabilidad. |
+| PRAEV SDK | Integración programática con aplicaciones y agentes. |
 
 ## Documentación
 
@@ -49,21 +49,6 @@ El [índice de docs](docs/README.md) agrupa los documentos por área y sugiere u
 | [15 — Codember y evaluación](docs/15-codember.md) | Rúbrica, entregables, pitch y checklist. |
 | [16 — Pruebas y demo](docs/16-pruebas-demo.md) | Fixtures, casos de aceptación y guion de demo. |
 | [17 — Arranque de repositorio](docs/17-repositorio.md) | Estructura, comandos previstos y decisiones pendientes. |
-
-## Estado
-
-**Especificación inicial — 25 de noviembre de 2026.** Este repositorio documental no contiene aún una aplicación, contratos desplegados, credenciales emitidas ni transacciones reales. Los ejemplos y cifras de demostración son sintéticos, salvo los pesos y fechas de la convocatoria. La implementación y las verificaciones técnicas deben producirse durante la buildathon. No se declara ninguna integración ni resultado como conseguido.
-
-## Stellar Codember Perú 2026
-
-| | |
-|---|---|
-| Repositorio | https://github.com/devmondoss/praev (público, rama `main`) |
-| Checkpoint en el Hub | Enviado el 25 nov 2026 |
-| Entrega final (APEX) | 4 dic 2026, 23:59 (Lima) |
-| Red | Stellar Testnet únicamente |
-
-Las reglas, la rúbrica y lo que cuenta como actividad en el Hub están resumidas en [15 · Codember y evaluación](docs/15-codember.md).
 
 ## Próximos pasos
 

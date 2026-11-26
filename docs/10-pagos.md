@@ -1,14 +1,14 @@
-# 10 · Pravef Pay — pagos y recargas no custodiales
+# 10 · PRAEV Pay — pagos y recargas no custodiales
 
 ## Principio económico
 
-El usuario paga por acceder a inteligencia, no por apostar ni participar en el resultado. Precio fijo antes de pagar. El autor recibe remuneración independientemente de si ocurre el evento. No saldo interno mantenido por Pravef, no pooling, no depósitos a cuentas controladas por el equipo, no derecho unilateral sobre fondos de clientes.
+El usuario paga por acceder a inteligencia, no por apostar ni participar en el resultado. Precio fijo antes de pagar. El autor recibe remuneración independientemente de si ocurre el evento. No saldo interno mantenido por PRAEV, no pooling, no depósitos a cuentas controladas por el equipo, no derecho unilateral sobre fondos de clientes.
 
 ## Compra MVP en Stellar Testnet
 
 1. Vendedor publica oferta (ID, hash del informe, precio, activo, comisión si existe, vencimiento y términos).
 2. Comprador revisa contenido de muestra, precio total, destinatarios, red y costo de transacción estimado.
-3. App prepara transacción de compra; wallet del comprador simula/revisa y firma. Pravef nunca pide frase semilla ni clave privada.
+3. App prepara transacción de compra; wallet del comprador simula/revisa y firma. PRAEV nunca pide frase semilla ni clave privada.
 4. Router ejecuta transferencias autorizadas desde comprador a vendedor y receptor de comisión si aplica, atómicamente. No retiene fondos.
 5. Indexador verifica confirmación, contrato, asset, términos y `purchase_id`; servicio concede acceso una sola vez. Entitlement vinculado a identidad/dirección; requiere prueba de control al acceder.
 6. Usuario recibe enlace de transacción, recibo, estado de acceso y soporte si hubo fallo.
