@@ -4,7 +4,7 @@
 
 **Antes de programar resolver LIVE:** serie exacta, precipitación granular, licencia, cobertura, frecuencia y latencia; no abrir pregunta sin GO. **Antes de firmar:** versión SDK/CLI/wallet compatible, testnet RPC, cuenta financiada, constructor y roles. **Antes de deployment:** hosting/DB, variables, contract ID real, TTL y smoke. **Antes de AI run:** API key y modelo disponible, coste/timeout, evidencia con cutoff. **Antes de concurso:** checkpoint, elegibilidad, reglas y link entrega.
 
-**Por decidir:** proveedor del LLM. El blueprint fija OpenAI (Responses + `OPENAI_API_KEY`); el equipo mencionó Claude como ejemplo. Decidir antes de B11 y, si cambia, crear ADR y actualizar `05-ai/*` y `06-env.md`.
+**Decidido (ADR-021):** el LLM se consume vía OpenRouter. Antes de B11 falta elegir el modelo concreto (debe soportar `structured_outputs`) y fijar el presupuesto de tokens.
 
 **Inconsistencias a resolver en implementación:** `QuestionSpec.creator` frente a `curator` en contrato y SQL; `invalidate` debe escribir `Resolution{outcome:2}`; `cancel(reason_hash)` no tiene columna en SQL; `schemaVersion` no lo recibe el constructor; `get_latest_seq` sin forecasts debe devolver 0; `ai_runs` necesita `provider`, `adapter_version` y uso de tokens.
 

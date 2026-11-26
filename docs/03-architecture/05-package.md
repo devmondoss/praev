@@ -1,8 +1,8 @@
 # Manifest y scripts npm propuestos
 
-**Estado:** Plantilla para bootstrap; no lockfile generado · **Versión:** 1.0 · **Fecha:** 2026-11-26
+**Estado:** Plantilla para bootstrap; no lockfile generado · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
-Inicializar Next.js con TS, App Router, Tailwind, `src/` y npm. Instalar dependencias con versiones exactas seleccionadas y verificadas; guardar lockfile. No pegar un manifest con números de versión no comprobados. Paquetes: `next`, `react`, `react-dom`, `zod`, `postgres`, `@stellar/stellar-sdk`, `@creit.tech/stellar-wallets-kit`, `openai`, `lucide-react`, `server-only`; dev: `typescript`, `@types/node`, `@types/react`, `@types/react-dom`, `eslint`, `eslint-config-next`, `tailwindcss`, adaptador PostCSS de la versión elegida, `tsx`, `vitest`, `@playwright/test`.
+Inicializar Next.js con TS, App Router, Tailwind, `src/` y npm. Instalar dependencias con versiones exactas seleccionadas y verificadas; guardar lockfile. No pegar un manifest con números de versión no comprobados. Paquetes: `next`, `react`, `react-dom`, `zod`, `postgres`, `@stellar/stellar-sdk`, `@creit.tech/stellar-wallets-kit`, `openai` (cliente compatible, apuntado a OpenRouter), `lucide-react`, `server-only`; dev: `typescript`, `@types/node`, `@types/react`, `@types/react-dom`, `eslint`, `eslint-config-next`, `tailwindcss`, adaptador PostCSS de la versión elegida, `tsx`, `vitest`, `@playwright/test`.
 
 Fragmento de `package.json` a completar por scaffold (JSON válido, no manifest instalable completo):
 ```json

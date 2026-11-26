@@ -11,7 +11,7 @@
 | DB | PostgreSQL 17 + `postgres` (Postgres.js) | SQL simple, transacciones, local Docker y DB gestionada remota |
 | Chain | `@stellar/stellar-sdk`, RPC, Rust/Soroban, Stellar CLI | Toda prueba en Stellar testnet |
 | Wallet | `@creit.tech/stellar-wallets-kit` v2, probar Varial (antes Freighter) | Adapter único, firma no custodial |
-| IA | SDK `openai`, Responses structured output + Zod, modelo configurable | Un proveedor, salida explícita, sin framework de agentes |
+| IA | OpenRouter vía SDK `openai` (`baseURL` `https://openrouter.ai/api/v1`), Responses con `json_schema` estricto + Zod, modelo configurable (ADR-021) | Una sola integración y libertad para cambiar de modelo; salida explícita, sin framework de agentes |
 | Tests | Vitest, Playwright, `cargo test` con testutils | Unitarias, E2E y contrato |
 | Deploy | Vercel + Neon Postgres (ADR-019) | Sin worker permanente obligatorio; usar la URL *pooled* de Neon con Postgres.js |
 
@@ -29,4 +29,4 @@ No ORM, Redis, colas, Kubernetes, LangChain, Supabase Auth, Graph DB o vector st
 | `@creit.tech/stellar-wallets-kit` | 2.8.0 | Confirmar el id del módulo Varial/Freighter en esta versión |
 | OpenZeppelin Stellar | No se usa | 0.8.0 exige `soroban-sdk ^28`; un rol `curator` no lo justifica |
 
-Fuentes: [Next.js instalación](https://nextjs.org/docs/app/getting-started/installation), [Stellar setup](https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup), [Wallet Kit v2](https://github.com/stellar/ecosystem-resources/blob/main/wallet-integration/stellar-wallets-kit.md), [Varial](https://stellar.org/blog/foundation-news/freighter-is-now-varial), [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs).
+Fuentes: [Next.js instalación](https://nextjs.org/docs/app/getting-started/installation), [Stellar setup](https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup), [Wallet Kit v2](https://github.com/stellar/ecosystem-resources/blob/main/wallet-integration/stellar-wallets-kit.md), [Varial](https://stellar.org/blog/foundation-news/freighter-is-now-varial), [OpenRouter Structured Outputs](https://openrouter.ai/docs/features/structured-outputs).

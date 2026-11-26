@@ -1,6 +1,6 @@
 # Variables de entorno y configuración
 
-**Estado:** P0; plantilla no secretos · **Versión:** 1.0 · **Fecha:** 2026-11-26
+**Estado:** P0; plantilla no secretos · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
 Copiar bloque a `.env.example`; valores reales en `.env.local` o gestor del deploy. Validar al arranque con Zod. Scripts cargan env de forma explícita (Next loadEnvConfig o mecanismo equivalente documentado).
 ```dotenv
@@ -10,8 +10,8 @@ NEXT_PUBLIC_STELLAR_RPC_URL=
 NEXT_PUBLIC_PRAEV_CONTRACT_ID=
 PRAEV_DEPLOYMENT_ID=
 STELLAR_RPC_URL=
-OPENAI_API_KEY=
-OPENAI_MODEL=
+OPENROUTER_API_KEY=
+OPENROUTER_MODEL=
 PRAEV_CURATOR_ADDRESS=
 PRAEV_RESOLVER_ADDRESS=
 PRAEV_AGENT_ADDRESS=
