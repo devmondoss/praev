@@ -1,0 +1,80 @@
+# Inventario de entrega
+
+**Versión:** 1.0 · **Fecha:** 2026-11-26
+
+Cada archivo se entrega como Markdown independiente. Los hashes son SHA-256 de bytes exactos. El manifest se excluye de su propio hash. Los originales se preservaron sin cambios.
+
+| Ruta | Bytes | SHA-256 |
+|---|---:|---|
+| `AGENTS.md` | 2239 | `76d1f4c0d352827df7932f585009b3718f5ed36b2a990ea4365d8c1e838b67c7` |
+| `README.md` | 7073 | `5ef52c4538481669de87e5a7f934f8701c0332bbf0fadc4a9cc2c518466461a8` |
+| `docs/00-foundation/01-vision.md` | 1219 | `dd4ab2602989706d647a9292a6458fec9839982d0bbe7ea9680eac44a68b51a8` |
+| `docs/00-foundation/02-principles.md` | 1189 | `7de4c72fa9ae439c6ea7d2f757da3536a08590fb190bd28d90c172001e547f98` |
+| `docs/00-foundation/03-impact.md` | 1201 | `04a9e0a594bb0e13d23dba6e29f722758641c2991429a456bcbe7e98dcfd3d6e` |
+| `docs/00-foundation/04-region.md` | 1009 | `2da2002c027312387842d252e488accb770388162881a9b98ed24168889a51c7` |
+| `docs/00-foundation/05-business.md` | 1311 | `0ddb0025e70098f6f14e8052002e46edb2918af90c13e3f901012f628c3355aa` |
+| `docs/00-foundation/06-research-synthesis.md` | 1921 | `0d5fa7a3f8388600e34ef8e356ab578aaffc24c1ede286d62fc956fc86ef07cb` |
+| `docs/00-foundation/07-future.md` | 1221 | `f575157ec9dc2c261e057d79b6330d0d1c06fa96dd44c2e45b6adeabb37ecce6` |
+| `docs/01-product/01-users.md` | 1173 | `dce06de1481896943908a12ce74b6674f0254e50e476c1d226fd0e21293b3627` |
+| `docs/01-product/02-journeys.md` | 1367 | `63a0c41b9d75c72ec0a54783ecc23fbdca01da0057b06fe209cb44ebbe218bb0` |
+| `docs/01-product/03-navigation.md` | 980 | `8c747050574eafe6693a142de000dfc648f67d06572c62a0af0ebaa5200378c9` |
+| `docs/01-product/04-visual-system.md` | 1160 | `18c662db49e34f8b0c6bcbc166b7e07281e103cf48821b80c2b1d3f72eb32d29` |
+| `docs/01-product/05-radar.md` | 1081 | `b9ddf714eae4e8805684979aca57c512e76d44ff4d951496306226a0fbea85ab` |
+| `docs/01-product/06-question-screen.md` | 1267 | `35fbfa1949a3ee337d33b067c179f9ee1a0114a544b44d89344e148b491ebe5b` |
+| `docs/01-product/07-reputation-screen.md` | 1064 | `9783c72f7f83cb54dbcbcac2da8d460a09b3c32efdea1b2b7d984919850cac33` |
+| `docs/01-product/08-copy-accessibility.md` | 1098 | `abf0a9385a958b23fbdaacb7d73a8795a7d87a9108abaccf0df59f4baa22eb65` |
+| `docs/02-mvp/01-scope.md` | 1647 | `4b093d9609e759fb32d257bde6f57f768ddc3c42e2488491ef6c5e656d780427` |
+| `docs/02-mvp/02-vertical.md` | 1523 | `1340094e064c001eec512cc9aa406551cce40afa9be4dae7e3ad0908dee14548` |
+| `docs/02-mvp/03-demo-fixture.md` | 1491 | `f940271af10a2edc80c09ab2f9bb99989134dec850cc7083b3a6300164f6fe15` |
+| `docs/02-mvp/04-acceptance.md` | 1313 | `2c4b517926b8a84098ef973c7efe75fefb8db99145a8089a27c9fe70520bc416` |
+| `docs/03-architecture/01-stack.md` | 2176 | `747b4bf135e091c2ac68abf70d5203285c67bb7c0e1b6ad868914200e017b709` |
+| `docs/03-architecture/02-topology.md` | 1260 | `d7f2abf0c72d4f27c9c0792acf708c8297b217ba494b3a9ee5937c31f7e496af` |
+| `docs/03-architecture/03-boundaries.md` | 1056 | `a65c64d2176b7d1cae58d28fb982d90fc06f10bc5143118819e9d545f29407fe` |
+| `docs/03-architecture/04-repo.md` | 1309 | `af8212b129829680ec994d30dbeb9c1aabbede5898c1de04ab2e9228bc4921b1` |
+| `docs/03-architecture/05-package.md` | 1636 | `25afa48d1169bfd370e2e03f854c22173946d21c7a9dff7ec7ba4066e1249e08` |
+| `docs/04-domain/01-question.md` | 1637 | `b9b3cf53346360f7cc6a937e81903eb2d9782297b446eb87394249b91ea657ff` |
+| `docs/04-domain/02-lifecycle.md` | 1497 | `2c2053ef583ee24e2cf81dfe2d2e7d09cabbde17b6ad40090af9b412a6a69454` |
+| `docs/04-domain/03-relevance.md` | 1333 | `626f5550bd73a526d8aec38b8c0d7d5d81bf0f74d0e1bf140f3bdb3c14371fd3` |
+| `docs/04-domain/04-forecast.md` | 1339 | `22025eecea9d32e8868dcb8d7e145f2eee8b791913c52306350bfac5bfe65f92` |
+| `docs/04-domain/05-evidence.md` | 1231 | `8fb254b4429150acd87b1511f593219ab2965e37b4c80d4702021957359e2490` |
+| `docs/04-domain/06-consensus.md` | 1164 | `2f4ceb74d7118cb3cbefaccd8bafe46b3c28e1bbd774400525d9d2a1f8202ade` |
+| `docs/04-domain/07-exposure.md` | 1259 | `497b922ef9c72937dd76a16ea086c65b9ff7736c66d0a523a384ca902fa4ce6f` |
+| `docs/04-domain/08-decision-register.md` | 1300 | `cd349c5b699e05d2a4d28d8bf431864a8e7d0be43325118b29c66a4afea41ece` |
+| `docs/04-domain/09-oracle.md` | 1531 | `e3823a53baee084e32daa2da981d51532be4e38550b7af9774873c10ad38c9eb` |
+| `docs/04-domain/10-reputation.md` | 1314 | `19c2622f26ec53bc6a55cf99e192680d983297e6e8f331108b4a45819ef01843` |
+| `docs/04-domain/11-identity.md` | 1151 | `bdf2b94aa01c688e3ae9dbfc23e1360d07c796433cdf2a68ddca2cb99dd7f50e` |
+| `docs/05-ai/01-agent.md` | 1374 | `2df6303ab1e19959e65c4a74bf975384e846a41f9be51efdbe2c3818a2e2f6a9` |
+| `docs/05-ai/02-output-schema.md` | 1566 | `811d1a7690c380fae496230d9ac0c80aea26076022a21d48ed6f8d861d33c4c1` |
+| `docs/05-ai/03-evaluation.md` | 1319 | `1d1412a81b888ed009c11e87c3d02e289608770e7dc0e9f8dcc46a84418a26f0` |
+| `docs/06-stellar/01-network.md` | 1379 | `d6f0d7359d8c44cb44816630920011d7144d23f2ea3251d3691e13fff2c412cd` |
+| `docs/06-stellar/02-contract-interface.md` | 2829 | `7c088af13599d6748ab01c40c68bb5e57168bbe8dad98c8e1f215c1d7901bae8` |
+| `docs/06-stellar/03-storage-events.md` | 1705 | `8788dbd1275b8df5a3dd628beac9394c436a771c900422894f86aba87f36d1e4` |
+| `docs/06-stellar/04-hashes.md` | 1909 | `34199583665d5d27a107cb868f73f655efb6932cfcc447d609140acd65c57c20` |
+| `docs/06-stellar/05-wallet-transactions.md` | 1733 | `f9dcb0da9a882ece2825d2807e67dee1c4c61791af4222c265cda38a56738547` |
+| `docs/06-stellar/06-proof-of-foresight.md` | 1294 | `b65101ae28f16c027c3eaf38340541c8f7a95c67225cc2590ded3f31a807b44d` |
+| `docs/06-stellar/07-payments.md` | 1224 | `d6e9ab5fd9e901dae25078d85fddb1a5e31754ae7bb67f34d3272d1800895de7` |
+| `docs/07-engineering/01-database.md` | 6619 | `f4c17114b6c2f8b49e74d8dbe1e31880d5482ba78da3a588c89cfb4c284eae74` |
+| `docs/07-engineering/02-api.md` | 2749 | `6bb60c9347bae67b035049c91f7fae6bfbb4fc125dc7226e3de02fe4082c5d28` |
+| `docs/07-engineering/03-errors.md` | 1521 | `af33d610413e0245a6999f7f77a8fae14e33ee29d60cba4cbd90e435627f2566` |
+| `docs/07-engineering/04-reconcile.md` | 1717 | `c0bfe87d4eb080b6b87f93759e570043b8d7015960d2fe372a9a071fed33bff6` |
+| `docs/07-engineering/05-data-sources.md` | 2036 | `5c108c595aa4f6ef22951ad6dd42301032f6ae632dd4e3acf895bbbd1bcab110` |
+| `docs/07-engineering/06-env.md` | 1597 | `1b6493dc9c91e5946a8b00cb0b123ac2e86f17cb686d3763222c1a90142ea8d6` |
+| `docs/07-engineering/07-setup.md` | 1878 | `7b435ffd36a3686f59c132c1cf75fa05b38af63319f70f858c7c1da35f13137d` |
+| `docs/07-engineering/08-deployment.md` | 2013 | `9173c2db8439f82f50c559b78358a63a1f1f07de52d0128486b0e722df7e5fe8` |
+| `docs/08-quality/01-security.md` | 1616 | `100ef81d4fe1f69fde148284e13ee895a6106b2811ec16ac7ed27a0323e74138` |
+| `docs/08-quality/02-privacy.md` | 1302 | `535291b90a32a0384336d129add68101f20603e430260dd3dc8b632b85429b32` |
+| `docs/08-quality/03-tests.md` | 2397 | `76c011a9476bdc191ea2da2b82e934536d8fdd468c2e2b3f22988f260aad4dab` |
+| `docs/08-quality/04-fixtures.md` | 1319 | `18432f0e65b023bff64ba376e69267dba59515e02252dad4d3f24f0d4d69b324` |
+| `docs/08-quality/05-ci-observability.md` | 1130 | `83b0ffbe608cdb1c999f8371a9e45966a3c62f17cf9f6988a2cd4cdc59e3f47a` |
+| `docs/09-execution/01-backlog.md` | 1684 | `0c34cf95ab3c45cfab49ec9ca20a531fcd599fa658639e42a3b8ccec39a61a75` |
+| `docs/09-execution/02-calendar.md` | 1060 | `e27f0ae2fc5cfb5e2c4597b252655642a3047b87e8cacf2fad235baff4eac5f3` |
+| `docs/09-execution/03-demo.md` | 1436 | `1849d37c8d0315604af4b2c4afd3edc288f4b854befe69e16be208ce4d1e68bf` |
+| `docs/09-execution/04-codember.md` | 1437 | `0f3d81a65a4b32296c9de2489827e122375c5d190a9f383e3aada3bdb71ed98a` |
+| `docs/09-execution/05-release.md` | 1218 | `c9963084b68780413a9725d38dbca0e391a7a027fdf82980eae0a239dffee84c` |
+| `docs/10-decisions/01-adrs.md` | 1873 | `eaf80c3e124e04069f4060777e17c751bfb414443fff4753ee1400c215ebd2ac` |
+| `docs/10-decisions/02-open-questions.md` | 1294 | `ff576a984b180d6156553cb87249a07746055eee4d990b07189247122653b0ea` |
+| `docs/10-decisions/03-sources.md` | 2955 | `fd859706c2425f4cf898823e01d97948edf0c7dd03c398e32a1066d695edd2c5` |
+| `research/01-strategic-research.md` | 34183 | `2607f7cfda6c0d2b763d76d5d5e5e25041f5eb687f375f50e6618173b9f1ab29` |
+| `research/02-market-whitespace.md` | 39633 | `c3d5efc2ac798cfb13f094c5b605c579ddee0dfb3dbed9cad15863eecb2e8975` |
+| `research/03-mvp-research.md` | 39545 | `aa19df95472308e8f929a6cc0a47ecdf14b895e3505d6f21c2aedca279ca4e33` |
+| `research/README.md` | 709 | `ab1cca95235f5a2fc188fe1a1fd2866d1d0fe48c33f4d3c932f38f46d1dab61f` |

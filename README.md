@@ -1,62 +1,132 @@
-# PRAEV
+# Praev — MVP Blueprint
 
-**Proof of Foresight.**  
-Verifiable Intelligence for Real-World Decisions.
+**Proof of Foresight · Verifiable Intelligence for Real-World Decisions**
 
-> We don't predict everything. We predict what matters.
+Versión 1.0 · 26 noviembre 2026 · Documentación de implementación, no aplicación construida.
 
-PRAEV es una infraestructura de inteligencia predictiva verificable para personas, organizaciones y agentes de IA. Permite formular preguntas relevantes para decisiones reales, registrar pronósticos antes de conocer su resultado, medir el desempeño de sus autores y agregar probabilidades en función de su historial. Los análisis pueden monetizarse mediante pagos autorizados por los usuarios en stablecoins, sin apostar sobre el resultado.
+## Objetivo
+Demostrar el ciclo de inteligencia anticipatoria verificable: pregunta relevante propia → probabilidades firmadas en Stellar → consenso → decisión simulada → resultado con evidencia → Brier y verificación. La misión social y la utilidad comercial coexisten, pero no se construye un negocio completo.
 
-**Built on Stellar.** El MVP utiliza Stellar Testnet y Soroban para registrar compromisos criptográficos, resoluciones y credenciales, y para liquidar pagos de información sin custodia directa de fondos por PRAEV.
+**Stack elegido:** Next.js App Router, TypeScript, Tailwind, PostgreSQL, Stellar SDK/Rust/Soroban, Stellar Wallets Kit v2, OpenAI Responses, Zod, Vitest/Playwright. Un monolito y un contrato. Stellar testnet exclusivamente.
 
-## El problema
+## Empezar aquí
+1. [AGENTS.md](AGENTS.md): reglas de implementación.
+2. [Scope](docs/02-mvp/01-scope.md): P0 vs P1, exclusiones.
+3. [Stack](docs/03-architecture/01-stack.md) y [topología](docs/03-architecture/02-topology.md).
+4. [Contrato](docs/06-stellar/02-contract-interface.md), [SQL](docs/07-engineering/01-database.md), [API](docs/07-engineering/02-api.md).
+5. [Backlog](docs/09-execution/01-backlog.md), [criterios](docs/02-mvp/04-acceptance.md), [pruebas](docs/08-quality/03-tests.md).
+6. [ADRs](docs/10-decisions/01-adrs.md) y [bloqueadores](docs/10-decisions/02-open-questions.md).
 
-La incertidumbre tiene costos reales: una empresa debe comprar inventario antes de conocer el precio futuro; un agricultor debe decidir cuándo sembrar; una aseguradora debe estimar exposición antes de que ocurra un fenómeno climático. No basta con tener más opiniones: hace falta saber qué preguntas importan, quién ha demostrado capacidad para responderlas y qué evidencia respalda su historial.
+## Estado y límites
+No hay código ejecutable, DB creada, contrato desplegado, integración de datos probada, lockfiles generados ni tests de software ejecutados. Las interfaces y SQL son especificaciones. La pregunta LIVE depende de validar estación/serie y la fuente de resolución; fixture DEMO siempre etiquetado. No Solidity: el contrato nativo de Stellar se diseña en Rust/Soroban. La decisión demo vive en navegador; no enterprise SaaS. Pagos fuera de P0. No claims de PMF, precisión superior ni impacto medido.
 
-## El producto
+## Inventario navegable
 
-| Módulo | Función |
-|---|---|
-| PRAEV Relevance | Selección de preguntas por utilidad para decisiones. |
-| PRAEV ID | Identidad predictiva portable para humanos y agentes. |
-| PRAEV Verify | Sellado, apertura, resolución y auditoría de pronósticos. |
-| PRAEV Score | Reputación por dominio, calibración y evidencia histórica. |
-| PRAEV Consensus | Agregación de probabilidades con pesos históricos. |
-| PRAEV Pay | Pagos por información y financiación de wallets controladas por sus titulares. |
-| PRAEV Protocol | Contratos, esquemas y reglas de interoperabilidad. |
-| PRAEV SDK | Integración programática con aplicaciones y agentes. |
+### Fundamentos y visión
 
-## Documentación
+- [Visión y posicionamiento](docs/00-foundation/01-vision.md)
+- [Principios de producto](docs/00-foundation/02-principles.md)
+- [Impacto humano y económico](docs/00-foundation/03-impact.md)
+- [Mercados regionales y motores productivos](docs/00-foundation/04-region.md)
+- [Coexistencia pública y comercial](docs/00-foundation/05-business.md)
+- [Síntesis de las tres investigaciones](docs/00-foundation/06-research-synthesis.md)
+- [Visión de largo plazo y productos](docs/00-foundation/07-future.md)
 
-El [índice de docs](docs/README.md) agrupa los documentos por área y sugiere un orden de lectura para cada rol.
+### Producto y UX
 
-| Documento | Contenido |
-|---|---|
-| [01 — Visión y tesis](docs/01-vision.md) | Problema, principios, diferenciación, propuesta de valor. |
-| [02 — Impacto y casos de uso](docs/02-impacto.md) | Usuarios, decisiones, hipótesis de valor y piloto. |
-| [03 — Relevance](docs/03-relevance.md) | Admisión, scoring de relevancia, curación y métricas. |
-| [04 — Producto y MVP](docs/04-producto-mvp.md) | Flujos, alcance, módulos, requisitos y aceptación. |
-| [05 — UX/UI](docs/05-ux-ui.md) | Pantallas, composición, microcopy y accesibilidad. |
-| [06 — Arquitectura Stellar](docs/06-arquitectura.md) | Capas, datos, estados, servicios y fronteras de confianza. |
-| [07 — Smart contracts](docs/07-smart-contracts.md) | Interfaces propuestas, autorización, eventos y seguridad. |
-| [08 — Identidad, reputación y consenso](docs/08-reputacion.md) | Brier, calibración, muestras, pesos, benchmarks. |
-| [09 — Verificación y resolución](docs/09-verificacion.md) | Commit/reveal, fuentes, controversias, evidencias. |
-| [10 — Pagos no custodiales](docs/10-pagos.md) | USDC, recargas, liquidación, acceso y límites. |
-| [11 — API y SDK](docs/11-api-sdk.md) | Contratos de integración y ejemplos. |
-| [12 — Datos y seguridad](docs/12-datos-seguridad.md) | Modelo, privacidad, amenazas y operación. |
-| [13 — Negocio y validación](docs/13-negocio-validacion.md) | Hipótesis comerciales, métricas y experimentos. |
-| [14 — Roadmap y ejecución](docs/14-roadmap.md) | Plan por hitos, responsabilidades y recortes. |
-| [15 — Codember y evaluación](docs/15-codember.md) | Rúbrica, entregables, pitch y checklist. |
-| [16 — Pruebas y demo](docs/16-pruebas-demo.md) | Fixtures, casos de aceptación y guion de demo. |
-| [17 — Arranque de repositorio](docs/17-repositorio.md) | Estructura, comandos previstos y decisiones pendientes. |
-| [18 — MVP y backlog](docs/18-mvp-backlog.md) | Alcance real del MVP, contratos Soroban, stack y plan diario. |
+- [Usuarios, permisos y beneficiarios](docs/01-product/01-users.md)
+- [Recorridos del producto](docs/01-product/02-journeys.md)
+- [Mapa de navegación y rutas](docs/01-product/03-navigation.md)
+- [Sistema visual y responsive](docs/01-product/04-visual-system.md)
+- [Pantalla Radar](docs/01-product/05-radar.md)
+- [Pantalla Decision Forecast](docs/01-product/06-question-screen.md)
+- [Pantalla Forecasters y verificador](docs/01-product/07-reputation-screen.md)
+- [Microcopy y accesibilidad](docs/01-product/08-copy-accessibility.md)
 
-## Próximos pasos
+### Alcance y prueba funcional
 
-1. Ejecutar el backlog de [18 — MVP y backlog](docs/18-mvp-backlog.md).
-2. Crear los paquetes de aplicación, contratos y SDK según la [guía de repositorio](docs/17-repositorio.md).
-3. Implementar y validar el flujo vertical en Stellar Testnet.
-4. Añadir aquí instrucciones reproducibles, IDs de contratos, direcciones de activos de prueba, transacciones y enlace a la aplicación cuando existan.
+- [Scope P0, P1 y exclusiones](docs/02-mvp/01-scope.md)
+- [Caso vertical: clima y abastecimiento](docs/02-mvp/02-vertical.md)
+- [Fixture y demostración end-to-end](docs/02-mvp/03-demo-fixture.md)
+- [Criterios de aceptación funcional](docs/02-mvp/04-acceptance.md)
+
+### Stack y arquitectura
+
+- [Stack técnico seleccionado](docs/03-architecture/01-stack.md)
+- [Arquitectura monolito modular](docs/03-architecture/02-topology.md)
+- [Fronteras y fuentes de verdad](docs/03-architecture/03-boundaries.md)
+- [Árbol objetivo de repositorio](docs/03-architecture/04-repo.md)
+- [Manifest y scripts npm propuestos](docs/03-architecture/05-package.md)
+
+### Motores y dominio
+
+- [Entidad Question y especificación canónica](docs/04-domain/01-question.md)
+- [Estados y transiciones](docs/04-domain/02-lifecycle.md)
+- [Relevance Engine mínimo](docs/04-domain/03-relevance.md)
+- [Forecast y versiones](docs/04-domain/04-forecast.md)
+- [Evidence Engine y procedencia](docs/04-domain/05-evidence.md)
+- [Consensus Engine y baseline](docs/04-domain/06-consensus.md)
+- [Exposición y contexto comercial](docs/04-domain/07-exposure.md)
+- [Decision Register](docs/04-domain/08-decision-register.md)
+- [Oracle Engine: resolución auditable](docs/04-domain/09-oracle.md)
+- [Brier, calibración y reputación](docs/04-domain/10-reputation.md)
+- [Praev ID y tipos de predictor](docs/04-domain/11-identity.md)
+
+### IA y evaluación
+
+- [Agente de forecasting único](docs/05-ai/01-agent.md)
+- [Contrato de salida estructurada IA](docs/05-ai/02-output-schema.md)
+- [Evaluación de forecasting y leakage](docs/05-ai/03-evaluation.md)
+
+### Protocolo Stellar
+
+- [Stellar, Soroban y red](docs/06-stellar/01-network.md)
+- [Interfaz contractual PraevRegistry](docs/06-stellar/02-contract-interface.md)
+- [Storage, eventos e indexación](docs/06-stellar/03-storage-events.md)
+- [Canonicalización, hashes y verificador](docs/06-stellar/04-hashes.md)
+- [Wallet, firma y confirmación](docs/06-stellar/05-wallet-transactions.md)
+- [Proof of Foresight: garantías y límites](docs/06-stellar/06-proof-of-foresight.md)
+- [Praev Pay, pagos no custodiales](docs/06-stellar/07-payments.md)
+
+### Ingeniería
+
+- [Esquema SQL inicial](docs/07-engineering/01-database.md)
+- [API REST y contratos de transporte](docs/07-engineering/02-api.md)
+- [Errores, reintentos e idempotencia](docs/07-engineering/03-errors.md)
+- [Indexer y reconciliación](docs/07-engineering/04-reconcile.md)
+- [Inventario de fuentes y prueba de viabilidad](docs/07-engineering/05-data-sources.md)
+- [Variables de entorno y configuración](docs/07-engineering/06-env.md)
+- [Arranque local y dependencias](docs/07-engineering/07-setup.md)
+- [Despliegue testnet y aplicación](docs/07-engineering/08-deployment.md)
+
+### Calidad y seguridad
+
+- [Threat model y controles](docs/08-quality/01-security.md)
+- [Privacidad, gobernanza y ética](docs/08-quality/02-privacy.md)
+- [Matriz de pruebas reproducibles](docs/08-quality/03-tests.md)
+- [Vectores de prueba y datasets demo](docs/08-quality/04-fixtures.md)
+- [CI y observabilidad](docs/08-quality/05-ci-observability.md)
+
+### Ejecución y demo
+
+- [Backlog ejecutable y ruta crítica](docs/09-execution/01-backlog.md)
+- [Plan de construcción 26 nov–4 dic](docs/09-execution/02-calendar.md)
+- [Guion de demo ≤3 minutos](docs/09-execution/03-demo.md)
+- [Checklist Codember y rúbrica](docs/09-execution/04-codember.md)
+- [Definition of Done y entrega](docs/09-execution/05-release.md)
+
+### Decisiones y fuentes
+
+- [Decision log y reconciliación de hipótesis](docs/10-decisions/01-adrs.md)
+- [Bloqueadores, preguntas abiertas y experimentos](docs/10-decisions/02-open-questions.md)
+- [Fuentes, trazabilidad y límites de verificación](docs/10-decisions/03-sources.md)
+
+### Investigación
+
+- [Investigación vigente](research/README.md)
+- [Archivo de versiones obsoletas](archive/README.md): docs v0, informes previos y PDFs. Se eliminará cuando empiece la implementación.
+
+Prioridad: ADR vigente > P0 > visión > informes históricos. Consultar fuentes técnicas enlazadas; fijar versiones con pruebas reales. No ejecutar scripts propuestos hasta que existan.
 
 ## Equipo
 
@@ -66,7 +136,7 @@ El [índice de docs](docs/README.md) agrupa los documentos por área y sugiere u
 
 ## Uso de IA
 
-La documentación inicial se redactó y organizó con asistencia de herramientas de IA (entre ellas Claude Code). El equipo revisa y es responsable del contenido. Cuando se use IA para generar código, se indicará aquí qué partes y con qué herramienta.
+La investigación (informes Deep Research) y la documentación se elaboraron y organizaron con asistencia de herramientas de IA, entre ellas Claude Code. El equipo revisa y es responsable del contenido. Cuando se use IA para generar código, se indicará aquí qué partes y con qué herramienta.
 
 ## Código previo y de terceros
 

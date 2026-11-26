@@ -1,0 +1,18 @@
+# Plan de construcción 26 nov–4 dic
+
+**Estado:** Propuesta; fechas de bases aportadas · **Versión:** 1.0 · **Fecha:** 2026-11-26
+
+| Fecha (Lima) | Entregable |
+|---|---|
+| 26 nov | Scope, B01, B02 spike, ADR y schemas |
+| 27 nov | Contrato B04, dominio B03 y SQL B06 |
+| 28 nov | Deploy testnet B05 y ciclo CLI B07 |
+| 29 nov | Reconcile B08, radar/detalle B09 |
+| 30 nov | Wallet B10 y agente B11 |
+| 1 dic | Decisión B12 y verificador B13 |
+| 2 dic | E2E, fixture, fuente LIVE, errors B14 |
+| 3 dic | Deploy app, smoke, freeze y grabación |
+| 4 dic | README final, evidencias y submission antes 23:59 PET |
+| 5 dic | Demo Day según bases |
+
+El checkpoint del 25 nov 23:59 ya pasó; verificar que se cumplió, no asumir elegibilidad. No esperar a la ventana LIVE para comprobar resolución: fixture testnet independiente. Si datos LIVE no llegan antes del cierre, presentar pregunta viva y ciclo DEMO resuelto. Si no se puede probar agente real, informar y no falsear. El calendario es una estimación, no trabajo programado ni garantía de entrega.
