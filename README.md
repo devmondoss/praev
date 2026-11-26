@@ -59,7 +59,7 @@ El [índice de docs](docs/README.md) agrupa los documentos por área y sugiere u
 | | |
 |---|---|
 | Repositorio | https://github.com/devmondoss/praev (público, rama `main`) |
-| Checkpoint en el Hub | Pendiente de envío. Cierra el 25 nov 2026 a las 23:59 (Lima) |
+| Checkpoint en el Hub | Enviado el 25 nov 2026 |
 | Entrega final (APEX) | 4 dic 2026, 23:59 (Lima) |
 | Red | Stellar Testnet únicamente |
 
@@ -67,11 +67,10 @@ Las reglas, la rúbrica y lo que cuenta como actividad en el Hub están resumida
 
 ## Próximos pasos
 
-1. Enviar el checkpoint del repositorio desde el Hub.
-2. Congelar la especificación del MVP (M1 en el [roadmap](docs/14-roadmap.md)).
-3. Crear los paquetes de aplicación, contratos y SDK según la [guía de repositorio](docs/17-repositorio.md).
-4. Implementar y validar el flujo vertical en Stellar Testnet.
-5. Añadir aquí instrucciones reproducibles, IDs de contratos, direcciones de activos de prueba, transacciones y enlace a la aplicación cuando existan.
+1. Congelar la especificación del MVP (M1 en el [roadmap](docs/14-roadmap.md)).
+2. Crear los paquetes de aplicación, contratos y SDK según la [guía de repositorio](docs/17-repositorio.md).
+3. Implementar y validar el flujo vertical en Stellar Testnet.
+4. Añadir aquí instrucciones reproducibles, IDs de contratos, direcciones de activos de prueba, transacciones y enlace a la aplicación cuando existan.
 
 ## Equipo
 
