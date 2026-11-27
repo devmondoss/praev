@@ -156,6 +156,9 @@ describe("módulos compartidos con el navegador", () => {
       "src/lib/hash/sha256.ts",
       "src/lib/hash/index.ts",
       "src/lib/schemas/stellar.ts",
+      "src/lib/schemas/common.ts",
+      "src/domain/questions/categories.ts",
+      "src/domain/questions/spec.ts",
       "src/domain/forecasts/thesis.ts",
     ];
     for (const file of files) {

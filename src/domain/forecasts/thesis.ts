@@ -9,7 +9,6 @@
 import { z } from "zod";
 
 import {
-  UUID_LOWER,
   bytesToHex,
   canonicalBytes,
   hashEquals,
@@ -17,7 +16,7 @@ import {
   isHash32Hex,
   sha256Hex,
 } from "@/lib/hash";
-import { isStellarAccountId } from "@/lib/schemas/stellar";
+import { bps, httpsUrl, stellarAccount, text, unixSeconds, uuidLower } from "@/lib/schemas/common";
 
 export const THESIS_SCHEMA = "praev.thesis.v1";
 
@@ -31,42 +30,9 @@ export const THESIS_LIMITS = {
   agentField: 120,
 } as const;
 
-/** Longitud en puntos de código tras NFC, que es lo que se hashea. */
-const codePoints = (s: string) => [...s.normalize("NFC")].length;
-
-/** Controles C0/DEL; `allowNewline` deja pasar `\n` en textos largos. */
-const hasControlChars = (s: string, allowNewline: boolean) =>
-  allowNewline ? /[\u0000-\u0009\u000b-\u001f\u007f]/.test(s) : /[\u0000-\u001f\u007f]/.test(s);
-
-const text = (max: number, { required = false, multiline = false } = {}) =>
-  z
-    .string()
-    .refine((s) => codePoints(s) <= max, { message: `máximo ${max} caracteres` })
-    .refine((s) => !hasControlChars(s, multiline), { message: "caracteres de control no permitidos" })
-    .refine((s) => !required || s.trim().length > 0, { message: "no puede estar vacío" })
-    // Lo que el maker ve es exactamente lo que se hashea.
-    .transform((s) => s.normalize("NFC"));
-
-const bps = z.int().min(0).max(10_000);
-
-const httpsUrl = z
-  .string()
-  .max(THESIS_LIMITS.evidenceUrl)
-  .refine(
-    (s) => {
-      try {
-        const url = new URL(s);
-        return url.protocol === "https:" && url.username === "" && url.password === "";
-      } catch {
-        return false;
-      }
-    },
-    { message: "debe ser una URL HTTPS sin credenciales" },
-  );
-
 const evidenceRef = z.discriminatedUnion("kind", [
-  z.strictObject({ kind: z.literal("praev"), ref: z.string().regex(UUID_LOWER, "ID de evidencia inválido") }),
-  z.strictObject({ kind: z.literal("url"), ref: httpsUrl }),
+  z.strictObject({ kind: z.literal("praev"), ref: uuidLower }),
+  z.strictObject({ kind: z.literal("url"), ref: httpsUrl(THESIS_LIMITS.evidenceUrl) }),
 ]);
 
 const agentInfo = z.strictObject({
@@ -78,8 +44,8 @@ const agentInfo = z.strictObject({
 export const thesisPayloadSchema = z
   .strictObject({
     schema: z.literal(THESIS_SCHEMA),
-    questionId: z.string().regex(UUID_LOWER, "questionId debe ser un UUID en minúsculas"),
-    forecaster: z.string().refine(isStellarAccountId, { message: "dirección Stellar inválida" }),
+    questionId: uuidLower,
+    forecaster: stellarAccount,
     seq: z.int().min(1).max(0xffff_ffff),
     kind: z.enum(["human", "agent"]),
     probabilityBps: bps,
@@ -95,7 +61,7 @@ export const thesisPayloadSchema = z
     evidence: z.array(evidenceRef).max(THESIS_LIMITS.evidence),
     changeMyMind: text(THESIS_LIMITS.changeMyMind, { multiline: true }),
     note: text(THESIS_LIMITS.note, { multiline: true }),
-    informationCutoff: z.int().min(0),
+    informationCutoff: unixSeconds,
     agent: agentInfo.nullable(),
     salt: z.string().refine(isHash32Hex, { message: "la sal debe ser 64 hex en minúsculas" }),
   })
