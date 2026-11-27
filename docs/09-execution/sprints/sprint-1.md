@@ -12,7 +12,7 @@
 | HU-07 · QuestionSpec v2 validada | 5 | Vie 27 | Hecha | Zod, catálogo de categorías, ISO país, tiempos, `sum`/`single`, `specHash` |
 | HU-13 · `create_question` | 5 | Vie 27 | Hecha | Constructor, auth del curador, validaciones, tests T01–T04 |
 | HU-14 · `submit_forecast` con compromiso | 5 | Vie 27 | Hecha | Auth del maker, roles excluidos, `seq`, cierre, tests T05–T08 |
-| HU-26 · Shell y sistema visual | 3 | Vie 27 | Pendiente | Tokens, header, footer, foco, 360 px |
+| HU-26 · Shell y sistema visual | 3 | Vie 27 | En revisión: falta probar 360 px y zoom 200 % en navegador | Tokens, header, footer, foco, 360 px |
 | HU-15 · Resolver, invalidar, cancelar | 3 | Sáb 28 | Pendiente | Ventana, estado terminal, T09–T11 |
 | HU-16 · Eventos y TTL | 2 | Sáb 28 | Pendiente | `#[contractevent]`, `extend_ttl` ≥ 518 400 |
 | HU-17 · Despliegue oficial y bindings | 3 | Sáb 28 | Pendiente | `deployment.json`, bindings TS, pedir hito |

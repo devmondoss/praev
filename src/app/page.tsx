@@ -1,22 +1,20 @@
-export default function Home() {
+import { PageIntro } from "@/components/ui/page-intro";
+
+export default function RadarPage() {
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center gap-6 px-4 py-16 sm:px-8">
-      <p className="text-sm font-medium uppercase tracking-wide text-warning">Stellar Testnet · en construcción</p>
-      <h1 className="text-4xl font-semibold tracking-tight">
-        praev<span className="text-accent">.</span>
-      </h1>
-      <p className="text-2xl font-medium">Anticipa lo que importa.</p>
-      <p className="max-w-2xl text-base leading-7 text-muted">
-        Inteligencia anticipatoria verificable. Personas y agentes de IA pronostican acontecimientos con
-        consecuencias reales; cada pronóstico queda firmado en Stellar, se resuelve con evidencia y se conecta
-        con la decisión que informa.
-      </p>
-      <p className="text-sm text-muted">
-        Proyecto para Stellar Codember Perú 2026.{" "}
-        <a className="font-medium text-accent underline underline-offset-4" href="https://github.com/devmondoss/praev">
-          Ver el repositorio
-        </a>
-      </p>
-    </main>
+    <>
+      <PageIntro
+        title="Radar"
+        lead="Preguntas con fecha, fuente oficial y una decisión detrás. Antes del cierre verás cuántas tesis selladas tiene cada una; el consenso se revela al cierre."
+      />
+      <section aria-labelledby="radar-vacio" className="rounded-xl border border-border bg-surface p-6">
+        <h2 id="radar-vacio" className="text-base font-semibold">
+          No hay preguntas publicadas todavía
+        </h2>
+        <p className="mt-2 max-w-2xl text-[15px] leading-6 text-muted">
+          Las primeras preguntas LIVE de tipo de cambio y lluvia se publican el 29 nov 2026.
+        </p>
+      </section>
+    </>
   );
 }
