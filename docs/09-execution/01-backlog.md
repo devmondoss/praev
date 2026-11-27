@@ -1,30 +1,30 @@
 # Backlog ejecutable y ruta crítica
 
-**Estado:** P0, orden obligatorio sugerido · **Versión:** 1.1 · **Fecha:** 2026-11-26
+**Estado:** P0, orden obligatorio sugerido · **Versión:** 1.2 · **Fecha:** 2026-11-26
 
 El desglose en épicas e historias de usuario está en [07-product-backlog.md](07-product-backlog.md) y el plan por sprints en [06-scrum.md](06-scrum.md).
 
 | ID | Tarea | Dependencia | Resultado observable |
 |---|---|---|---|
 | B01 | Bootstrap Next, DB, repo, env, CI básico | ninguna | build + health |
-| B02 | Spike SENAMHI/MIDAGRI y decidir spec LIVE | ninguna | GO/NO-GO con muestra |
-| B03 | Schema dominio, hashes, mediana, Brier, threshold | B01 | unit tests |
+| B02 | Spikes de fuentes (SENAMHI hecho; tipo de cambio BCRP, BCB, TRM, BCRA) | ninguna | GO/NO-GO con muestra |
+| B03 | Spec v2 y categorías, tesis y compromiso, hashes, ancla, mediana, Brier y métricas del perfil, threshold | B01 | unit tests |
 | B04 | Contrato Rust y tests roles/timestamps | B03 | Wasm + tests |
 | B05 | Deploy testnet, bindings, cuentas | B04 | ID y receipt |
 | B06 | DB migration y repositorios | B01,B03 | integración DB |
-| B07 | Scripts create, resolver, evidence fixture | B05,B06 | ciclo CLI |
+| B07 | Scripts create (con ancla), preguntas de tipo de cambio, resolver en lote, adaptadores de series, evidence fixture | B05,B06 | ciclo CLI y preguntas LIVE |
 | B08 | Reconcile y tx intents | B05,B06 | idempotencia |
 | B09 | UI radar y detalle lectura | B03,B06 | rutas navegables |
-| B10 | Wallet prepare/submit/confirm | B08,B09 | tx humana SUCCESS |
-| B11 | Agente único y output schema | B03,B07 | tx agente real |
-| B12 | Decision Register local y outcome review | B09 | snapshot export |
-| B13 | Forecasters/verifier | B07,B08,B09 | score y prueba pública |
+| B10 | Formulario de tesis, sellado prepare/submit/confirm, recibo y revelado | B08,B09 | tx humana SUCCESS y tesis revelada al cierre |
+| B11 | Agente: brief de evidencia y rival de referencia | B03,B07 | brief publicado y tx del rival real |
+| B12 | Lado taker: propuesta firmada, Decision Register local y outcome review | B09 | propuesta publicada y snapshot export |
+| B13 | Makers, perfil con métricas y verificador | B07,B08,B09 | perfil recalculable y prueba pública |
 | B14 | E2E, fuente real, accesibilidad, errores | B02,B10–B13 | matriz A/T |
 | B15 | Deploy app, README final, video y submission | B14 | URL + commit + demo |
 
 Ruta crítica: B01→B03→B04→B05→B07/B08→B10/B13→B14→B15. B02 paralelo y gate LIVE. Una sola persona (ADR-017): se trabaja la ruta crítica en serie. No asignar horas garantizadas; si falta tiempo, recortar P1, segundo adapter, charts y polish antes del ciclo principal.
 
-**Orden de recorte para una persona** (propuesta; aplicar de arriba abajo solo si el calendario se retrasa):
+**Orden de recorte para una persona:** el vigente es el de [06-scrum §7](06-scrum.md#7-capacidad-y-plan-de-recorte) (actualizado con ADR-024 a 030). El original era:
 1. B02 con un máximo de 2 h el 26 nov; si no hay GO, solo DEMO y bloqueo LIVE visible.
 2. B10 sin `tx_intents` completos: el cliente firma y envía con los bindings, el servidor reconcilia por hash.
 3. B08 con cursor de `getEvents` + `getTransaction`, sin `raw_xdr` ni gestión de huecos.

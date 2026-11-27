@@ -1,8 +1,8 @@
 # praev Pay, pagos no custodiales
 
-**Estado:** P1 opcional, fuera de P0 · **Versión:** 1.1 · **Fecha:** 2026-11-26
+**Estado:** P1 opcional, fuera de P0 · **Versión:** 1.2 · **Fecha:** 2026-11-26
 
-Visión: pago fijo por informe o financiación de pregunta, sin depender de outcome. Transferencia USDC de wallet comprador a destinatario identificado mediante transacción autorizada; praev no mantiene saldo, claves ni permiso unilateral. Si se agrega split futuro, atomicidad, asset/issuer allowlist y receipt idempotente; no escrow especulativo. Revisión legal antes de producción; contrato por sí solo no demuestra no custodia.
+Visión: pago fijo por informe o financiación de pregunta, sin depender de outcome. Transferencia USDC de wallet comprador a destinatario identificado mediante transacción autorizada; praev no mantiene saldo, claves ni permiso unilateral. Modelo previsto (ADR-030): precio fijo por pregunta que paga el taker y se reparte entre los makers según la reputación que **ya tenían** al comprar, nunca según si aciertan esa pregunta; una sola transacción del taker con un pago por destinatario. Si se agrega split futuro, atomicidad, asset/issuer allowlist y receipt idempotente; no escrow especulativo. Revisión legal antes de producción; contrato por sí solo no demuestra no custodia.
 
 P0 no checkout, recarga, balance ni token. Si P0 cerrado y se aprueba P1: testnet, verificar asset y dirección oficial Circle, trustline, fee, amount en stroops/unidades según asset, confirmar receipt, etiqueta “sin valor real”. Si activo de prueba distinto, no llamarlo USDC. USDC testnet verificado el 26 nov: emisor `GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5` ([Circle](https://developers.circle.com/stablecoins/usdc-contract-addresses)); SAC `CBIELTK6YBZJU5UP2WWQEUCYKLPU6AUNZ2BQ4WWFEIE3USCIHMXQDAMA` (calculado con `Asset.contractId`, activo en testnet, no publicado por Circle). Trustline obligatoria en cuentas G. Faucet: 20 USDC cada 2 h. Alternativa: activo propio `TESTUSD` con `stellar contract asset deploy`, nunca llamado USDC. Onramp futuro directamente a wallet del usuario, tercero responsable del flujo. No usar claves reales.
 

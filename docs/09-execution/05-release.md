@@ -1,13 +1,15 @@
 # Definition of Done y entrega
 
-**Estado:** Normativo P0 · **Versión:** 1.1 · **Fecha:** 2026-11-26
+**Estado:** Normativo P0 · **Versión:** 1.2 · **Fecha:** 2026-11-26
 
 - [ ] Stack fijado, lockfiles, `npm ci` desde clon limpio.
 - [ ] SQL migrada, schema y API probados.
 - [ ] Contrato compilado, tests auth/tiempo/terminal, desplegado testnet.
-- [ ] URL pública, contract ID, Wasm hash, tx create/forecast/resolve reales y explorer.
+- [ ] URL pública, contract ID, Wasm hash, tx create/forecast (compromiso)/resolve reales y explorer.
 - [ ] Evidencia descargable, hash verificado, fixture y LIVE separados.
-- [ ] Forecast humano y agente real, baseline, mediana, Brier y n.
+- [ ] Tesis humana sellada y rival de IA real, revelado al cierre, ancla, mediana, perfil del maker con n; ninguna tesis visible antes del cierre (T30).
+- [ ] Preguntas LIVE de tipo de cambio resueltas (meta ≥ 20) y lluvia publicada; makers reales invitados y su número declarado.
+- [ ] Propuesta de taker firmada y publicada como pregunta.
 - [ ] Decision Register local, export y outcome review sin claim causal.
 - [ ] UI móvil/desktop, acceso sin wallet, error states y privacidad.
 - [ ] Fuente LIVE comprobada o bloqueo explícito; no falso endpoint.

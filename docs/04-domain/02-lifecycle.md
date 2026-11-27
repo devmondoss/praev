@@ -1,6 +1,6 @@
 # Estados y transiciones
 
-**Estado:** P0 · **Versión:** 1.0 · **Fecha:** 2026-11-26
+**Estado:** P0 · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
 | Estado | Origen | Transición |
 |---|---|---|
@@ -14,5 +14,7 @@
 | CANCELLED | chain | terminal, sin score |
 
 P0 no introduce estado PROVISIONAL persistido ni ventana de disputa on-chain. La propuesta de resolución se prepara off-chain y se revisa antes de única tx final. `resolve` solo a partir de resolveAfter y hasta resolveBy inclusive; `invalidate` por resolver después de resolveAfter con hash de motivo/evidencia, o después de resolveBy si expiró. Ninguna transición reabre una pregunta. Si no hay resolver, queda pendiente/expirada y no puntúa. `CLOSED` es derivado, no requiere keeper. Reloj autoritativo: timestamp del ledger para chain; UI reloj estimado solo para visualización. Un usuario que firma a último segundo puede fallar, avisar.
+
+**Sellado y revelado (ADR-026):** en `OPEN` las tesis están selladas; al pasar a `CLOSED` (derivado del ledger) la API empieza a revelar los payloads y el consenso existe. El revelado no es una transición on-chain ni requiere keeper.
 
 Criterio: pruebas de límite exacto de cierre (t==closesAt rechaza), resolución temprana, terminal doble, cancelación tardía. SQL puede representar vista efectiva, pero no autoridad para autorizar.

@@ -1,6 +1,14 @@
-# Caso vertical: clima y abastecimiento
+# Casos iniciales del MVP
 
-**Estado:** Decisión propuesta P0; fuente por validar · **Versión:** 1.1 · **Fecha:** 2026-11-26
+**Estado:** P0 · **Versión:** 1.2 · **Fecha:** 2026-11-26
+
+ADR-028 reemplaza el foco único "Perú, clima y abastecimiento" por dos macrocategorías. Son casos de prueba de la tubería, no el límite de praev ([12-categories](../04-domain/12-categories.md)).
+
+## Caso A · Tipo de cambio diario (`economy_finance / fx_daily`)
+
+Preguntas recurrentes de resolución rápida: "¿El tipo de cambio interbancario venta del BCRP para el {día hábil D} será mayor que {umbral}?", y equivalentes para BR, CO y AR cuando su spike dé GO (HU-45). Cierre al inicio del día D (PET), observación `[D 00:00, D+1 00:00)` en la zona de la fuente, `resolveAfter` cuando la fuente publica el dato (≈1 día hábil después en el BCRP) y `resolveBy` con margen de 3 días hábiles. Umbral cerca del último valor publicado, para que haya incertidumbre real. Decisión de referencia: un importador que debe pagar en dólares el día D decide si compra hoy; el taker declara la razón C/L como `referenceThresholdBps`. Objetivo: varias preguntas por día hábil desde el 30 nov, para acumular al menos 20 resoluciones LIVE antes del 4 dic. Un feriado sin dato invalida la pregunta (`missingPolicy:'invalidate'`), por eso solo se usan días hábiles conocidos.
+
+## Caso B · Lluvia en Chulucanas (`climate_environment / precipitation`)
 
 Caso candidato: lluvia acumulada en Chulucanas, Piura. Razón: dato externo numérico, impactos en movilidad/cosecha y abastecimiento, decisión de contingencia fácilmente simulable. El informe final identifica estación SENAMHI/WIS2 `0-604-1-08602104`; esto no prueba que la variable exacta se publique con latencia útil. No abrir hasta comprobar datos y reglas de calidad.
 

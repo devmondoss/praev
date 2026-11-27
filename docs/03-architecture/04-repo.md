@@ -1,12 +1,12 @@
 # Árbol objetivo de repositorio
 
-**Estado:** Especificación; no código creado · **Versión:** 1.0 · **Fecha:** 2026-11-26
+**Estado:** Especificación; no código creado · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
 ```text
 praev/
   README.md  AGENTS.md  package.json  package-lock.json
   .env.example  .gitignore  compose.yaml
-  src/app/{page.tsx,q/[id]/page.tsx,forecasters/page.tsx,verify/[id]/page.tsx,methodology/page.tsx,api/v1/...}
+  src/app/{page.tsx,q/[id]/page.tsx,makers/page.tsx,makers/[address]/page.tsx,proponer/page.tsx,verify/[id]/page.tsx,methodology/page.tsx,api/v1/...}
   src/components/{radar,question,wallet,decision,verify,ui}/
   src/domain/{questions,forecasts,evidence,scoring,decisions}/
   src/server/{db,stellar,ai,reconcile,services}/

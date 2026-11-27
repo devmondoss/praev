@@ -1,6 +1,6 @@
 # Plan Scrum
 
-**Estado:** Vigente P0 · **Versión:** 1.0 · **Fecha:** 2026-11-26
+**Estado:** Vigente P0 · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
 Cómo organizamos el trabajo del 26 nov al 4 dic 2026. Las historias están en el [product backlog](07-product-backlog.md); el orden técnico de dependencias sigue el [backlog ejecutable](01-backlog.md).
 
@@ -19,8 +19,8 @@ Sprints cortos porque el plazo es de 9 días. Cada sprint cierra con un incremen
 | Sprint | Fechas | Objetivo del sprint | Hito del Hub al cerrar |
 |---|---|---|---|
 | **S0 · Arranque** | Jue 26 nov | El proyecto arranca: la app vacía está desplegada con health, el toolchain Stellar está listo y la fuente LIVE tiene decisión GO/NO-GO | — |
-| **S1 · Ciclo on-chain** | Vie 27 – Dom 29 nov | Una pregunta DEMO se crea, recibe pronósticos y se resuelve en Stellar Testnet desde la CLI, y la app la muestra en el Radar | Integración Stellar en testnet (10) |
-| **S2 · Producto usable** | Lun 30 nov – Mié 2 dic | Un visitante sigue el ciclo completo desde la web: pronostica con su wallet, ve el pronóstico del agente de IA, registra su decisión y verifica la prueba | Funcionalidad (5) |
+| **S1 · Ciclo on-chain** | Vie 27 – Dom 29 nov | Una pregunta DEMO se crea, recibe tesis selladas y se resuelve en Stellar Testnet desde la CLI; las primeras preguntas LIVE (tipo de cambio y lluvia) están publicadas con su ancla, y la app las muestra en el Radar | Integración Stellar en testnet (10) |
+| **S2 · Mercado usable** | Lun 30 nov – Mié 2 dic | Un maker arma su tesis con el ancla y el brief, la sella con su wallet y compite con el rival de IA; al cierre ve el consenso revelado y su perfil; un taker propone una pregunta y registra su decisión; cualquiera verifica la prueba | Funcionalidad (5) |
 | **S3 · Release** | Jue 3 – Vie 4 dic | praev está listo para el jurado: E2E real en testnet, README con evidencia, video y entrega en APEX antes de las 18:00 | Pruebas, documentación o demo (5) |
 
 Hay commit en `main` **todos los días**. Así se suman los 5 puntos de constancia en cada una de las dos semanas del Hub (23–29 nov y 30 nov–6 dic).
@@ -29,15 +29,17 @@ Hay commit en `main` **todos los días**. Así se suman los 5 puntos de constanc
 
 | Día | Backend / contrato | Frontend | Cierre del día |
 |---|---|---|---|
-| Jue 26 (S0) | HU-01, HU-02, HU-03, HU-05 | HU-04 (deploy vacío) | App en Vercel, toolchain listo, GO/NO-GO |
-| Vie 27 (S1) | HU-07, HU-08, HU-13, HU-14 | HU-26 (shell y sistema visual) | Dominio y contrato con tests en verde |
-| Sáb 28 (S1) | HU-15, HU-16, HU-17, HU-18, HU-22 | HU-27 con datos de ejemplo tipados | **Contrato en testnet**, primera pregunta creada |
-| Dom 29 (S1) | HU-06, HU-09, HU-10, HU-12, HU-19, HU-20, HU-23, HU-24 | HU-27 conectado a la API | Ciclo DEMO resuelto y visible · **Review S1** |
-| Lun 30 (S2) | HU-25 (**LIVE antes de medianoche**), HU-21 | HU-28, HU-30 | Detalle de pregunta y wallet conectada |
-| Mar 1 (S2) | HU-31 (prepare/submit), HU-11 | HU-31 (formulario), HU-32, HU-35, HU-36 | Pronóstico humano confirmado desde la web |
-| Mié 2 (S2) | HU-33, HU-34 | HU-37, HU-38 | Agente real y verificador · **Review S2** |
-| Jue 3 (S3) | HU-39, HU-40 | HU-29, ajustes de UX | E2E documentado, borrador del video |
-| Vie 4 (S3) | HU-41, renovación de TTL | HU-42 | Entrega en APEX antes de las 18:00 · **Review final** |
+| Jue 26 (S0) | HU-01, HU-02, HU-03, HU-05 | HU-04 (deploy vacío) | App en Vercel, toolchain listo, GO/NO-GO · lógica de producto en ADR-024 a 030 |
+| Vie 27 (S1) | HU-08 (tesis y compromiso), HU-07, HU-13, HU-14 | HU-26 (shell y sistema visual) | Dominio y contrato con tests en verde |
+| Sáb 28 (S1) | HU-15, HU-16, HU-17, HU-18, HU-22, HU-45 | HU-27 con datos de ejemplo tipados | **Contrato en testnet**, fuentes de tipo de cambio con GO/NO-GO |
+| Dom 29 (S1) | HU-44, HU-46, HU-12, HU-19, HU-20, HU-23, HU-24, HU-25 (**LIVE publicadas**) | HU-27 conectado a la API | Ciclo DEMO resuelto, preguntas de tipo de cambio del 30 nov al 3 dic y lluvia publicadas · **Review S1** |
+| Lun 30 (S2) | HU-47, HU-09, HU-10, HU-21, HU-24 en lote, HU-51 (invitar makers) | HU-28, HU-30 | Revelado al cierre, primeras resoluciones LIVE, wallet conectada |
+| Mar 1 (S2) | HU-31, HU-49, HU-11 | HU-48, HU-32, HU-35, HU-36 | Tesis humana sellada desde la web, brief visible |
+| Mié 2 (S2) | HU-33, HU-34, HU-43, HU-50 | HU-37, HU-38 | Rival de IA, perfil del maker, propuesta del taker y verificador · **Review S2** |
+| Jue 3 (S3) | HU-39, HU-40, HU-06 | HU-29, ajustes de UX | E2E documentado, borrador del video |
+| Vie 4 (S3) | HU-41, resolución de la lluvia, renovación de TTL | HU-42 | Entrega en APEX antes de las 18:00 · **Review final** |
+
+Las preguntas de tipo de cambio se resuelven cada día hábil con `HU-24` en lote, así que el perfil de los makers crece durante S2 y S3. El rival de IA sella sus tesis desde que HU-33 está lista; las preguntas que cierren antes solo tendrán tesis humanas.
 
 El frontend no espera al backend: consume los tipos de `src/domain` y datos de ejemplo tipados hasta que la API correspondiente está lista. Esos datos se eliminan al conectar la API real y nunca llegan a producción como si fueran reales.
 
@@ -77,15 +79,18 @@ Columnas: **Backlog → Sprint → En curso → En revisión → Hecho**. Como m
 
 ## 7. Capacidad y plan de recorte
 
-S1 y S2 suman unos 110 puntos en 6 días, un ritmo ambicioso incluso con pair programming con IA. La velocidad real de S0 se mide hoy. Si al cerrar un día el sprint va con más de medio día de retraso, se aplica el orden de recorte del [backlog ejecutable](01-backlog.md), de arriba abajo:
+Tras la re-estimación del 26 nov (ADR-024 a 030), S1 y S2 suman 137 puntos en 6 días; S0 cerró 12 puntos en una tarde. Es un ritmo ambicioso incluso con pair programming con IA. Si al cerrar un día el sprint va con más de medio día de retraso, se aplica este orden de recorte, de arriba abajo:
 
-1. HU-05: spike limitado a 2 h; si no hay GO, solo DEMO y bloqueo LIVE visible (HU-25 sale del sprint).
-2. HU-31: sin `tx_intents` completos; el cliente firma y envía con los bindings y el servidor reconcilia por hash.
-3. HU-19: cursor de `getEvents` + `getTransaction`, sin `raw_xdr` ni gestión de huecos.
-4. HU-36: calculadora de umbral con un solo snapshot, sin historial ni export.
-5. HU-40: los E2E de Playwright pasan a una checklist manual; Vitest y `cargo test` se mantienen.
+1. HU-50: la propuesta del taker se hace con una plantilla de issue en GitHub y el curador la publica; se mantiene `requester` en la spec.
+2. HU-45: solo BCRP; los demás países quedan documentados como candidatos.
+3. HU-49: el brief se reduce a la lista de evidencia admitida, sin resumen del LLM.
+4. HU-43: sin calibración ni P&L de decisión; quedan Brier, skill frente al ancla, acierto y frente a la IA.
+5. HU-31: sin `tx_intents` completos; el cliente firma y envía con los bindings y el servidor reconcilia por hash.
+6. HU-19: cursor de `getEvents` + `getTransaction`, sin `raw_xdr` ni gestión de huecos.
+7. HU-36: calculadora de umbral con un solo snapshot, sin historial ni export.
+8. HU-40: los E2E de Playwright pasan a una checklist manual; Vitest y `cargo test` se mantienen.
 
-**No se recortan:** HU-13 a HU-17 (contrato), HU-22 a HU-24 (ciclo CLI), HU-33 y HU-34 (agente con LLM real), HU-37 y HU-38 (verificación) ni el ciclo DEMO resuelto en testnet.
+**No se recortan:** HU-13 a HU-17 (contrato), HU-08 y HU-47 (sellado y revelado), HU-48 (tesis estructurada), HU-22 a HU-25 (ciclo CLI y preguntas LIVE), HU-33 y HU-34 (rival de IA con LLM real), HU-37 y HU-38 (perfil y verificación) ni el ciclo DEMO resuelto en testnet.
 
 ## 8. Plantilla de sprint
 

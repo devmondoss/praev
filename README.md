@@ -5,10 +5,12 @@ Inteligencia anticipatoria verificable para decisiones expuestas a riesgos exter
 
 praev convierte acontecimientos con consecuencias humanas o económicas en preguntas de probabilidad que se pueden resolver y auditar. Esos acontecimientos pueden ser un fenómeno climático, una disrupción logística, una veda, un cambio regulatorio o un shock de precios.
 
-Personas y agentes de IA publican su probabilidad **antes** de que ocurra el hecho. Cada pronóstico queda firmado y fechado en Stellar. Un resolvedor autorizado cierra la pregunta con evidencia de una fuente oficial, y cada participante acumula un historial medible de acierto por dominio. Las organizaciones conectan esas probabilidades con su propia exposición y registran qué decidieron, con qué probabilidad y por qué.
+Es un mercado de anticipación con dos lados. Los **takers** (quienes tienen que decidir) traen la pregunta que les importa. Los **makers**, personas reales que compiten con un agente de IA como rival, responden con una **tesis**: una probabilidad y sus fundamentos (ancla histórica, factores, evidencia y qué les haría cambiar de opinión). praev les da las herramientas para pensar y **sella** cada tesis en Stellar antes del resultado, oculta hasta el cierre para que nadie copie a nadie. Al cierre se revela el consenso, una fuente oficial pactada de antemano resuelve, y cada maker acumula un historial auditable, como el de un trader, que dice a quién creerle y en qué.
 
-- **Qué:** preguntas binarias con regla, fuente y fecha congeladas; pronósticos firmados; resolución con evidencia; score Brier; registro de decisiones.
-- **Para quién:** organizaciones que deciden bajo incertidumbre externa y comunidades afectadas por esas mismas incertidumbres, que acceden gratis a la capa pública.
+> Una API dice qué pasó. Una IA da un número. praev registra **quién anticipa bien, qué cosa y por qué**, y eso no se puede copiar.
+
+- **Qué:** preguntas binarias con regla, fuente y fecha congeladas; tesis selladas hasta el cierre; resolución con evidencia oficial; perfil de cada maker con métricas verificables; registro de decisiones.
+- **Para quién:** takers (organizaciones y personas que deciden bajo incertidumbre externa) y makers (analistas y personas con criterio que quieren un historial que demuestre su juicio). Las comunidades afectadas acceden gratis a la capa pública.
 - **Cuándo:** antes del evento, mientras todavía hay una ventana para actuar.
 - **Desde dónde:** nace en Latinoamérica, pensada para economías productivas expuestas a shocks externos (agro, pesca, minería, logística, agua), con fuentes oficiales como autoridad de resolución.
 
@@ -20,20 +22,20 @@ Personas y agentes de IA publican su probabilidad **antes** de que ocurra el hec
 
 | Bloque | Resumen |
 |---|---|
-| **Problema** | Demasiadas señales de riesgo y ninguna forma de saber quién anticipa bien; nadie rinde cuentas de los pronósticos; la probabilidad no se conecta con la decisión |
-| **Segmentos** | Capa pública: comunidades, productores, investigadores, forecasters y agentes de IA. Capa comercial: responsables de operaciones y abastecimiento en empresas expuestas |
-| **Propuesta de valor única** | Probabilidades verificables sobre lo que importa, de fuentes con historial medido, conectadas a una decisión concreta |
-| **Solución** | Motor de preguntas con especificación congelada; pronósticos firmados y resolución con evidencia; reputación por dominio y registro de decisiones |
+| **Problema** | Demasiadas señales y pronósticos, y ninguna forma de saber quién anticipa bien; nadie rinde cuentas de lo que dijo; quien sabe anticipar no tiene cómo demostrarlo; la probabilidad no se conecta con la decisión |
+| **Segmentos** | Takers: responsables de decisiones expuestas a riesgos externos (tesorería, importación, operaciones, abastecimiento). Makers: analistas y personas con criterio, con agentes de IA como rivales. Capa pública: comunidades y productores |
+| **Propuesta de valor única** | Para el taker: el consenso independiente de quienes más aciertan, con sus razones, a tiempo para decidir. Para el maker: un historial sellado que demuestra su juicio |
+| **Solución** | Preguntas con especificación congelada; tesis estructurada y sellada hasta el cierre; resolución con fuente oficial; perfil del maker con métricas tipo trader; propuesta de preguntas y registro de decisiones |
 | **Canales** | Capa pública gratuita, preguntas de interés público, torneos y benchmark de agentes, API, pilotos directos |
-| **Ingresos** | Suscripción por workflow de exposición y decisión, API, research por encargo, preguntas patrocinadas con firewall editorial. Nunca apuestas |
+| **Ingresos** | El taker paga un precio fijo por pregunta, repartido entre makers según su reputación previa (nunca según el resultado); suscripción por workflow de decisión, API y research por encargo. Nunca apuestas |
 | **Costos** | Curación y resolución, datos y licencias, inferencia de IA, infraestructura, cumplimiento |
-| **Métricas clave** | Brier y skill frente al baseline, decisiones revisadas por alerta, tiempo de anticipación, conversión de piloto a pago |
-| **Ventaja injusta** | El historial acumulado pregunta → pronóstico → resolución → decisión → resultado, verificable por terceros |
+| **Métricas clave** | Makers activos y tesis selladas por pregunta, Brier y skill frente al ancla, preguntas propuestas por takers, decisiones revisadas, conversión de piloto a pago |
+| **Ventaja injusta** | El historial acumulado de personas reales: tesis → resolución → métricas, sellado en una red pública y verificable por terceros; cada resolución lo hace más valioso |
 
 ### 1. Problema
 
 1. **Ruido sin criterio.** Las organizaciones reciben miles de señales de riesgo externo, pero no saben cuáles importan para *su* decisión ni quién sabe anticiparlas de verdad.
-2. **Pronósticos sin rendición de cuentas.** Una plataforma dice "riesgo alto" y meses después nadie comprueba si acertó. Un analista recuerda sus aciertos y un modelo de IA puede explicar con fluidez y aun así estar mal calibrado.
+2. **Pronósticos sin rendición de cuentas.** Una plataforma dice "riesgo alto" y meses después nadie comprueba si acertó. Un analista recuerda sus aciertos y un modelo de IA puede explicar con fluidez y aun así estar mal calibrado. Y quien sí sabe anticipar no tiene cómo probarlo: no existe para el juicio lo que el historial auditado es para un trader.
 3. **La probabilidad no llega a la decisión.** "Alto / medio / bajo" no dice cuándo actuar, y casi nadie registra qué se decidió con qué probabilidad para aprender después.
 
 **Alternativas actuales**
@@ -48,8 +50,9 @@ Personas y agentes de IA publican su probabilidad **antes** de que ocurra el hec
 
 ### 2. Segmentos de clientes
 
-- **Capa pública (beneficiarios):** comunidades y productores expuestos, investigadores, periodistas y forecasters humanos y agentes de IA que construyen historial. Leen sin cuenta y sin pagar.
-- **Capa comercial (compradores):** primeros early adopters: agroexportadores y procesadores de alimentos, después distribuidores y retailers. El usuario es el responsable de operaciones o abastecimiento.
+- **Takers (demanda):** quien tiene que decidir antes de que ocurra algo: un importador que debe pagar en dólares, una tesorería, un responsable de abastecimiento. Traen la pregunta y, más adelante, pagan por ella.
+- **Makers (oferta):** analistas, estudiantes, profesionales del sector y cualquier persona con criterio que quiera construir un historial verificable. Compiten con un agente de IA como rival de referencia.
+- **Capa pública (beneficiarios):** comunidades y productores expuestos, investigadores y periodistas. Leen sin cuenta y sin pagar.
 - **Extensiones, aún no validadas:** ONG, bancos, aseguradoras y gobierno.
 - Usuario, comprador y beneficiario pueden ser distintos: una ONG puede financiar una vista territorial que usa una comunidad.
 
@@ -57,7 +60,7 @@ Personas y agentes de IA publican su probabilidad **antes** de que ocurra el hec
 
 ### 3. Propuesta de valor única
 
-**praev convierte acontecimientos externos relevantes en preguntas probabilísticas verificables, identifica quién los anticipa mejor y conecta esas probabilidades con decisiones.**
+**praev convierte acontecimientos externos relevantes en preguntas verificables, reúne a personas reales que las responden con tesis selladas, mide quién anticipa mejor y entrega ese consenso a quien tiene que decidir.**
 
 Concepto de alto nivel: *la contabilidad de la incertidumbre*. Así como la contabilidad registra qué pasó con el dinero, praev registra qué se creía antes, qué ocurrió y qué se decidió.
 
@@ -65,20 +68,24 @@ Concepto de alto nivel: *la contabilidad de la incertidumbre*. Así como la cont
 
 | Problema | Capacidad de praev |
 |---|---|
-| Ruido sin criterio | **Motor de preguntas con relevancia:** solo entran preguntas con beneficiario, consecuencia, decisión posible antes del resultado, fuente verificable y fecha. La especificación se congela y un cambio material crea una versión nueva |
-| Sin rendición de cuentas | **Pronósticos firmados y resolución con evidencia:** humanos y agentes de IA bajo las mismas reglas. La fuente que ayuda a pronosticar nunca es la que decide la verdad. Score Brier por dominio, con muestra visible y comparación contra un baseline |
-| La probabilidad no llega a la decisión | **Decision Register:** compara la probabilidad con el umbral de acción (coste de actuar frente a pérdida evitable, p* = C/L) y guarda la decisión con la probabilidad de ese momento, para revisarla al resolverse |
+| Ruido sin criterio | **Preguntas con relevancia:** solo entran preguntas con beneficiario, consecuencia, decisión posible antes del resultado, fuente verificable y fecha. Un taker puede proponerlas; un curador las revisa. La especificación se congela |
+| Pronósticos sin fundamento ni rendición de cuentas | **Tesis estructurada y sellada:** probabilidad, ancla histórica, factores, evidencia y qué haría cambiar de opinión. Se sella en Stellar y permanece oculta hasta el cierre, así que nadie copia a nadie. La fuente que ayuda a pronosticar nunca es la que decide la verdad |
+| Quien anticipa bien no puede demostrarlo | **Perfil del maker, como el historial de un trader:** Brier, skill frente al ancla, tasa de acierto, calibración, frente al consenso, frente a la IA y P&L de decisión hipotético, por categoría y horizonte, recalculables por cualquiera |
+| La probabilidad no llega a la decisión | **Consenso al cierre y Decision Register:** el taker recibe la mediana de tesis independientes antes del evento, la compara con su umbral de acción (p* = C/L) y guarda su decisión para revisarla al resolverse |
+
+**Herramientas para el maker:** gráfico de la serie oficial, ancla histórica calculada por praev y un brief de evidencia generado por IA, igual para todos y sin probabilidad sugerida: la IA informa, no piensa por el maker.
 
 ### 5. Canales
 
-- Capa pública gratuita: radar de preguntas, verificador y perfiles de forecasters como embudo de confianza.
+- Capa pública gratuita: radar de preguntas, verificador y perfiles de makers como embudo de confianza.
 - Preguntas de interés público, con patrocinio divulgado cuando lo haya.
-- Torneos por vertical y **praev Bench**, para evaluar humanos, modelos y agentes por dominio y horizonte.
+- Torneos por categoría y **praev Bench**: ¿le ganas a la IA? Humanos y modelos medidos por categoría y horizonte.
 - API y SDK para distribuir probabilidades con su procedencia.
 - Pilotos directos con organizaciones expuestas, primero vía entrevistas de discovery.
 
 ### 6. Fuentes de ingreso
 
+- **Pregunta pagada:** el taker paga un precio fijo por pregunta y se reparte entre los makers según la reputación que ya tenían al comprar, nunca según si aciertan esa vez. Así no es una apuesta y el incentivo a acertar sigue intacto: la reputación de hoy es el ingreso de mañana.
 - **Suscripción por workflow:** exposición privada, alertas, umbrales, registro de decisiones e integración. Se paga por el contexto y el workflow, nunca por mover un pronóstico.
 - **API** de probabilidades con procedencia.
 - **Research por encargo** y **preguntas patrocinadas**: *un patrocinador puede financiar una pregunta, nunca su respuesta*. El patrocinio se divulga, la regla se congela y el resolvedor es independiente.
@@ -94,7 +101,8 @@ Curación y resolución con revisión humana; acceso, licencias y almacenamiento
 
 | Dimensión | Qué medimos |
 |---|---|
-| Calidad del pronóstico | Brier, skill frente al baseline (BSS), calibración, tamaño de muestra, cobertura y abstenciones |
+| Mercado | Makers activos, tesis selladas por pregunta, % de tesis completas, preguntas propuestas por takers |
+| Calidad del pronóstico | Brier, skill frente al ancla (BSS), calibración, humanos frente a la IA, tamaño de muestra |
 | Valor de decisión | % de alertas que generan una revisión o decisión, tiempo de anticipación, decisiones revisadas al resolverse |
 | Social | Alcance gratuito, consultas antes del evento, % que declara haber cambiado una decisión |
 | Comercial | Preguntas solicitadas por clientes, conversión de piloto a pago, retención |
@@ -103,7 +111,7 @@ Las pérdidas evitadas solo se reportan con un contrafactual defendible.
 
 ### 9. Ventaja injusta
 
-El moat no es el modelo de pronóstico ni el código: es el **historial acumulado y verificable** pregunta → versiones de pronóstico → identidad → resolución → decisión → resultado. La mayoría de las plataformas se detiene en la resolución. Ese historial, anclado en una red pública, es verificable por terceros sin confiar en praev, y su conexión con decisiones reales es difícil de replicar. Se suma el conocimiento de fuentes oficiales y workflows locales de la región.
+El moat no es el modelo de pronóstico ni el código, y menos el acceso a una API: es el **historial acumulado y verificable de personas reales** pregunta → tesis sellada → identidad → resolución → métricas → decisión. Cualquiera puede llamar a un LLM; nadie puede fabricar retroactivamente un historial sellado. La mayoría de las plataformas se detiene en la resolución. Ese historial, anclado en una red pública, es verificable por terceros sin confiar en praev, y su conexión con decisiones reales es difícil de replicar. Se suma el conocimiento de fuentes oficiales y workflows locales de la región.
 
 ---
 
@@ -116,15 +124,17 @@ El moat no es el modelo de pronóstico ni el código: es el **historial acumulad
 | H3 | El historial de acierto cambia a quién se le cree | Presentar pronósticos contradictorios con su track record | Los compradores ignoran el historial |
 | H4 | Las alertas generan decisiones | Piloto con Decision Register | Menos del 30 % de las alertas produce revisión o decisión |
 | H5 | Hay disposición a pagar | 15–20 entrevistas y 3 pilotos con precio | Nadie acepta una propuesta pagada ni firma una LOI |
-| H6 | Hay skill real frente al baseline | 100 o más preguntas pre-registradas | El consenso no supera al baseline |
+| H6 | Hay skill real frente al ancla | 100 o más preguntas pre-registradas | El consenso no supera al ancla |
+| H7 | Hay makers dispuestos a sellar tesis para construir historial, sin pago inicial | Invitar makers a las preguntas LIVE del MVP | Menos de 5 personas sellan tesis o casi nadie completa los fundamentos |
+| H8 | Los humanos con tesis aportan sobre la IA | Comparar consenso humano y rival de IA en las mismas preguntas | El rival de IA iguala o supera al consenso humano de forma sostenida |
 
-**El MVP de esta buildathon valida la base técnica de todas ellas:** que el ciclo completo (pregunta → pronóstico → decisión → resolución → score) funciona y es verificable de punta a punta. No pretende demostrar mercado ni superioridad predictiva.
+**El MVP de esta buildathon valida la base técnica de todas ellas** y da una primera señal de H7 y H8: que el ciclo completo (propuesta → tesis sellada → revelado → decisión → resolución → perfil) funciona y es verificable de punta a punta. No pretende demostrar mercado ni superioridad predictiva.
 
 ---
 
 ## Por qué Stellar
 
-La pregunta que guía el diseño es **"¿seguiría existiendo praev sin Stellar?"**. Como SaaS cerrado bastaría una base de datos con firmas. Pero la capa pública de praev promete que **cualquiera puede verificar un historial de pronósticos sin confiar en praev**, y que ese historial pertenece al forecaster. Eso exige un registro neutral, público, barato y rápido. Ahí Stellar no es decoración: es la capa de confianza.
+La pregunta que guía el diseño es **"¿seguiría existiendo praev sin Stellar?"**. Como SaaS cerrado bastaría una base de datos con firmas. Pero praev promete que **cualquiera puede verificar el historial de un maker sin confiar en praev**, que nadie (ni praev) puede cambiar una tesis después de sellarla, y que ese historial pertenece al maker. Eso exige un registro neutral, público, barato y rápido. Ahí Stellar no es decoración: es la capa de confianza.
 
 ### Función por función
 
@@ -132,23 +142,23 @@ La pregunta que guía el diseño es **"¿seguiría existiendo praev sin Stellar?
 |---|---|---|---|
 | **Identidad (praev ID)** | Cuenta Stellar como identidad técnica; `require_auth` garantiza que solo el titular firma | Al conectar la wallet y en cada acción de escritura | Nadie puede publicar a nombre de otro; la reputación sigue a la dirección y no a una cuenta en nuestra base de datos |
 | **Publicar la pregunta** | `create_question` registra el hash de la especificación, los tiempos estructurados (cierre, ventana de observación, resolución), el resolvedor y el modo LIVE/DEMO | Cuando el curador abre la pregunta | Las reglas quedan congeladas y fechadas antes de que nadie pronostique; el verificador compara la especificación publicada con la cadena |
-| **Pronóstico** | `submit_forecast` guarda la probabilidad (en puntos básicos) y el hash del razonamiento, con versiones (`seq`) solo hacia adelante | Desde la apertura hasta el cierre | Prueba qué creía cada uno **antes** del resultado, sin edición retroactiva. Con un ledger cada ≈5 s y fees mínimos, actualizar un pronóstico cuesta casi nada |
-| **Cierre** | El timestamp del ledger es el reloj autoritativo; el contrato rechaza pronósticos en `t ≥ closesAt` | Automático, sin keeper | Nadie, ni siquiera praev, puede colar un pronóstico tarde |
+| **Tesis sellada** | `submit_forecast` guarda solo el **compromiso** de la tesis (hash con sal de probabilidad y fundamentos), con versiones (`seq`) solo hacia adelante | Desde la apertura hasta el cierre | Prueba qué creía cada maker **antes** del resultado sin revelarlo antes del cierre: nadie copia y nadie edita. Con un ledger cada ≈5 s y fees mínimos, actualizar una tesis cuesta casi nada |
+| **Cierre y revelado** | El timestamp del ledger es el reloj autoritativo; el contrato rechaza compromisos en `t ≥ closesAt` | Automático, sin keeper | Nadie, ni siquiera praev, puede colar una tesis tarde. Al cierre cada tesis revelada se compara con su compromiso; como el número de compromisos es público, una tesis ocultada se nota |
 | **Resolución** | `resolve` exige la firma del resolvedor asignado, solo dentro de su ventana, y guarda resultado + hash de evidencia; el estado terminal es inmutable. El contrato impide que el resolvedor pronostique | Tras la ventana de observación | Separa a quien pronostica de quien decide la verdad y deja constancia pública de qué evidencia se usó |
-| **Score y reputación** | Eventos tipados (`#[contractevent]`) con cada pregunta, pronóstico y resolución | Tras cada resolución | El Brier se recalcula off-chain desde registros públicos; no existe una tabla de reputación editable por un administrador |
+| **Perfil del maker** | Eventos tipados (`#[contractevent]`) con cada pregunta, compromiso y resolución | Tras cada resolución | Brier, acierto, calibración y P&L de decisión se recalculan off-chain desde registros públicos; no existe una tabla de reputación editable por un administrador |
 | **Verificación pública** | RPC y exploradores públicos (Stellar Expert, Stellar Lab) | En cualquier momento, sin cuenta | Un tercero descarga la evidencia, recalcula los hashes y compara con la cadena: coincide, no coincide o no disponible |
-| **Agentes de IA** | Cada agente opera con su propia cuenta y firma separada; el hash de su razonamiento incluye modelo, versión, fuentes y fecha de corte | Cuando el agente pronostica | Humanos y agentes compiten bajo las mismas reglas; el historial de un modelo es auditable y una versión nueva no hereda el historial previo |
-| **Pagos (P1)** | USDC nativo vía Stellar Asset Contract; transferencia directa y atómica del comprador al autor | Al comprar un informe o financiar una pregunta | Sin custodia, sin pool y sin pagos condicionados al resultado: se paga por información, no se apuesta |
+| **Rival de IA** | El agente sella su tesis con su propia cuenta; el payload incluye modelo, proveedor, versión del prompt y fecha de corte | Cuando el agente pronostica | Humanos e IA compiten bajo las mismas reglas y el mismo sellado; el historial de un modelo es auditable y una versión nueva no hereda el previo |
+| **Pagos (P1)** | USDC nativo vía Stellar Asset Contract; una transacción del taker con un pago directo a cada maker, repartido por reputación previa | Al pagar una pregunta | Sin custodia, sin pool y sin pagos condicionados al resultado: se paga por información, no se apuesta. Micropagos a makers de cualquier país sin banco de por medio |
 | **Acceso desde Latinoamérica (futuro)** | Anchors y SEP-24 para entrar y salir de moneda local; costos por transacción de fracciones de centavo | Al escalar la capa comercial y los pagos | Hace viable cobrar y pagar montos pequeños en la región sin la fricción de la banca tradicional |
 
 ### Lo que Stellar no prueba
 
-Stellar demuestra **integridad, orden y autorización**: quién publicó qué, cuándo, bajo qué regla y con qué evidencia, sin reescritura silenciosa. **No demuestra que el hecho sea verdadero**: un resolvedor podría mentir, y por eso la resolución declara su fuente y su autoridad, y en el futuro tendrá comités y disputas. Tampoco usamos un oráculo de precios como Reflector (SEP-40): las preguntas de praev (lluvia, vedas, regulación) no son precios de mercado y necesitan un resolvedor con evidencia documental.
+Stellar demuestra **integridad, orden y autorización**: quién publicó qué, cuándo, bajo qué regla y con qué evidencia, sin reescritura silenciosa. **No demuestra que el hecho sea verdadero**: un resolvedor podría mentir, y por eso la resolución declara su fuente y su autoridad, y en el futuro tendrá comités y disputas. Tampoco usamos un oráculo de precios como Reflector (SEP-40) como juez: cada pregunta pacta de antemano una fuente oficial concreta (por ejemplo, el tipo de cambio interbancario que publica un banco central para un día), y muchas preguntas (lluvia, vedas, regulación) ni siquiera son precios. Un oráculo on-chain podría sumarse en el futuro como fuente adicional.
 
 ### Por qué ahora
 
 - Las probabilidades se volvieron un producto de datos: mercados de predicción regulados distribuyen sus probabilidades a instituciones.
-- Los agentes de IA ya compiten con forecasters humanos en torneos públicos, pero nadie audita su historial de forma neutral.
+- Los agentes de IA ya compiten con pronosticadores humanos en torneos públicos: el pronóstico se vuelve abundante y lo escaso es saber a quién creerle. Nadie audita ese historial de forma neutral.
 - Las plataformas de riesgo empiezan a lanzar productos "predictivos" sin rendición de cuentas posterior.
 - Los datos meteorológicos oficiales se abren vía estándares como WMO WIS 2.0, que ya tiene nodos en la región.
 
@@ -159,35 +169,43 @@ Estos datos vienen de la investigación de `research/` y se verifican antes de u
 ## Cómo funciona
 
 ```text
-Pregunta ──▶ Pronóstico ──▶ Consenso ──▶ Decisión ──▶ Resolución ──▶ Score y verificación
-(regla,      (firmado en     (mediana +    (umbral de    (fuente oficial  (Brier por dominio,
- fuente,      Stellar antes   baseline)     acción y      + evidencia)     auditable por
- fecha)       del cierre)                   registro)                      cualquiera)
+ TAKER                    MAKERS (personas + rival IA)            praev / Stellar                 FUENTE OFICIAL
+ propone la pregunta ──▶  arman su tesis con ancla, datos  ──▶  sella el compromiso        ──▶  resuelve con la
+ (decisión en juego)      y brief de evidencia                   (oculto hasta el cierre)        regla pactada
+        ◀──── consenso revelado al cierre ◀──── tesis reveladas ◀────            perfil del maker ◀──── score
 ```
 
 | Rol | Qué hace |
 |---|---|
-| Visitante | Lee preguntas, pronósticos, evidencia y verificador sin cuenta; simula una decisión |
-| Forecaster humano | Conecta su wallet y publica su probabilidad, que puede actualizar hasta el cierre |
-| Agente de IA | Produce un pronóstico estructurado con evidencia anterior al corte; un operador lo revisa y el agente firma con su propia cuenta |
-| Curador | Formula y publica la pregunta con su especificación |
+| Visitante | Lee preguntas, tesis reveladas, perfiles, evidencia y verificador sin cuenta |
+| Taker | Propone una pregunta con su contexto de decisión, firmada con su wallet; recibe el consenso al cierre y registra su decisión |
+| Maker | Arma su tesis con las herramientas de praev, la sella con su wallet y puede actualizarla hasta el cierre; construye su perfil |
+| Rival de IA | Sella su propia tesis con su cuenta, como vara de medir; además genera el brief de evidencia, sin sugerir probabilidades |
+| Curador | Revisa las propuestas y publica la pregunta con su especificación |
 | Resolvedor | Aplica la regla a la evidencia oficial y firma el resultado |
 
 ## MVP — Stellar Codember Perú 2026
 
-El MVP demuestra el ciclo completo en Stellar Testnet. Lo hace con un primer caso concreto: lluvias en Piura (Perú) y su efecto en el abastecimiento de alimentos, elegido porque tiene impacto humano y económico, fuente oficial (SENAMHI) y una decisión de contingencia clara. Es un caso de prueba, no un límite de lo que praev pronostica.
+El MVP demuestra el mercado completo en Stellar Testnet con dos categorías de partida, elegidas porque tienen fuentes oficiales que respondieron en vivo:
+
+- **Economía y finanzas:** tipo de cambio diario de bancos centrales de la región, con preguntas que se resuelven en 1–3 días. Así, para la entrega habrá decenas de resoluciones reales y perfiles de makers con datos, no simulados.
+- **Clima y ambiente:** lluvia acumulada en una estación meteorológica oficial, con consecuencias humanas y económicas.
+
+Son casos de prueba, no un límite: la [taxonomía](docs/04-domain/12-categories.md) tiene 11 macrocategorías y cada una se habilita cuando tiene una fuente verificada.
 
 | Incluido (P0) | Más adelante (P1) |
 |---|---|
-| Contrato Soroban `PraevRegistry` en testnet | Pago fijo en USDC por informes |
-| Una pregunta LIVE con fuente validada y un escenario DEMO etiquetado | Segunda fuente de datos |
-| Pronóstico humano (wallet) y de un agente de IA | Consenso ponderado por reputación |
-| Mediana, baseline, Brier y verificador público | Credencial portable |
-| Decision Register local con umbral de acción | Decisiones en servidor con autenticación |
+| Contrato Soroban `PraevRegistry` en testnet con tesis selladas | Pago del taker repartido entre makers por reputación previa (USDC) |
+| Preguntas LIVE de tipo de cambio y lluvia, y un escenario DEMO etiquetado | Más categorías de la taxonomía |
+| Tesis estructurada con wallet, recibo de sellado y revelado al cierre | Varios agentes makers |
+| Rival de IA y brief de evidencia vía LLM real | Consenso ponderado por reputación |
+| Perfil del maker con métricas y verificador público | Credencial portable |
+| Propuesta de pregunta del taker y Decision Register local | Decisiones en servidor con autenticación |
 
 ## Qué no es
 
 - No es un mercado de predicción ni de apuestas: ningún dinero depende del resultado.
+- No es un agregador de APIs ni un pronóstico de IA: las fuentes solo resuelven y la IA es una herramienta y un rival; el centro es el juicio de personas reales.
 - No sustituye las alertas oficiales ni la asesoría profesional: informa decisiones, no las toma.
 - No afirma precisión superior ni ahorros medidos. El MVP demuestra que el ciclo es íntegro y verificable.
 
@@ -205,10 +223,10 @@ Empieza por [AGENTS.md](AGENTS.md), el [scope](docs/02-mvp/01-scope.md), el [pla
 |---|---|
 | [00-foundation](docs/00-foundation) | Visión, principios, impacto, región, negocio, síntesis de la investigación |
 | [01-product](docs/01-product) | Usuarios, recorridos, navegación, sistema visual, pantallas, copy y accesibilidad |
-| [02-mvp](docs/02-mvp) | Scope, caso vertical, fixture de demo, criterios de aceptación |
+| [02-mvp](docs/02-mvp) | Scope, casos iniciales, fixture de demo, criterios de aceptación |
 | [03-architecture](docs/03-architecture) | Stack, topología, fronteras de confianza, árbol del repo |
-| [04-domain](docs/04-domain) | Pregunta, ciclo de vida, relevancia, pronóstico, evidencia, consenso, exposición, decisión, oráculo, reputación, identidad |
-| [05-ai](docs/05-ai) | Agente de forecasting, esquema de salida, evaluación y leakage |
+| [04-domain](docs/04-domain) | Pregunta, ciclo de vida, relevancia, tesis sellada, evidencia, consenso y ancla, exposición, decisión, oráculo, perfil del maker, identidad, categorías |
+| [05-ai](docs/05-ai) | Agente de IA (brief y rival), esquema de salida, evaluación y leakage |
 | [06-stellar](docs/06-stellar) | Red, interfaz del contrato, storage y eventos, hashes, wallet, prueba on-chain, pagos |
 | [07-engineering](docs/07-engineering) | SQL, API, errores, reconciliación, fuentes de datos, entorno, setup, despliegue |
 | [08-quality](docs/08-quality) | Seguridad, privacidad, pruebas, fixtures, CI |
@@ -225,7 +243,7 @@ La investigación de base está en [research/](research/README.md). Las versione
 
 ## Uso de IA
 
-La investigación (informes Deep Research) y la documentación se elaboraron y organizaron con asistencia de herramientas de IA, entre ellas Claude Code. El equipo revisa y es responsable del contenido. El código se escribe en pair programming con Claude Code y lo revisa y commitea el equipo. Dentro del producto, el agente de forecasting usa modelos a través de OpenRouter.
+La investigación (informes Deep Research) y la documentación se elaboraron y organizaron con asistencia de herramientas de IA, entre ellas Claude Code. El equipo revisa y es responsable del contenido. El código se escribe en pair programming con Claude Code y lo revisa y commitea el equipo. Dentro del producto, el agente de IA (brief de evidencia y rival de referencia) usa modelos a través de OpenRouter.
 
 ## Ejecutar en local
 

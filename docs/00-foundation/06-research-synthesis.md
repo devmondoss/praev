@@ -1,6 +1,6 @@
 # Síntesis de las tres investigaciones
 
-**Estado:** Derivada de informes proporcionados; no reauditoría de mercado · **Versión:** 1.0 · **Fecha:** 2026-11-26
+**Estado:** Derivada de informes proporcionados; no reauditoría de mercado · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
 Los tres textos íntegros se conservan en `../../research/`. El primero separa forecasting de eventos, series temporales, escenarios y causalidad; propone benchmarking, baselines y valor de información. El segundo identifica la cadena forecast→exposición→decisión→resultado como espacio potencial y advierte que risk intelligence ya tiene incumbentes. El tercero fija el MVP climático/alimentario, motor de preguntas propio, resolución oficial, capa comercial y Soroban mínimo.
 
@@ -11,7 +11,7 @@ Los tres textos íntegros se conservan en `../../research/`. El primero separa f
 | NERAI se acerca a probabilidades externas y API | Una API no es moat por sí sola. |
 | Historial de decisión podría ser diferencial | Registrar snapshot de probabilidad, umbral y acción en P0. |
 | Fuentes predictivas y de resolución son distintas | Especificar la autoridad de ground truth antes de abrir. |
-| Commit/reveal añade fricción | Forecast público autenticado para P0, privado en futuro. |
+| Commit/reveal añade fricción | Tesis sellada con una sola firma: compromiso on-chain y revelado por praev al cierre, con recibo del maker (ADR-026). |
 | Score ponderado no validado | Mediana simple y baseline separado; n y etiqueta demo. |
 | Impacto comercial es exposición | Dos ejes de impacto, contexto privado separado. |
 

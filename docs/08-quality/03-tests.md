@@ -1,6 +1,6 @@
 # Matriz de pruebas reproducibles
 
-**Estado:** P0; todos pendientes · **Versión:** 1.0 · **Fecha:** 2026-11-26
+**Estado:** P0; todos pendientes · **Versión:** 1.1 · **Fecha:** 2026-11-26
 
 | ID | Nivel | Caso | Esperado |
 |---|---|---|---|
@@ -8,7 +8,7 @@
 | T02 | Rust | creator no autorizado | host rechaza |
 | T03 | Rust | ID duplicado | Exists |
 | T04 | Rust | roles iguales / tiempos inválidos | RoleConflict / InvalidTime |
-| T05 | Rust | p=0,10000 y 10001 | dos válidos, último rechazado |
+| T05 | Rust + API | compromiso cero (Rust); p=0, 10000 y 10001 en `prepare` | InvalidHash; dos válidos, último rechazado |
 | T06 | Rust | forecast exactamente cutoff | Closed |
 | T07 | Rust | seq repetida/salto, address ajena | rechazo |
 | T08 | Rust | resolver/curator forecast | rechazo |
@@ -32,5 +32,13 @@
 | T26 | testnet | verifier con contrato diferente / historia vieja | mismatch/unavailable |
 | T27 | source | acceso LIVE y muestra | GO o bloqueo explícito |
 | T28 | CI | clon limpio, lint/types/tests/build | todo verde |
+| T29 | TS | compromiso de tesis: misma tesis con otra sal, sal inválida, byte alterado | distinto, rechazo, mismatch |
+| T30 | API | lectura de tesis antes del cierre (lista, detalle, proof, makers) | nunca devuelve probabilidad ni fundamentos |
+| T31 | TS | revelado: última versión `unrevealed` con versión anterior revelada | el maker queda fuera, no se usa la anterior |
+| T32 | API | `reveal` con recibo correcto, alterado y antes del cierre | 200, 409, 409 |
+| T33 | TS | ancla `fx_daily` y `precipitation` con fixtures; menos de 30 ventanas | valor exacto; control 5000 etiquetado |
+| T34 | TS | métricas del perfil: acierto con p=5000, BSS con ancla 0, P&L de decisión YES/NO, consenso leave-one-out | valores exactos del ejemplo de 10-reputation |
+| T35 | TS | parser `single`: dato `n.d.`, dos valores el mismo día, igualdad con el umbral | faltante, invalidar, NO |
+| T36 | API | propuesta con firma inválida, de otra dirección o con montos | rechazo |
 
 Tests Rust usan `Env` y testutils, ledger timestamps controlados solo en unitarias. Verificar auth negativa sin `mock_all_auths` indiscriminado. Vitest dominio puro, integración con DB aislada, Playwright UI con adapter fake marcado solo en test; no usar mock para evidencia final. T25 es manual con wallet real testnet. Registrar comando, fecha, versión, commit y resultado. No escribir PASS antes de ejecutar.
