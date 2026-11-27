@@ -37,6 +37,7 @@
 - Ayer: S0 cerrado (12/12) y reenfoque documentado en ADR-024 a ADR-030.
 - Hoy: HU-08, HU-07, HU-13, HU-14, HU-26.
 - Bloqueos: ninguno.
+- Cierre: HU-08, HU-07, HU-13 y HU-14 hechas (20 pts); HU-26 en revisión (3 pts) hasta probar 360 px y zoom 200 % en navegador. 66 tests Vitest y 17 tests del contrato en verde; shell desplegado en praev.vercel.app con health ok. Ajuste: `relevance` y `relevanceReason` entran a QuestionSpec v2 para que HU-07 pueda exigir la justificación.
 
 ## Review
 
