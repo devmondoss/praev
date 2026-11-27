@@ -1,0 +1,40 @@
+{
+  "mode": "DEMO",
+  "description": "Vector fijo de praev.thesis.v1: bytes canónicos praev-c14n-v1 y commitment = SHA256(bytes). La sal es fija solo para pruebas; nunca se reutiliza en LIVE.",
+  "thesis": {
+    "schema": "praev.thesis.v1",
+    "questionId": "6f1d3c2a-8b4e-4c7a-9e21-3b5d7f9a1c04",
+    "forecaster": "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
+    "seq": 1,
+    "kind": "human",
+    "probabilityBps": 6000,
+    "anchorBps": 4200,
+    "factors": [
+      {
+        "label": "Pronóstico regional con lluvias sobre lo normal",
+        "direction": "up"
+      },
+      {
+        "label": "Primera semana de diciembre suele ser seca",
+        "direction": "down"
+      }
+    ],
+    "evidence": [
+      {
+        "kind": "praev",
+        "ref": "0b6a1f3e-2c4d-4e5f-8a9b-1c2d3e4f5a6b"
+      },
+      {
+        "kind": "url",
+        "ref": "https://example.org/aviso-demo"
+      }
+    ],
+    "changeMyMind": "Si el aviso del 2 dic retira la alerta de lluvias, bajo a 35 %.",
+    "note": "DEMO: tesis de ejemplo para vectores de prueba.",
+    "informationCutoff": 1764547200,
+    "agent": null,
+    "salt": "94841a865bd3184cbe49c7b91dcf146074b344b89a3e7e754ef3f71aae572011"
+  },
+  "canonical": "{\"agent\":null,\"anchorBps\":4200,\"changeMyMind\":\"Si el aviso del 2 dic retira la alerta de lluvias, bajo a 35 %.\",\"evidence\":[{\"kind\":\"praev\",\"ref\":\"0b6a1f3e-2c4d-4e5f-8a9b-1c2d3e4f5a6b\"},{\"kind\":\"url\",\"ref\":\"https://example.org/aviso-demo\"}],\"factors\":[{\"direction\":\"up\",\"label\":\"Pronóstico regional con lluvias sobre lo normal\"},{\"direction\":\"down\",\"label\":\"Primera semana de diciembre suele ser seca\"}],\"forecaster\":\"GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF\",\"informationCutoff\":1764547200,\"kind\":\"human\",\"note\":\"DEMO: tesis de ejemplo para vectores de prueba.\",\"probabilityBps\":6000,\"questionId\":\"6f1d3c2a-8b4e-4c7a-9e21-3b5d7f9a1c04\",\"salt\":\"94841a865bd3184cbe49c7b91dcf146074b344b89a3e7e754ef3f71aae572011\",\"schema\":\"praev.thesis.v1\",\"seq\":1}",
+  "commitment": "fa353408355e139d7b591bf08c45fcdd0932c982ecc344762b6c6c51fb9c70d6"
+}
