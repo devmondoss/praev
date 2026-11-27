@@ -10,8 +10,8 @@
 |---|---:|---|---|---|
 | HU-08 · Canonicalización, hashes y sellado de la tesis | 5 | Vie 27 | Hecha | `praev-c14n-v1`, SHA-256 con Web Crypto, `chainId`, `ThesisPayload` con Zod, sal CSPRNG, compromiso, vectores T12, T13 y T29 |
 | HU-07 · QuestionSpec v2 validada | 5 | Vie 27 | Hecha | Zod, catálogo de categorías, ISO país, tiempos, `sum`/`single`, `specHash` |
-| HU-13 · `create_question` | 5 | Vie 27 | Pendiente | Constructor, auth del curador, validaciones, tests T01–T04 |
-| HU-14 · `submit_forecast` con compromiso | 5 | Vie 27 | Pendiente | Auth del maker, roles excluidos, `seq`, cierre, tests T05–T08 |
+| HU-13 · `create_question` | 5 | Vie 27 | Hecha | Constructor, auth del curador, validaciones, tests T01–T04 |
+| HU-14 · `submit_forecast` con compromiso | 5 | Vie 27 | Hecha | Auth del maker, roles excluidos, `seq`, cierre, tests T05–T08 |
 | HU-26 · Shell y sistema visual | 3 | Vie 27 | Pendiente | Tokens, header, footer, foco, 360 px |
 | HU-15 · Resolver, invalidar, cancelar | 3 | Sáb 28 | Pendiente | Ventana, estado terminal, T09–T11 |
 | HU-16 · Eventos y TTL | 2 | Sáb 28 | Pendiente | `#[contractevent]`, `extend_ttl` ≥ 518 400 |

@@ -1,6 +1,8 @@
 # Matriz de pruebas reproducibles
 
-**Estado:** P0; todos pendientes · **Versión:** 1.1 · **Fecha:** 2026-11-26
+**Estado:** P0; en curso · **Versión:** 1.2 · **Fecha:** 2026-11-27
+
+**Pasan al 27 nov:** T01–T04, T05 (parte Rust), T06–T08 con `npm run contract:test`; T12, T13 y T29 con `npm test`. El resto sigue pendiente.
 
 | ID | Nivel | Caso | Esperado |
 |---|---|---|---|
