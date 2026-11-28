@@ -1,8 +1,8 @@
 # Matriz de pruebas reproducibles
 
-**Estado:** P0; en curso · **Versión:** 1.2 · **Fecha:** 2026-11-27
+**Estado:** P0; en curso · **Versión:** 1.3 · **Fecha:** 2026-11-28
 
-**Pasan al 27 nov:** T01–T04, T05 (parte Rust), T06–T08 con `npm run contract:test`; T12, T13 y T29 con `npm test`. El resto sigue pendiente.
+**Pasan al 28 nov:** T01–T04, T05 (parte Rust), T06–T11 con `npm run contract:test` (26 tests, incluido el decode del XDR de los cinco eventos); T12, T13 y T29 con `npm test`. El resto sigue pendiente. T11 «sin score» se cumple on-chain porque el contrato no calcula score; la exclusión del ranking se prueba en TS con T15.
 
 | ID | Nivel | Caso | Esperado |
 |---|---|---|---|

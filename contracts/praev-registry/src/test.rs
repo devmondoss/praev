@@ -1,4 +1,4 @@
-//! Tests T01–T08 (docs/08-quality/03-tests.md). Cada llamada firma solo con la
+//! Tests T01–T11 (docs/08-quality/03-tests.md). Cada llamada firma solo con la
 //! cuenta que debe autorizarla (`mock_auths` explícito), nunca con
 //! `mock_all_auths`, para que una `require_auth` faltante haga fallar el test.
 
@@ -10,7 +10,7 @@ use soroban_sdk::{
         storage::{Instance as _, Persistent as _},
         Address as _, Events as _, Ledger as _, MockAuth, MockAuthInvoke,
     },
-    Address, BytesN, Env, Event, IntoVal, Val, Vec,
+    Address, BytesN, Env, Event, FromVal, IntoVal, Symbol, TryFromVal, Val, Vec,
 };
 
 const NOW: u64 = 1_764_547_200; // 1 dic 2026 00:00 UTC
@@ -161,6 +161,48 @@ impl Setup {
     fn submit(&self, forecaster: &Address, seq: u32, commitment: &BytesN<32>) {
         self.try_submit(forecaster, forecaster, seq, commitment)
             .expect("submit_forecast válido");
+    }
+
+    fn try_resolve(
+        &self,
+        signer: &Address,
+        outcome: u32,
+        evidence: &BytesN<32>,
+    ) -> Result<(), Result<Error, soroban_sdk::InvokeError>> {
+        let args: Vec<Val> = (self.id.clone(), outcome, evidence.clone()).into_val(&self.env);
+        self.signed(signer, "resolve", args, |client| {
+            client
+                .try_resolve(&self.id, &outcome, evidence)
+                .map(|ok| ok.unwrap())
+        })
+    }
+
+    fn try_invalidate(
+        &self,
+        signer: &Address,
+        evidence: &BytesN<32>,
+    ) -> Result<(), Result<Error, soroban_sdk::InvokeError>> {
+        let args: Vec<Val> = (self.id.clone(), evidence.clone()).into_val(&self.env);
+        self.signed(signer, "invalidate", args, |client| {
+            client
+                .try_invalidate(&self.id, evidence)
+                .map(|ok| ok.unwrap())
+        })
+    }
+
+    fn try_cancel(
+        &self,
+        signer: &Address,
+        reason: &BytesN<32>,
+    ) -> Result<(), Result<Error, soroban_sdk::InvokeError>> {
+        let args: Vec<Val> = (self.id.clone(), reason.clone()).into_val(&self.env);
+        self.signed(signer, "cancel", args, |client| {
+            client.try_cancel(&self.id, reason).map(|ok| ok.unwrap())
+        })
+    }
+
+    fn terminal(&self) -> u32 {
+        self.client.get_question(&self.id).terminal
     }
 
     fn persistent_ttl(&self, key: &DataKey) -> u32 {
@@ -520,4 +562,338 @@ fn submit_forecast_requires_an_existing_question() {
     let s = Setup::new();
     let result = s.try_submit(&s.maker, &s.maker, 1, &hash(&s.env, 0xa1));
     assert_eq!(contract_error(result), Error::NotFound);
+}
+
+// T09
+#[test]
+fn resolve_only_inside_the_window_and_by_the_resolver() {
+    let s = Setup::new();
+    s.create();
+    let evidence = hash(&s.env, 0xe1);
+
+    s.env.ledger().set_timestamp(RESOLVE_AFTER - 1);
+    assert_eq!(
+        contract_error(s.try_resolve(&s.resolver, OUTCOME_YES, &evidence)),
+        Error::InvalidTime
+    );
+    s.env.ledger().set_timestamp(RESOLVE_BY + 1);
+    assert_eq!(
+        contract_error(s.try_resolve(&s.resolver, OUTCOME_YES, &evidence)),
+        Error::InvalidTime
+    );
+
+    s.env.ledger().set_timestamp(RESOLVE_AFTER);
+    assert!(host_rejected(s.try_resolve(
+        &s.curator,
+        OUTCOME_YES,
+        &evidence
+    )));
+    let intruder = Address::generate(&s.env);
+    assert!(host_rejected(s.try_resolve(
+        &intruder,
+        OUTCOME_YES,
+        &evidence
+    )));
+    assert_eq!(s.terminal(), TERMINAL_ACTIVE);
+}
+
+#[test]
+fn resolve_rejects_bad_outcome_and_zero_evidence() {
+    let s = Setup::new();
+    s.create();
+    s.env.ledger().set_timestamp(RESOLVE_AFTER);
+    assert_eq!(
+        contract_error(s.try_resolve(&s.resolver, OUTCOME_INVALID, &hash(&s.env, 0xe1))),
+        Error::InvalidOutcome
+    );
+    assert_eq!(
+        contract_error(s.try_resolve(&s.resolver, OUTCOME_YES, &hash(&s.env, 0))),
+        Error::InvalidHash
+    );
+}
+
+// T10
+#[test]
+fn resolve_yes_and_no_are_terminal() {
+    for (outcome, at) in [(OUTCOME_YES, RESOLVE_AFTER), (OUTCOME_NO, RESOLVE_BY)] {
+        let s = Setup::new();
+        s.create();
+        let evidence = hash(&s.env, 0xe1);
+        s.env.ledger().set_timestamp(at);
+        s.try_resolve(&s.resolver, outcome, &evidence).unwrap();
+        let events = s.env.events().all();
+
+        assert_eq!(s.terminal(), TERMINAL_RESOLVED);
+        assert_eq!(
+            s.client.get_resolution(&s.id),
+            Resolution {
+                outcome,
+                evidence_hash: evidence.clone(),
+                resolved_at: at
+            }
+        );
+        let expected = QuestionResolved {
+            id: s.id.clone(),
+            outcome,
+            evidence_hash: evidence.clone(),
+            resolved_at: at,
+        };
+        assert_eq!(events, [expected.to_xdr(&s.env, &s.contract)]);
+        for key in [
+            DataKey::Question(s.id.clone()),
+            DataKey::Resolution(s.id.clone()),
+        ] {
+            assert!(s.persistent_ttl(&key) >= TTL_EXTEND_TO);
+        }
+
+        // Un segundo intento terminal falla y no cambia nada.
+        let other = hash(&s.env, 0xe2);
+        assert_eq!(
+            contract_error(s.try_resolve(&s.resolver, 1 - outcome, &other)),
+            Error::Terminal
+        );
+        assert_eq!(
+            contract_error(s.try_invalidate(&s.resolver, &other)),
+            Error::Terminal
+        );
+        assert_eq!(s.client.get_resolution(&s.id).outcome, outcome);
+    }
+}
+
+#[test]
+fn forecasts_are_rejected_once_resolved() {
+    let s = Setup::new();
+    s.create();
+    s.env.ledger().set_timestamp(RESOLVE_AFTER);
+    s.try_resolve(&s.resolver, OUTCOME_YES, &hash(&s.env, 0xe1))
+        .unwrap();
+    // El cierre ya pasó; aun así el estado terminal se comprueba antes.
+    assert_eq!(
+        contract_error(s.try_submit(&s.maker, &s.maker, 1, &hash(&s.env, 0xa1))),
+        Error::Terminal
+    );
+}
+
+// T11
+#[test]
+fn invalidate_writes_outcome_two_from_resolve_after_even_late() {
+    let s = Setup::new();
+    s.create();
+    let evidence = hash(&s.env, 0xe3);
+
+    s.env.ledger().set_timestamp(RESOLVE_AFTER - 1);
+    assert_eq!(
+        contract_error(s.try_invalidate(&s.resolver, &evidence)),
+        Error::InvalidTime
+    );
+    s.env.ledger().set_timestamp(RESOLVE_BY + 86_400);
+    assert!(host_rejected(s.try_invalidate(&s.curator, &evidence)));
+    assert_eq!(
+        contract_error(s.try_invalidate(&s.resolver, &hash(&s.env, 0))),
+        Error::InvalidHash
+    );
+    s.try_invalidate(&s.resolver, &evidence).unwrap();
+    let events = s.env.events().all();
+
+    assert_eq!(s.terminal(), TERMINAL_INVALID);
+    assert_eq!(
+        s.client.get_resolution(&s.id),
+        Resolution {
+            outcome: OUTCOME_INVALID,
+            evidence_hash: evidence.clone(),
+            resolved_at: RESOLVE_BY + 86_400
+        }
+    );
+    let expected = QuestionInvalidated {
+        id: s.id.clone(),
+        outcome: OUTCOME_INVALID,
+        evidence_hash: evidence,
+        resolved_at: RESOLVE_BY + 86_400,
+    };
+    assert_eq!(events, [expected.to_xdr(&s.env, &s.contract)]);
+    assert_eq!(
+        contract_error(s.try_resolve(&s.resolver, OUTCOME_YES, &hash(&s.env, 0xe1))),
+        Error::Terminal
+    );
+}
+
+// T11
+#[test]
+fn cancel_only_by_the_curator_before_close() {
+    let s = Setup::new();
+    s.create();
+    let reason = hash(&s.env, 0xc1);
+
+    assert!(host_rejected(s.try_cancel(&s.resolver, &reason)));
+    assert_eq!(
+        contract_error(s.try_cancel(&s.curator, &hash(&s.env, 0))),
+        Error::InvalidHash
+    );
+    s.env.ledger().set_timestamp(CLOSES_AT - 1);
+    s.try_cancel(&s.curator, &reason).unwrap();
+    let events = s.env.events().all();
+
+    assert_eq!(s.terminal(), TERMINAL_CANCELLED);
+    assert_eq!(
+        s.client.get_cancellation(&s.id),
+        Cancellation {
+            reason_hash: reason.clone(),
+            cancelled_at: CLOSES_AT - 1
+        }
+    );
+    let expected = QuestionCancelled {
+        id: s.id.clone(),
+        reason_hash: reason.clone(),
+        cancelled_at: CLOSES_AT - 1,
+    };
+    assert_eq!(events, [expected.to_xdr(&s.env, &s.contract)]);
+    for key in [
+        DataKey::Question(s.id.clone()),
+        DataKey::CancelReason(s.id.clone()),
+    ] {
+        assert!(s.persistent_ttl(&key) >= TTL_EXTEND_TO);
+    }
+    // Una pregunta cancelada no tiene resolución ni admite otra transición.
+    assert_eq!(
+        contract_error(s.client.try_get_resolution(&s.id).map(|ok| ok.unwrap())),
+        Error::NotFound
+    );
+    assert_eq!(
+        contract_error(s.try_cancel(&s.curator, &reason)),
+        Error::Terminal
+    );
+    assert_eq!(
+        contract_error(s.try_submit(&s.maker, &s.maker, 1, &hash(&s.env, 0xa1))),
+        Error::Terminal
+    );
+}
+
+#[test]
+fn cancel_fails_at_close() {
+    let s = Setup::new();
+    s.create();
+    s.env.ledger().set_timestamp(CLOSES_AT);
+    assert_eq!(
+        contract_error(s.try_cancel(&s.curator, &hash(&s.env, 0xc1))),
+        Error::Closed
+    );
+    assert_eq!(s.terminal(), TERMINAL_ACTIVE);
+}
+
+#[test]
+fn transitions_require_an_existing_question() {
+    let s = Setup::new();
+    let h = hash(&s.env, 0xe1);
+    assert_eq!(
+        contract_error(s.try_resolve(&s.resolver, OUTCOME_YES, &h)),
+        Error::NotFound
+    );
+    assert_eq!(
+        contract_error(s.try_invalidate(&s.resolver, &h)),
+        Error::NotFound
+    );
+    assert_eq!(
+        contract_error(s.try_cancel(&s.curator, &h)),
+        Error::NotFound
+    );
+}
+
+/// Decodifica el XDR de un evento como lo hará el indexador:
+/// topics = [símbolo, id, ...] y datos = mapa de campos con nombre.
+struct Decoded {
+    name: Symbol,
+    id: BytesN<32>,
+    topics: std::vec::Vec<Val>,
+    data: soroban_sdk::Map<Symbol, Val>,
+}
+
+fn decode_last(env: &Env) -> Decoded {
+    use soroban_sdk::xdr::{ContractEventBody, ScVal};
+    let all = env.events().all();
+    let [event] = all.events() else {
+        panic!("se esperaba exactamente un evento");
+    };
+    let ContractEventBody::V0(body) = &event.body;
+    let to_val = |v: &ScVal| Val::try_from_val(env, v).unwrap();
+    let topics: std::vec::Vec<Val> = body.topics.iter().map(to_val).collect();
+    Decoded {
+        name: Symbol::from_val(env, &topics[0]),
+        id: BytesN::<32>::from_val(env, &topics[1]),
+        data: soroban_sdk::Map::<Symbol, Val>::from_val(env, &to_val(&body.data)),
+        topics,
+    }
+}
+
+impl Decoded {
+    fn field<T: FromVal<Env, Val>>(&self, env: &Env, key: &str) -> T {
+        let raw = self
+            .data
+            .get(Symbol::new(env, key))
+            .unwrap_or_else(|| panic!("falta el campo {key}"));
+        T::from_val(env, &raw)
+    }
+}
+
+#[test]
+fn every_event_decodes_with_its_name_id_and_fields() {
+    let s = Setup::new();
+    let name = |n: &str| Symbol::new(&s.env, n);
+
+    s.create();
+    let e = decode_last(&s.env);
+    assert_eq!(
+        (e.name.clone(), e.id.clone()),
+        (name("q_created"), s.id.clone())
+    );
+    assert_eq!(e.field::<BytesN<32>>(&s.env, "spec_hash"), s.spec_hash);
+    assert_eq!(e.field::<Address>(&s.env, "resolver"), s.resolver);
+    assert_eq!(e.field::<u64>(&s.env, "closes_at"), CLOSES_AT);
+    assert_eq!(e.data.len(), 9);
+
+    s.submit(&s.maker, 1, &hash(&s.env, 0xa1));
+    let e = decode_last(&s.env);
+    assert_eq!(e.name, name("forecast"));
+    assert_eq!(Address::from_val(&s.env, &e.topics[2]), s.maker);
+    assert_eq!(e.field::<u32>(&s.env, "seq"), 1);
+    assert_eq!(
+        e.field::<BytesN<32>>(&s.env, "commitment"),
+        hash(&s.env, 0xa1)
+    );
+    // Solo seq, commitment y submitted_at: la probabilidad no viaja.
+    assert_eq!(e.data.len(), 3);
+
+    s.env.ledger().set_timestamp(RESOLVE_AFTER);
+    s.try_resolve(&s.resolver, OUTCOME_NO, &hash(&s.env, 0xe1))
+        .unwrap();
+    let e = decode_last(&s.env);
+    assert_eq!(
+        (e.name.clone(), e.id.clone()),
+        (name("resolved"), s.id.clone())
+    );
+    assert_eq!(e.field::<u32>(&s.env, "outcome"), OUTCOME_NO);
+    assert_eq!(
+        e.field::<BytesN<32>>(&s.env, "evidence_hash"),
+        hash(&s.env, 0xe1)
+    );
+    assert_eq!(e.field::<u64>(&s.env, "resolved_at"), RESOLVE_AFTER);
+
+    let s2 = Setup::new();
+    s2.create();
+    s2.env.ledger().set_timestamp(RESOLVE_AFTER);
+    s2.try_invalidate(&s2.resolver, &hash(&s2.env, 0xe3))
+        .unwrap();
+    let e = decode_last(&s2.env);
+    assert_eq!(e.name, Symbol::new(&s2.env, "invalid"));
+    assert_eq!(e.field::<u32>(&s2.env, "outcome"), OUTCOME_INVALID);
+
+    let s3 = Setup::new();
+    s3.create();
+    s3.try_cancel(&s3.curator, &hash(&s3.env, 0xc1)).unwrap();
+    let e = decode_last(&s3.env);
+    assert_eq!(e.name, Symbol::new(&s3.env, "cancelled"));
+    assert_eq!(
+        e.field::<BytesN<32>>(&s3.env, "reason_hash"),
+        hash(&s3.env, 0xc1)
+    );
+    assert_eq!(e.field::<u64>(&s3.env, "cancelled_at"), NOW);
 }

@@ -4,7 +4,6 @@
 //! El contrato guarda hashes y tiempos, nunca la probabilidad ni los
 //! fundamentos: cada tesis entra como `commitment = SHA256(c14n(ThesisPayload))`
 //! (ADR-026). Interfaz: docs/06-stellar/02-contract-interface.md.
-//! `resolve`, `invalidate` y `cancel` llegan con HU-15.
 
 use soroban_sdk::{
     contract, contracterror, contractevent, contractimpl, contracttype, Address, BytesN, Env,
@@ -25,6 +24,10 @@ pub const TERMINAL_ACTIVE: u32 = 0;
 pub const TERMINAL_RESOLVED: u32 = 1;
 pub const TERMINAL_INVALID: u32 = 2;
 pub const TERMINAL_CANCELLED: u32 = 3;
+
+pub const OUTCOME_NO: u32 = 0;
+pub const OUTCOME_YES: u32 = 1;
+pub const OUTCOME_INVALID: u32 = 2;
 
 #[contracterror]
 #[derive(Copy, Clone, Debug, Eq, PartialEq, PartialOrd, Ord)]
@@ -71,6 +74,24 @@ pub struct Forecast {
 }
 
 #[contracttype]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Resolution {
+    /// 0 NO, 1 YES, 2 INVALID.
+    pub outcome: u32,
+    /// SHA-256 del manifiesto de evidencia de la resolución.
+    pub evidence_hash: BytesN<32>,
+    pub resolved_at: u64,
+}
+
+#[contracttype]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Cancellation {
+    /// SHA-256 del motivo publicado off-chain.
+    pub reason_hash: BytesN<32>,
+    pub cancelled_at: u64,
+}
+
+#[contracttype]
 #[derive(Clone)]
 enum DataKey {
     Curator,
@@ -78,6 +99,8 @@ enum DataKey {
     Question(BytesN<32>),
     Forecast(BytesN<32>, Address, u32),
     LatestSeq(BytesN<32>, Address),
+    Resolution(BytesN<32>),
+    CancelReason(BytesN<32>),
 }
 
 /// Pregunta creada. El verificador compara estos campos con la spec.
@@ -108,6 +131,38 @@ pub struct ForecastSubmitted {
     pub seq: u32,
     pub commitment: BytesN<32>,
     pub submitted_at: u64,
+}
+
+/// Pregunta resuelta con YES o NO por su resolvedor.
+#[contractevent(topics = ["resolved"])]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct QuestionResolved {
+    #[topic]
+    pub id: BytesN<32>,
+    pub outcome: u32,
+    pub evidence_hash: BytesN<32>,
+    pub resolved_at: u64,
+}
+
+/// Pregunta invalidada: mismo payload que `resolved`, con outcome 2.
+#[contractevent(topics = ["invalid"])]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct QuestionInvalidated {
+    #[topic]
+    pub id: BytesN<32>,
+    pub outcome: u32,
+    pub evidence_hash: BytesN<32>,
+    pub resolved_at: u64,
+}
+
+/// Pregunta cancelada por el curador antes del cierre.
+#[contractevent(topics = ["cancelled"])]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct QuestionCancelled {
+    #[topic]
+    pub id: BytesN<32>,
+    pub reason_hash: BytesN<32>,
+    pub cancelled_at: u64,
 }
 
 #[contract]
@@ -177,10 +232,7 @@ impl PraevRegistry {
             terminal: TERMINAL_ACTIVE,
         };
         storage.set(&key, &question);
-        storage.extend_ttl(&key, TTL_THRESHOLD, TTL_EXTEND_TO);
-        env.storage()
-            .instance()
-            .extend_ttl(TTL_THRESHOLD, TTL_EXTEND_TO);
+        extend_all(&env, &[&key]);
 
         QuestionCreated {
             id,
@@ -241,12 +293,7 @@ impl PraevRegistry {
             },
         );
         storage.set(&latest_key, &seq);
-        for key in [&forecast_key, &latest_key, &question_key] {
-            storage.extend_ttl(key, TTL_THRESHOLD, TTL_EXTEND_TO);
-        }
-        env.storage()
-            .instance()
-            .extend_ttl(TTL_THRESHOLD, TTL_EXTEND_TO);
+        extend_all(&env, &[&forecast_key, &latest_key, &question_key]);
 
         ForecastSubmitted {
             id,
@@ -254,6 +301,110 @@ impl PraevRegistry {
             seq,
             commitment,
             submitted_at: now,
+        }
+        .publish(&env);
+        Ok(())
+    }
+
+    /// Resuelve YES (1) o NO (0) dentro de `[resolve_after, resolve_by]`.
+    /// Solo el resolvedor de la pregunta; el estado terminal no se puede cambiar.
+    pub fn resolve(
+        env: Env,
+        id: BytesN<32>,
+        outcome: u32,
+        evidence_hash: BytesN<32>,
+    ) -> Result<(), Error> {
+        let mut question = Self::get_question(env.clone(), id.clone())?;
+        question.resolver.require_auth();
+
+        if question.terminal != TERMINAL_ACTIVE {
+            return Err(Error::Terminal);
+        }
+        if outcome != OUTCOME_NO && outcome != OUTCOME_YES {
+            return Err(Error::InvalidOutcome);
+        }
+        let now = env.ledger().timestamp();
+        if now < question.resolve_after || now > question.resolve_by {
+            return Err(Error::InvalidTime);
+        }
+        if is_zero(&evidence_hash) {
+            return Err(Error::InvalidHash);
+        }
+
+        question.terminal = TERMINAL_RESOLVED;
+        store_resolution(&env, &id, &question, outcome, &evidence_hash, now);
+        QuestionResolved {
+            id,
+            outcome,
+            evidence_hash,
+            resolved_at: now,
+        }
+        .publish(&env);
+        Ok(())
+    }
+
+    /// Invalida la pregunta desde `resolve_after` (también después de
+    /// `resolve_by`, cuando la fuente no publicó a tiempo). Solo el resolvedor.
+    pub fn invalidate(env: Env, id: BytesN<32>, evidence_hash: BytesN<32>) -> Result<(), Error> {
+        let mut question = Self::get_question(env.clone(), id.clone())?;
+        question.resolver.require_auth();
+
+        if question.terminal != TERMINAL_ACTIVE {
+            return Err(Error::Terminal);
+        }
+        let now = env.ledger().timestamp();
+        if now < question.resolve_after {
+            return Err(Error::InvalidTime);
+        }
+        if is_zero(&evidence_hash) {
+            return Err(Error::InvalidHash);
+        }
+
+        question.terminal = TERMINAL_INVALID;
+        store_resolution(&env, &id, &question, OUTCOME_INVALID, &evidence_hash, now);
+        QuestionInvalidated {
+            id,
+            outcome: OUTCOME_INVALID,
+            evidence_hash,
+            resolved_at: now,
+        }
+        .publish(&env);
+        Ok(())
+    }
+
+    /// Cancela antes del cierre y guarda el hash del motivo. Solo el curador.
+    pub fn cancel(env: Env, id: BytesN<32>, reason_hash: BytesN<32>) -> Result<(), Error> {
+        let mut question = Self::get_question(env.clone(), id.clone())?;
+        question.curator.require_auth();
+
+        if question.terminal != TERMINAL_ACTIVE {
+            return Err(Error::Terminal);
+        }
+        let now = env.ledger().timestamp();
+        if now >= question.closes_at {
+            return Err(Error::Closed);
+        }
+        if is_zero(&reason_hash) {
+            return Err(Error::InvalidHash);
+        }
+
+        question.terminal = TERMINAL_CANCELLED;
+        let storage = env.storage().persistent();
+        let question_key = DataKey::Question(id.clone());
+        let reason_key = DataKey::CancelReason(id.clone());
+        storage.set(&question_key, &question);
+        storage.set(
+            &reason_key,
+            &Cancellation {
+                reason_hash: reason_hash.clone(),
+                cancelled_at: now,
+            },
+        );
+        extend_all(&env, &[&question_key, &reason_key]);
+        QuestionCancelled {
+            id,
+            reason_hash,
+            cancelled_at: now,
         }
         .publish(&env);
         Ok(())
@@ -289,6 +440,20 @@ impl PraevRegistry {
             .ok_or(Error::NotFound)
     }
 
+    pub fn get_resolution(env: Env, id: BytesN<32>) -> Result<Resolution, Error> {
+        env.storage()
+            .persistent()
+            .get(&DataKey::Resolution(id))
+            .ok_or(Error::NotFound)
+    }
+
+    pub fn get_cancellation(env: Env, id: BytesN<32>) -> Result<Cancellation, Error> {
+        env.storage()
+            .persistent()
+            .get(&DataKey::CancelReason(id))
+            .ok_or(Error::NotFound)
+    }
+
     /// 0 si el maker todavía no selló ninguna versión.
     pub fn get_latest_seq(env: Env, id: BytesN<32>, forecaster: Address) -> u32 {
         env.storage()
@@ -296,6 +461,41 @@ impl PraevRegistry {
             .get(&DataKey::LatestSeq(id, forecaster))
             .unwrap_or(0)
     }
+}
+
+/// Escribe la pregunta ya marcada como terminal y su `Resolution`.
+fn store_resolution(
+    env: &Env,
+    id: &BytesN<32>,
+    question: &Question,
+    outcome: u32,
+    evidence_hash: &BytesN<32>,
+    now: u64,
+) {
+    let storage = env.storage().persistent();
+    let question_key = DataKey::Question(id.clone());
+    let resolution_key = DataKey::Resolution(id.clone());
+    storage.set(&question_key, question);
+    storage.set(
+        &resolution_key,
+        &Resolution {
+            outcome,
+            evidence_hash: evidence_hash.clone(),
+            resolved_at: now,
+        },
+    );
+    extend_all(env, &[&question_key, &resolution_key]);
+}
+
+/// ADR-020: lleva las entradas escritas y la instancia a ≥ `TTL_EXTEND_TO`.
+fn extend_all(env: &Env, keys: &[&DataKey]) {
+    let storage = env.storage().persistent();
+    for key in keys {
+        storage.extend_ttl(*key, TTL_THRESHOLD, TTL_EXTEND_TO);
+    }
+    env.storage()
+        .instance()
+        .extend_ttl(TTL_THRESHOLD, TTL_EXTEND_TO);
 }
 
 fn is_zero(hash: &BytesN<32>) -> bool {

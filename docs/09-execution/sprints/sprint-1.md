@@ -13,8 +13,8 @@
 | HU-13 · `create_question` | 5 | Vie 27 | Hecha | Constructor, auth del curador, validaciones, tests T01–T04 |
 | HU-14 · `submit_forecast` con compromiso | 5 | Vie 27 | Hecha | Auth del maker, roles excluidos, `seq`, cierre, tests T05–T08 |
 | HU-26 · Shell y sistema visual | 3 | Vie 27 | En revisión: falta probar 360 px y zoom 200 % en navegador | Tokens, header, footer, foco, 360 px |
-| HU-15 · Resolver, invalidar, cancelar | 3 | Sáb 28 | Pendiente | Ventana, estado terminal, T09–T11 |
-| HU-16 · Eventos y TTL | 2 | Sáb 28 | Pendiente | `#[contractevent]`, `extend_ttl` ≥ 518 400 |
+| HU-15 · Resolver, invalidar, cancelar | 3 | Sáb 28 | Hecha | Ventana, estado terminal, T09–T11 |
+| HU-16 · Eventos y TTL | 2 | Sáb 28 | Hecha | `#[contractevent]`, `extend_ttl` ≥ 518 400 |
 | HU-17 · Despliegue oficial y bindings | 3 | Sáb 28 | Pendiente | `deployment.json`, bindings TS, pedir hito |
 | HU-18 · Migración inicial y repositorios | 3 | Sáb 28 | Pendiente | `001_initial.sql`, regla de ocultar payloads antes del cierre |
 | HU-22 · CLI de preguntas | 3 | Sáb 28 | Pendiente | `question:create` y `question:fx`, misma función que la API |
