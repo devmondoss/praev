@@ -160,6 +160,8 @@ describe("módulos compartidos con el navegador", () => {
       "src/domain/questions/categories.ts",
       "src/domain/questions/spec.ts",
       "src/domain/forecasts/thesis.ts",
+      "src/lib/stellar/deployment.ts",
+      "src/lib/stellar/contract-errors.ts",
     ];
     for (const file of files) {
       const source = readFileSync(path.resolve(__dirname, "../..", file), "utf8");

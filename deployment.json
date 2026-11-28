@@ -1,0 +1,18 @@
+{
+  "network": "testnet",
+  "networkPassphrase": "Test SDF Network ; September 2015",
+  "contractId": "CD6NNKKSKPTJ33OV7Y2D6YW2BCK3GEFFSDZ6B5KQDS7EL6LGOAGIKY5X",
+  "alias": "praev_registry",
+  "curator": "GBM6H4HBGNXGNKM4BX32CC3TCH6ALKDTAFRTNMBNSHB34ZSQL4QGBUPU",
+  "schemaVersion": 1,
+  "wasmHash": "6d63f17913cdba2677cc2fc508b5563a2f32f96296ab111f80e713fd6020bab0",
+  "uploadTx": "b9e71322984323ac894fd31d5289f176a63913cb2bc8c66b955e2afdf8f322dd",
+  "uploadLedger": 5969470,
+  "deployTx": "46f0bfdedd7cbfcb822c9df78b1d1b1f71d1a4355090180cf955f60aa1f35ef9",
+  "deployLedger": 5969473,
+  "deployedAt": "2026-11-28T13:03:29Z",
+  "commit": "9f4b3822f1885e90edb7cdb09d54dc4827fd5fcc",
+  "toolchain": { "soroban-sdk": "30.0.0", "stellar-cli": "30.0.1", "stellar-sdk": "17.4.0" },
+  "appUrl": "https://praev.vercel.app",
+  "checkedAt": "2026-11-28T13:08:49Z"
+}

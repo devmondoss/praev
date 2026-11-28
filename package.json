@@ -11,9 +11,12 @@
     "test": "vitest run",
     "db:migrate": "tsx --conditions=react-server scripts/migrate.ts",
     "contract:test": "cargo test --manifest-path contracts/Cargo.toml",
-    "contract:build": "cd contracts && stellar contract build"
+    "contract:build": "cd contracts && stellar contract build",
+    "contract:bindings": "tsx scripts/contract-bindings.ts",
+    "contract:info": "tsx --conditions=react-server scripts/contract-info.ts"
   },
   "dependencies": {
+    "@stellar/stellar-sdk": "17.4.0",
     "next": "16.4.6",
     "postgres": "4.1.1",
     "react": "19.3.0",

@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Bindings generados por @stellar/stellar-sdk (npm run contract:bindings).
+    "src/server/stellar/bindings/**",
   ]),
 ]);
 

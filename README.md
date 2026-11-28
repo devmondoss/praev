@@ -256,9 +256,12 @@ npm run db:migrate
 npm run dev                     # http://localhost:3000 · health en /api/v1/health
 npm run lint && npm run typecheck && npm test
 npm run contract:test && npm run contract:build
+npm run contract:info            # lee el contrato desplegado y lo compara con deployment.json
 ```
 
 App desplegada: https://praev.vercel.app
+
+Contrato `PraevRegistry` en Stellar Testnet: [`CD6NNKKSKPTJ33OV7Y2D6YW2BCK3GEFFSDZ6B5KQDS7EL6LGOAGIKY5X`](https://stellar.expert/explorer/testnet/contract/CD6NNKKSKPTJ33OV7Y2D6YW2BCK3GEFFSDZ6B5KQDS7EL6LGOAGIKY5X). El ID, el hash del Wasm, las transacciones de subida y despliegue y el commit compilado están en [`deployment.json`](deployment.json).
 
 ## Código previo y de terceros
 
@@ -268,6 +271,7 @@ No hay código previo: todo se escribe durante el periodo oficial de la buildath
 |---|---|---|
 | `create-next-app` 16.4.6 | Scaffold inicial de la app (configuración de Next.js, TypeScript, ESLint y Tailwind), adaptado después | MIT |
 | Dependencias npm y crates | Listadas con versión exacta en `package.json` y `contracts/Cargo.toml` | Las de cada paquete |
+| Bindings TS del contrato | `src/server/stellar/bindings/`, generados por el CLI de `@stellar/stellar-sdk` 17.4.0 a partir del contrato desplegado | Apache-2.0 |
 
 ## Licencia
 
