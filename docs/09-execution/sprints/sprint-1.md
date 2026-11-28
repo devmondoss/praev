@@ -39,6 +39,12 @@
 - Bloqueos: ninguno.
 - Cierre: HU-08, HU-07, HU-13 y HU-14 hechas (20 pts); HU-26 en revisión (3 pts) hasta probar 360 px y zoom 200 % en navegador. 66 tests Vitest y 17 tests del contrato en verde; shell desplegado en praev.vercel.app con health ok. Ajuste: `relevance` y `relevanceReason` entran a QuestionSpec v2 para que HU-07 pueda exigir la justificación.
 
+### 28 nov
+- Ayer: HU-08, HU-07, HU-13 y HU-14 hechas; HU-26 en revisión.
+- Hoy: HU-15, HU-16, HU-17, HU-18, HU-22, HU-45 y la parte del sábado de HU-27.
+- Cierre: HU-15, HU-16, HU-17, HU-18, HU-22 y HU-45 hechas (16 pts; acumulado 36/68). Contrato oficial `CD6NNKKS…KY5X` en testnet con `deployment.json`; migraciones 001 y 002 aplicadas en Neon; primera pregunta (DEMO, tx `d864f0c9…`) publicada con `question:create` y visible en el Radar de producción. 26 tests del contrato y 112 de Vitest en verde. Hallazgos: el SDK no da el nombre del error del contrato (se lee el código); postgres.js serializa `jsonb` con `JSON.stringify` (migración 002); la API del BCRP publica hasta 14 decimales (escala 10^14); TRM de Colombia NO-GO.
+- Bloqueos: ninguno. Pendiente del equipo: pedir el hito «Stellar testnet» en el Hub y probar HU-26 en navegador.
+
 ## Review
 
 Pendiente (dom 29).
