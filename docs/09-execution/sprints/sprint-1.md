@@ -19,7 +19,7 @@
 | HU-18 · Migración inicial y repositorios | 3 | Sáb 28 | Hecha: aplicada en Neon | `001_initial.sql`, regla de ocultar payloads antes del cierre |
 | HU-22 · CLI de preguntas | 3 | Sáb 28 | Hecha: DEMO publicada en testnet (tx `d864f0c9…`); el ancla se engancha con HU-46 | `question:create` y `question:fx`, misma función que la API |
 | HU-45 · Spike FX BR, CO, AR | 2 | Sáb 28 | Hecha: GO PE, BR, AR · NO-GO CO | GO/NO-GO por fuente |
-| HU-27 · Radar con datos tipados | 3 | Sáb–Dom | Pendiente | Tarjetas, filtros, DEMO visible |
+| HU-27 · Radar con datos tipados | 3 | Sáb–Dom | En curso: lee la base real (sábado); el domingo, conteo del indexador (HU-19) y API (HU-20) | Tarjetas, filtros, DEMO visible |
 | HU-44 · Adaptadores SENAMHI y BCRP | 3 | Dom 29 | Pendiente | Bytes exactos, normalización |
 | HU-46 · Ancla histórica | 2 | Dom 29 | Pendiente | `anchor.v1` para `fx_daily` y `precipitation` |
 | HU-12 · Regla `sum`/`single` | 3 | Dom 29 | Pendiente | T17, T35, muestras reales |

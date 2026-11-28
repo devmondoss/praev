@@ -28,3 +28,12 @@ export async function ensureDeployment(db: Db, deployment: Deployment): Promise<
   }
   return row.id;
 }
+
+/** Id del despliegue sin escribir: una lectura pública nunca registra filas. */
+export async function findDeploymentId(db: Db, deployment: Deployment): Promise<string | null> {
+  const [row] = await db.query<{ id: string }>(
+    `select id from deployments where network = $1 and contract_id = $2`,
+    [deployment.network, deployment.contractId],
+  );
+  return row?.id ?? null;
+}
