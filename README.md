@@ -271,6 +271,7 @@ No hay código previo: todo se escribe durante el periodo oficial de la buildath
 |---|---|---|
 | `create-next-app` 16.4.6 | Scaffold inicial de la app (configuración de Next.js, TypeScript, ESLint y Tailwind), adaptado después | MIT |
 | Dependencias npm y crates | Listadas con versión exacta en `package.json` y `contracts/Cargo.toml` | Las de cada paquete |
+| `@electric-sql/pglite` 0.5.16 (solo desarrollo) | Postgres en Wasm para los tests de integración de la base | Apache-2.0 |
 | Bindings TS del contrato | `src/server/stellar/bindings/`, generados por el CLI de `@stellar/stellar-sdk` 17.4.0 a partir del contrato desplegado | Apache-2.0 |
 
 ## Licencia

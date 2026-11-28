@@ -1,8 +1,8 @@
 # Esquema SQL inicial
 
-**Estado:** P0 propuesta SQL; ejecutar en PostgreSQL durante bootstrap · **Versión:** 1.1 · **Fecha:** 2026-11-26
+**Estado:** P0; `001_initial.sql` aplicada en Neon (HU-18) · **Versión:** 1.2 · **Fecha:** 2026-11-28
 
-La base es una proyección de la red y almacén de contenido, no autoridad de forecasts. Un deployment separa resets. Migración `db/migrations/001_initial.sql` propuesta:
+La base es una proyección de la red y almacén de contenido, no autoridad de forecasts. Un deployment separa resets. Propuesta original (v1.1); la versión aplicada es [`db/migrations/001_initial.sql`](../../db/migrations/001_initial.sql), con los cambios de la sección final:
 ```sql
 CREATE TABLE deployments (
  id uuid PRIMARY KEY, network text NOT NULL CHECK(network='testnet'),
@@ -115,4 +115,22 @@ CREATE INDEX evidence_question_idx ON evidence(question_id,purpose);
 
 No tabla de score editable: consultar última versión por `(question_id,address)`, join con resolutions terminales 0/1, filtrar deployment y mode. Usar integer lossUnits, agregación SQL o TS pura. No guardar decision snapshots en DB P0. Las operaciones de proyección y cursor deben ocurrir en una transacción; ON CONFLICT no debe ocultar payload discrepante. Si evento de pregunta externa carece de spec, almacenar evento bruto y marcar huérfano; no inventar metadata.
 
-Migraciones numeradas, transacción, backup antes de reset. Usar cuenta app sin DDL y migrator separado cuando despliegue lo permita. No conceder acceso público SQL. Fuente: [PostgreSQL transaction isolation](https://www.postgresql.org/docs/17/transaction-iso.html). No se ha aplicado esta migración ni probado con una instancia real en este trabajo.
+Migraciones numeradas, transacción, backup antes de reset. Usar cuenta app sin DDL y migrator separado cuando despliegue lo permita. No conceder acceso público SQL. Fuente: [PostgreSQL transaction isolation](https://www.postgresql.org/docs/17/transaction-iso.html). 
+## Implementación (28 nov, HU-18)
+
+`001_initial.sql` se aplicó con `npm run db:migrate` en Neon (PostgreSQL 18.7); un segundo `db:migrate` responde «al día». Cambios respecto de la propuesta, todos más estrictos o necesarios para una regla ya escrita:
+
+- **Hashes verificados por Postgres:** `CHECK (hash = encode(sha256(bytes), 'hex'))` en `questions.spec_hash`, `thesis_payloads.commitment`, `resolution_payloads.evidence_hash`, `question_proposals.proposal_hash` y `evidence.content_hash` (si hay bytes). Una fila con bytes alterados no entra aunque el servicio falle.
+- **`questions.chain_id = SHA256(UTF8(id))`** como CHECK, y formato StrKey (`G…`/`C…`) en direcciones y 64 hex en tx hashes.
+- **`deployments.deploy_tx`** para enlazar la fila con `deployment.json`; **`questions.created_at`**.
+- **`sync_state.last_ledger_time`**: el tiempo del último ledger indexado, que es el reloj de la regla de revelado. Sin él la regla no se podía expresar en SQL.
+
+Repositorios en `src/server/db/` con placeholders `$n` y valores aparte (nunca interpolación), detrás de una interfaz `Db` que implementan postgres.js y PGlite:
+
+- `deployments.ts`: `ensureDeployment`, idempotente; falla si el mismo contrato ya existe con otro Wasm o tx.
+- `questions.ts`: `verifySpecBytes` exige hash correcto, JSON canónico, spec válida y que la spec validada reproduzca los mismos bytes; `insertQuestion` es idempotente con la misma spec y falla con otra; `getSpecBytes` re-verifica el hash al leer.
+- `theses.ts`: **la única puerta a `thesis_payloads`**. `insertThesisPayload` abre el compromiso (hash, canónico, esquema) y exige que la tesis sea de esa pregunta, maker y `seq`. `listRevealedTheses` filtra en el propio SQL con `q.closes_at <= sync_state.last_ledger_time`; sin ledger indexado no devuelve nada. Al leer vuelve a abrir cada compromiso.
+- `sync.ts`: `advanceSyncState` nunca retrocede.
+
+Tests en `tests/unit/db.test.ts` contra PGlite 0.5.16 (Postgres 18 en Wasm, sin red): esquema sin tabla de score, CHECK de hash y de `chain_id`, idempotencia, rechazo de bytes no canónicos o alterados, y la regla de revelado un segundo antes y en el cierre exacto. Quitando el filtro de `listRevealedTheses` el test falla (comprobado).
+

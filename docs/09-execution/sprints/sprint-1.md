@@ -16,7 +16,7 @@
 | HU-15 · Resolver, invalidar, cancelar | 3 | Sáb 28 | Hecha | Ventana, estado terminal, T09–T11 |
 | HU-16 · Eventos y TTL | 2 | Sáb 28 | Hecha | `#[contractevent]`, `extend_ttl` ≥ 518 400 |
 | HU-17 · Despliegue oficial y bindings | 3 | Sáb 28 | Hecha: `CD6NNKKS…KY5X` | `deployment.json`, bindings TS, pedir hito |
-| HU-18 · Migración inicial y repositorios | 3 | Sáb 28 | Pendiente | `001_initial.sql`, regla de ocultar payloads antes del cierre |
+| HU-18 · Migración inicial y repositorios | 3 | Sáb 28 | Hecha: aplicada en Neon | `001_initial.sql`, regla de ocultar payloads antes del cierre |
 | HU-22 · CLI de preguntas | 3 | Sáb 28 | Pendiente | `question:create` y `question:fx`, misma función que la API |
 | HU-45 · Spike FX BR, CO, AR | 2 | Sáb 28 | Pendiente | GO/NO-GO por fuente |
 | HU-27 · Radar con datos tipados | 3 | Sáb–Dom | Pendiente | Tarjetas, filtros, DEMO visible |

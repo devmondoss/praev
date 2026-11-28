@@ -2,7 +2,7 @@
 
 **Estado:** P0; en curso · **Versión:** 1.3 · **Fecha:** 2026-11-28
 
-**Pasan al 28 nov:** T01–T04, T05 (parte Rust), T06–T11 con `npm run contract:test` (26 tests, incluido el decode del XDR de los cinco eventos); T12, T13 y T29 con `npm test`. El resto sigue pendiente. T11 «sin score» se cumple on-chain porque el contrato no calcula score; la exclusión del ranking se prueba en TS con T15.
+**Pasan al 28 nov:** T01–T04, T05 (parte Rust), T06–T11 con `npm run contract:test` (26 tests, incluido el decode del XDR de los cinco eventos); T12, T13 y T29 con `npm test`. La parte de repositorio de T30 (ninguna fila de `thesis_payloads` antes del cierre) pasa en `tests/unit/db.test.ts` contra PGlite; la parte de API llega con HU-20. El resto sigue pendiente. T11 «sin score» se cumple on-chain porque el contrato no calcula score; la exclusión del ranking se prueba en TS con T15.
 
 | ID | Nivel | Caso | Esperado |
 |---|---|---|---|
