@@ -21,4 +21,11 @@ describe("parseServerEnv", () => {
   it("rejects a malformed RPC URL", () => {
     expect(() => parseServerEnv({ STELLAR_RPC_URL: "not a url" })).toThrow();
   });
+
+  it("validates operator addresses as StrKey accounts", () => {
+    const resolver = "GAN5CFF43LTYGVV46YBFD3ICYVWWCXDS2GLI3J3AHF3FQC3ZCR52257G";
+    expect(parseServerEnv({ PRAEV_RESOLVER_ADDRESS: resolver }).PRAEV_RESOLVER_ADDRESS).toBe(resolver);
+    expect(() => parseServerEnv({ PRAEV_RESOLVER_ADDRESS: "GAN5CFF43" })).toThrow(/inválida/);
+    expect(() => parseServerEnv({ PRAEV_AGENT_ADDRESS: "SBADSECRET" })).toThrow();
+  });
 });

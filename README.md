@@ -257,6 +257,8 @@ npm run dev                     # http://localhost:3000 · health en /api/v1/hea
 npm run lint && npm run typecheck && npm test
 npm run contract:test && npm run contract:build
 npm run contract:info            # lee el contrato desplegado y lo compara con deployment.json
+npm run question:fx -- --date 2026-12-01 --threshold 3.480   # genera la spec en questions/
+npm run question:create -- questions/live/<archivo>.json      # la publica on-chain (firma: keystore `curator`)
 ```
 
 App desplegada: https://praev.vercel.app

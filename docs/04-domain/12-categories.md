@@ -38,3 +38,9 @@ Banco Mundial (solo series anuales) no sirve para preguntas de corto plazo. Banx
 | `precipitation` | ¿La lluvia acumulada en {estación} entre {inicio} y {fin} superará {umbral} mm? | `sum` | Pregunta LIVE de ADR-023 |
 
 El umbral se fija cerca del valor actual para que la incertidumbre sea real, y el ancla histórica (ver [06-consensus](06-consensus.md)) se calcula antes del cierre. Un día sin publicación (feriado, fin de semana) invalida la pregunta `single` conforme a su `missingPolicy: 'invalidate'`; por eso las plantillas apuntan a días hábiles.
+
+## Implementación de la plantilla `fx_daily` (28 nov, HU-22)
+
+`src/domain/questions/templates/fx-daily.ts` genera y valida la spec a partir de fecha, umbral, país y modo. Cierre a las 18:00 locales del día anterior; observación del día completo; resolución desde el fin del día y hasta 7 días después. Rechaza sábados y domingos; los feriados los revisa el curador. Solo admite países cuya fuente tiene GO en [05-data-sources](../07-engineering/05-data-sources.md). Una pregunta DEMO usa una fuente `urn:praev:fixture:fx-<país>-<fecha>`, nunca la fuente real.
+
+**Escala exacta.** La API del BCRP publica promedios con hasta 14 decimales (25 nov: `3.49157142857143`) aunque declara `"dec":"3"` para mostrarlos. Por eso la plantilla usa `scale = 10^14`: cada valor publicado es un entero exacto (seguro en JS) y `gt` se compara sin redondear y sin agregar un campo de redondeo a la spec. El umbral admite 3 decimales.

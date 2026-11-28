@@ -1,9 +1,5 @@
 // HU-18: la migración 001 y los repositorios contra Postgres real (PGlite,
 // Postgres 18 en Wasm), sin red ni base compartida.
-import { readFileSync } from "node:fs";
-import path from "node:path";
-
-import { PGlite, type Transaction } from "@electric-sql/pglite";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { sealThesis, type ThesisPayload } from "@/domain/forecasts/thesis";
@@ -16,32 +12,16 @@ import type { Db } from "@/server/db/sql";
 import { advanceSyncState, getSyncState } from "@/server/db/sync";
 import { insertThesisPayload, isRevealable, listRevealedTheses, ThesisBytesError } from "@/server/db/theses";
 
+import { migratedDb } from "../helpers/pglite";
 import { fx, rain } from "../helpers/specs";
-
-const MIGRATION = readFileSync(path.resolve(__dirname, "../../db/migrations/001_initial.sql"), "utf8");
 const MAKER = "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF";
 const OTHER_MAKER = "GCJ3KM7QAMN3XOYDIMBRAXSFHFBUPSGVA2KQGDPDX4UP7NY7LDQ36CEK";
 
-function pgliteDb(pg: PGlite | Transaction): Db {
-  return {
-    async query<T extends object>(text: string, params: readonly unknown[] = []) {
-      return (await pg.query<T>(text, [...params])).rows;
-    },
-    async transaction<R>(fn: (tx: Db) => Promise<R>) {
-      if (!("transaction" in pg)) throw new Error("transacción anidada no soportada");
-      return pg.transaction((tx) => fn(pgliteDb(tx)));
-    },
-  };
-}
-
-let pg: PGlite;
 let db: Db;
 let deploymentId: string;
 
 beforeEach(async () => {
-  pg = new PGlite();
-  await pg.exec(MIGRATION);
-  db = pgliteDb(pg);
+  db = await migratedDb();
   deploymentId = await ensureDeployment(db, DEPLOYMENT);
 });
 
@@ -149,6 +129,15 @@ describe("preguntas", () => {
     );
     expect(Number(row!.closes_at)).toBe(fx().closesAt);
     expect(row!.relevance_reason).toBe(fx().relevanceReason);
+  });
+
+  it("la proyección jsonb es un objeto; un string JSON se rechaza (002)", async () => {
+    await storeFx();
+    const [row] = await db.query<{ t: string }>(`select jsonb_typeof(spec) as t from questions`);
+    expect(row!.t).toBe("object");
+    await expect(
+      db.query(`update questions set spec = to_jsonb($1::text) where id = $2::uuid`, ['{"a":1}', fx().id]),
+    ).rejects.toThrow(/questions_spec_is_object/);
   });
 
   it("es idempotente con la misma spec y rechaza otra spec con el mismo id", async () => {

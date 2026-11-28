@@ -101,7 +101,8 @@ export async function insertQuestion(db: Db, input: NewQuestion): Promise<Stored
       spec.country,
       spec.requester,
       spec.referenceThresholdBps,
-      new TextDecoder().decode(input.specBytes),
+      // Objeto, no texto: postgres.js serializa los parámetros jsonb con JSON.stringify.
+      spec,
       input.specBytes,
       input.specHash,
       spec.curator,
@@ -155,3 +156,20 @@ export async function getSpecBytes(db: Db, id: string): Promise<Uint8Array | nul
   return bytes;
 }
 
+
+/**
+ * Pasa a OPEN una pregunta confirmada on-chain. Solo desde DRAFT/REVIEW/OPEN:
+ * una pregunta terminal no se reabre. Conserva un `created_tx` ya guardado.
+ */
+export async function markQuestionOpen(db: Db, id: string, createdTx: string | null): Promise<StoredQuestion> {
+  const rows = await db.query<{ id: string }>(
+    `update questions set status = 'OPEN', created_tx = coalesce(created_tx, $2)
+     where id = $1::uuid and status in ('DRAFT', 'REVIEW', 'OPEN')
+     returning id`,
+    [id, createdTx],
+  );
+  if (rows.length === 0) throw new Error(`la pregunta ${id} no existe o ya es terminal`);
+  const stored = await getQuestion(db, id);
+  if (!stored) throw new Error(`la pregunta ${id} desapareció`);
+  return stored;
+}

@@ -13,7 +13,9 @@
     "contract:test": "cargo test --manifest-path contracts/Cargo.toml",
     "contract:build": "cd contracts && stellar contract build",
     "contract:bindings": "tsx scripts/contract-bindings.ts",
-    "contract:info": "tsx --conditions=react-server scripts/contract-info.ts"
+    "contract:info": "tsx --conditions=react-server scripts/contract-info.ts",
+    "question:fx": "tsx scripts/question-fx.ts",
+    "question:create": "tsx --conditions=react-server scripts/question-create.ts"
   },
   "dependencies": {
     "@stellar/stellar-sdk": "17.4.0",
