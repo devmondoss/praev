@@ -47,6 +47,35 @@ export const FX_SOURCES: Record<string, FxSource> = {
     utcOffsetMinutes: -300,
     resolveWindowDays: 7,
   },
+  BR: {
+    country: "BR",
+    name: "BCB",
+    url: "https://api.bcb.gov.br/dados/serie/bcdata.sgs.1/dados",
+    dataset: "SGS",
+    series: "1",
+    seriesLabel: "dólar PTAX venta (R$ por US$)",
+    unit: "BRL/USD",
+    scale: 10_000,
+    thresholdDecimals: 4,
+    timezone: "America/Sao_Paulo",
+    utcOffsetMinutes: -180,
+    resolveWindowDays: 7,
+  },
+  AR: {
+    country: "AR",
+    name: "BCRA",
+    url: "https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/4",
+    dataset: "Estadísticas monetarias v4.0",
+    series: "4",
+    seriesLabel: "tipo de cambio minorista promedio vendedor (AR$ por US$)",
+    unit: "ARS/USD",
+    scale: 100,
+    thresholdDecimals: 2,
+    timezone: "America/Argentina/Buenos_Aires",
+    utcOffsetMinutes: -180,
+    resolveWindowDays: 7,
+  },
+  // CO (TRM): NO-GO en HU-45; se publica antes de su vigencia (05-data-sources).
 };
 
 export type FxQuestionInput = {

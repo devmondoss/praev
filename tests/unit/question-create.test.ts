@@ -55,6 +55,19 @@ describe("plantilla fx_daily", () => {
     expect(() => fxDailySpec({ ...base, country: "MX" })).toThrow(/sin fuente/);
   });
 
+  it("BR y AR usan su zona, escala y fuente; CO queda fuera (HU-45)", () => {
+    const br = fxDailySpec({ ...base, country: "BR", threshold: "5.6500" });
+    expect(br.closesAt).toBe(Date.parse("2026-12-01T18:00:00-03:00") / 1000);
+    expect(br.thresholdScaled).toBe(56_500);
+    expect(br.scale).toBe(10_000);
+    expect(br.source.name).toBe("BCB");
+    const ar = fxDailySpec({ ...base, country: "AR", threshold: "1630.50" });
+    expect(ar.thresholdScaled).toBe(163_050);
+    expect(ar.timezone).toBe("America/Argentina/Buenos_Aires");
+    expect(ar.title).toContain("mayor que 1630,50");
+    expect(() => fxDailySpec({ ...base, country: "CO" })).toThrow(/sin fuente/);
+  });
+
   it("marca DEMO en el título y valida la spec completa", () => {
     const demo = fxDailySpec({ ...base, mode: "DEMO" });
     expect(demo.title.startsWith("DEMO: ")).toBe(true);
